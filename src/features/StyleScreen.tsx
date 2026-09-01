@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useI18n } from '@/i18n'
 import { useGame } from '@/state/store'
@@ -13,7 +13,8 @@ import { CurrencyPill, RarityBadge, Tabs } from '@/components/ui'
 import { IconCheck, IconLock } from '@/app/icons'
 import './style-screen.css'
 
-type Tab = 'skin' | 'hair' | 'top' | 'bottom' | 'dress' | 'shoes' | 'accessory'
+type GarmentTab = 'top' | 'bottom' | 'dress' | 'shoes' | 'accessory'
+type Tab = 'skin' | 'hair' | GarmentTab
 
 /**
  * ألوان عيّنات الشعر في المنتقي.
@@ -41,19 +42,39 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
   const setAvatarPart = useGame((s) => s.setAvatarPart)
 
   const v = manifest ? viewOf(manifest) : null
+  const bodySrc = v?.body[bodyKey(avatar.skin, avatar.eyes)]?.src
+  const wornSrcs = useMemo(() => {
+    if (!v) return [] as string[]
+    const slots = avatar.worn.dress ? ['dress'] : ['bottom', 'top']
+    return slots
+      .map((sl) => avatar.worn[sl as 'top'])
+      .filter(Boolean)
+      .map((id) => v.garments[id as string]?.src)
+      .filter((x): x is string => Boolean(x))
+  }, [v, avatar.worn])
 
-  const tabs = useMemo(
-    () => [
-      { id: 'top' as Tab, label: t('style.cat.top') },
-      { id: 'bottom' as Tab, label: t('style.cat.bottom') },
-      { id: 'dress' as Tab, label: t('style.cat.dress') },
-      { id: 'shoes' as Tab, label: t('style.cat.shoes') },
-      { id: 'accessory' as Tab, label: t('style.cat.acc') },
+  // التبويبات الفارغة تُخفى: تبويب بلا عناصر يبان كعطل لا كفئة قادمة
+  const tabs = useMemo(() => {
+    const garmentCats: { id: GarmentTab; label: string }[] = [
+      { id: 'top', label: t('style.cat.top') },
+      { id: 'bottom', label: t('style.cat.bottom') },
+      { id: 'dress', label: t('style.cat.dress') },
+      { id: 'shoes', label: t('style.cat.shoes') },
+      { id: 'accessory', label: t('style.cat.acc') },
+    ]
+    const garmentTabs: { id: Tab; label: string }[] =
+      garmentCats.filter((x) => !v || garmentsByCategory(v, x.id).length > 0)
+    return [
+      ...garmentTabs,
       { id: 'hair' as Tab, label: t('style.cat.hair') },
       { id: 'skin' as Tab, label: t('style.skin') },
-    ],
-    [t],
-  )
+    ]
+  }, [t, v])
+
+  // لو التبويب الحالي اختفى (كتالوج مختلف)، ارجع لأول تبويب متاح
+  useEffect(() => {
+    if (tabs.length && !tabs.some((x) => x.id === tab)) setTab(tabs[0].id)
+  }, [tabs, tab])
 
   function handleGarment(g: GarmentLayer & { id: string }) {
     if (owned.includes(g.id)) {
@@ -98,7 +119,9 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
           {tab === 'skin' && manifest &&
             Object.entries(manifest.skinTones).map(([key, meta]) => {
               const on = avatar.skin === key
+              // بلاطة بلا طبقة تبان كعطل — تُخفى بدل عرضها فاضية
               const src = v?.body[bodyKey(key, avatar.eyes)]?.src
+              if (!src) return null
               return (
                 <motion.button
                   key={key}
@@ -107,7 +130,7 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
                   onClick={() => { setAvatarPart('skin', key); haptic('select') }}
                   aria-label={tx(meta.name)}
                 >
-                  {src && <img className="tile__thumb tile__thumb--head" src={assetUrl(src)} alt="" />}
+                  <img className="tile__thumb tile__thumb--head" src={assetUrl(src)} alt="" />
                   {on && <span className="tile__check"><IconCheck size={13} /></span>}
                 </motion.button>
               )
@@ -134,7 +157,23 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
                     onClick={() => { setAvatarPart('hairStyle', style); haptic('select') }}
                     aria-label={tx(manifest.hairStyles[style].name)}
                   >
-                    <img className="tile__thumb tile__thumb--head" src={assetUrl(layer.front)} alt="" />
+                    {/*
+                      المصغّرة تُركَّب فوق الإطلالة الحالية لا فوق الجسم وحده:
+                      طبقة الجسم بمفردها هي الشبكة الأساسية بلا ملابس، وخط
+                      الإنتاج ملتزم بألا يعرضها أبدًا (PRODUCT_BLUEPRINT §9).
+                    */}
+                    <img className="tile__thumb tile__thumb--bust" src={assetUrl(layer.back)} alt=""
+                         style={{ zIndex: 0 }} />
+                    {bodySrc && (
+                      <img className="tile__thumb tile__thumb--bust" src={assetUrl(bodySrc)} alt=""
+                           style={{ zIndex: 1 }} />
+                    )}
+                    {wornSrcs.map((src, i) => (
+                      <img key={src} className="tile__thumb tile__thumb--bust" src={assetUrl(src)}
+                           alt="" style={{ zIndex: 2 + i }} />
+                    ))}
+                    <img className="tile__thumb tile__thumb--bust" src={assetUrl(layer.front)} alt=""
+                         style={{ zIndex: 9 }} />
                     {on && <span className="tile__check"><IconCheck size={13} /></span>}
                   </motion.button>
                 )

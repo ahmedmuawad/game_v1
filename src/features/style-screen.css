@@ -64,6 +64,11 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  /*
+    الإعادة العامة `img { max-width: 100% }` كانت بتقصّ التكبير هنا لعرض
+    البلاطة، فالقصّ كان بيعرض الجسم كله بدل الجزء المقصود.
+  */
+  max-width: none;
   object-fit: contain;
   pointer-events: none;
   /* الافتراضي: الجذع */
@@ -75,6 +80,8 @@
 .tile__thumb--dress  { width: 89%;  top: -21%; }
 .tile__thumb--shoes  { width: 312%; top: -525%; }
 .tile__thumb--head   { width: 312%; top: -6%; }
+/* التسريحات تختلف أساسًا في الطول — قصّ الرأس بيخفي الفرق تمامًا */
+.tile__thumb--bust   { width: 122%; top: -2%; }
 
 .tile__check {
   position: absolute;

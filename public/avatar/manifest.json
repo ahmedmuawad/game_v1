@@ -6,6 +6,114 @@
         768
       ],
       "body": {
+        "porcelain_brown": {
+          "src": "full/body/porcelain_brown.webp",
+          "skin": "porcelain",
+          "eyes": "brown",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "porcelain_amber": {
+          "src": "full/body/porcelain_amber.webp",
+          "skin": "porcelain",
+          "eyes": "amber",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "porcelain_green": {
+          "src": "full/body/porcelain_green.webp",
+          "skin": "porcelain",
+          "eyes": "green",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "porcelain_blue": {
+          "src": "full/body/porcelain_blue.webp",
+          "skin": "porcelain",
+          "eyes": "blue",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "porcelain_grey": {
+          "src": "full/body/porcelain_grey.webp",
+          "skin": "porcelain",
+          "eyes": "grey",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "porcelain_hazel": {
+          "src": "full/body/porcelain_hazel.webp",
+          "skin": "porcelain",
+          "eyes": "hazel",
+          "name": {
+            "ar": "فاتح",
+            "en": "Porcelain"
+          }
+        },
+        "sand_brown": {
+          "src": "full/body/sand_brown.webp",
+          "skin": "sand",
+          "eyes": "brown",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
+        "sand_amber": {
+          "src": "full/body/sand_amber.webp",
+          "skin": "sand",
+          "eyes": "amber",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
+        "sand_green": {
+          "src": "full/body/sand_green.webp",
+          "skin": "sand",
+          "eyes": "green",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
+        "sand_blue": {
+          "src": "full/body/sand_blue.webp",
+          "skin": "sand",
+          "eyes": "blue",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
+        "sand_grey": {
+          "src": "full/body/sand_grey.webp",
+          "skin": "sand",
+          "eyes": "grey",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
+        "sand_hazel": {
+          "src": "full/body/sand_hazel.webp",
+          "skin": "sand",
+          "eyes": "hazel",
+          "name": {
+            "ar": "فاتح دافي",
+            "en": "Sand"
+          }
+        },
         "honey_brown": {
           "src": "full/body/honey_brown.webp",
           "skin": "honey",
@@ -13,6 +121,267 @@
           "name": {
             "ar": "حنطي",
             "en": "Honey"
+          }
+        },
+        "honey_amber": {
+          "src": "full/body/honey_amber.webp",
+          "skin": "honey",
+          "eyes": "amber",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "honey_green": {
+          "src": "full/body/honey_green.webp",
+          "skin": "honey",
+          "eyes": "green",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "honey_blue": {
+          "src": "full/body/honey_blue.webp",
+          "skin": "honey",
+          "eyes": "blue",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "honey_grey": {
+          "src": "full/body/honey_grey.webp",
+          "skin": "honey",
+          "eyes": "grey",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "honey_hazel": {
+          "src": "full/body/honey_hazel.webp",
+          "skin": "honey",
+          "eyes": "hazel",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "golden_brown": {
+          "src": "full/body/golden_brown.webp",
+          "skin": "golden",
+          "eyes": "brown",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "golden_amber": {
+          "src": "full/body/golden_amber.webp",
+          "skin": "golden",
+          "eyes": "amber",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "golden_green": {
+          "src": "full/body/golden_green.webp",
+          "skin": "golden",
+          "eyes": "green",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "golden_blue": {
+          "src": "full/body/golden_blue.webp",
+          "skin": "golden",
+          "eyes": "blue",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "golden_grey": {
+          "src": "full/body/golden_grey.webp",
+          "skin": "golden",
+          "eyes": "grey",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "golden_hazel": {
+          "src": "full/body/golden_hazel.webp",
+          "skin": "golden",
+          "eyes": "hazel",
+          "name": {
+            "ar": "قمحي",
+            "en": "Golden"
+          }
+        },
+        "olive_brown": {
+          "src": "full/body/olive_brown.webp",
+          "skin": "olive",
+          "eyes": "brown",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "olive_amber": {
+          "src": "full/body/olive_amber.webp",
+          "skin": "olive",
+          "eyes": "amber",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "olive_green": {
+          "src": "full/body/olive_green.webp",
+          "skin": "olive",
+          "eyes": "green",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "olive_blue": {
+          "src": "full/body/olive_blue.webp",
+          "skin": "olive",
+          "eyes": "blue",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "olive_grey": {
+          "src": "full/body/olive_grey.webp",
+          "skin": "olive",
+          "eyes": "grey",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "olive_hazel": {
+          "src": "full/body/olive_hazel.webp",
+          "skin": "olive",
+          "eyes": "hazel",
+          "name": {
+            "ar": "زيتي",
+            "en": "Olive"
+          }
+        },
+        "bronze_brown": {
+          "src": "full/body/bronze_brown.webp",
+          "skin": "bronze",
+          "eyes": "brown",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "bronze_amber": {
+          "src": "full/body/bronze_amber.webp",
+          "skin": "bronze",
+          "eyes": "amber",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "bronze_green": {
+          "src": "full/body/bronze_green.webp",
+          "skin": "bronze",
+          "eyes": "green",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "bronze_blue": {
+          "src": "full/body/bronze_blue.webp",
+          "skin": "bronze",
+          "eyes": "blue",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "bronze_grey": {
+          "src": "full/body/bronze_grey.webp",
+          "skin": "bronze",
+          "eyes": "grey",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "bronze_hazel": {
+          "src": "full/body/bronze_hazel.webp",
+          "skin": "bronze",
+          "eyes": "hazel",
+          "name": {
+            "ar": "برونزي",
+            "en": "Bronze"
+          }
+        },
+        "cocoa_brown": {
+          "src": "full/body/cocoa_brown.webp",
+          "skin": "cocoa",
+          "eyes": "brown",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
+          }
+        },
+        "cocoa_amber": {
+          "src": "full/body/cocoa_amber.webp",
+          "skin": "cocoa",
+          "eyes": "amber",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
+          }
+        },
+        "cocoa_green": {
+          "src": "full/body/cocoa_green.webp",
+          "skin": "cocoa",
+          "eyes": "green",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
+          }
+        },
+        "cocoa_blue": {
+          "src": "full/body/cocoa_blue.webp",
+          "skin": "cocoa",
+          "eyes": "blue",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
+          }
+        },
+        "cocoa_grey": {
+          "src": "full/body/cocoa_grey.webp",
+          "skin": "cocoa",
+          "eyes": "grey",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
+          }
+        },
+        "cocoa_hazel": {
+          "src": "full/body/cocoa_hazel.webp",
+          "skin": "cocoa",
+          "eyes": "hazel",
+          "name": {
+            "ar": "بني",
+            "en": "Cocoa"
           }
         },
         "espresso_brown": {
@@ -23,9 +392,64 @@
             "ar": "داكن",
             "en": "Espresso"
           }
+        },
+        "espresso_amber": {
+          "src": "full/body/espresso_amber.webp",
+          "skin": "espresso",
+          "eyes": "amber",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
+        },
+        "espresso_green": {
+          "src": "full/body/espresso_green.webp",
+          "skin": "espresso",
+          "eyes": "green",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
+        },
+        "espresso_blue": {
+          "src": "full/body/espresso_blue.webp",
+          "skin": "espresso",
+          "eyes": "blue",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
+        },
+        "espresso_grey": {
+          "src": "full/body/espresso_grey.webp",
+          "skin": "espresso",
+          "eyes": "grey",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
+        },
+        "espresso_hazel": {
+          "src": "full/body/espresso_hazel.webp",
+          "skin": "espresso",
+          "eyes": "hazel",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
         }
       },
       "hair": {
+        "long_wavy_black": {
+          "back": "full/hair_back/long_wavy_black.webp",
+          "style": "long_wavy",
+          "color": "black",
+          "name": {
+            "ar": "شعر طويل موّج · أسود",
+            "en": "Long Wavy · Black"
+          },
+          "front": "full/hair_front/long_wavy_black.webp"
+        },
         "long_wavy_espresso": {
           "back": "full/hair_back/long_wavy_espresso.webp",
           "style": "long_wavy",
@@ -35,6 +459,26 @@
             "en": "Long Wavy · Espresso"
           },
           "front": "full/hair_front/long_wavy_espresso.webp"
+        },
+        "long_wavy_chestnut": {
+          "back": "full/hair_back/long_wavy_chestnut.webp",
+          "style": "long_wavy",
+          "color": "chestnut",
+          "name": {
+            "ar": "شعر طويل موّج · كستنائي",
+            "en": "Long Wavy · Chestnut"
+          },
+          "front": "full/hair_front/long_wavy_chestnut.webp"
+        },
+        "long_wavy_caramel": {
+          "back": "full/hair_back/long_wavy_caramel.webp",
+          "style": "long_wavy",
+          "color": "caramel",
+          "name": {
+            "ar": "شعر طويل موّج · كراميل",
+            "en": "Long Wavy · Caramel"
+          },
+          "front": "full/hair_front/long_wavy_caramel.webp"
         },
         "long_wavy_honey": {
           "back": "full/hair_back/long_wavy_honey.webp",
@@ -46,6 +490,366 @@
           },
           "front": "full/hair_front/long_wavy_honey.webp"
         },
+        "long_wavy_platinum": {
+          "back": "full/hair_back/long_wavy_platinum.webp",
+          "style": "long_wavy",
+          "color": "platinum",
+          "name": {
+            "ar": "شعر طويل موّج · بلاتيني",
+            "en": "Long Wavy · Platinum"
+          },
+          "front": "full/hair_front/long_wavy_platinum.webp"
+        },
+        "long_wavy_auburn": {
+          "back": "full/hair_back/long_wavy_auburn.webp",
+          "style": "long_wavy",
+          "color": "auburn",
+          "name": {
+            "ar": "شعر طويل موّج · نحاسي",
+            "en": "Long Wavy · Auburn"
+          },
+          "front": "full/hair_front/long_wavy_auburn.webp"
+        },
+        "long_wavy_rose": {
+          "back": "full/hair_back/long_wavy_rose.webp",
+          "style": "long_wavy",
+          "color": "rose",
+          "name": {
+            "ar": "شعر طويل موّج · وردي",
+            "en": "Long Wavy · Rose"
+          },
+          "front": "full/hair_front/long_wavy_rose.webp"
+        },
+        "long_wavy_lilac": {
+          "back": "full/hair_back/long_wavy_lilac.webp",
+          "style": "long_wavy",
+          "color": "lilac",
+          "name": {
+            "ar": "شعر طويل موّج · ليلكي",
+            "en": "Long Wavy · Lilac"
+          },
+          "front": "full/hair_front/long_wavy_lilac.webp"
+        },
+        "long_wavy_mint": {
+          "back": "full/hair_back/long_wavy_mint.webp",
+          "style": "long_wavy",
+          "color": "mint",
+          "name": {
+            "ar": "شعر طويل موّج · نعناعي",
+            "en": "Long Wavy · Mint"
+          },
+          "front": "full/hair_front/long_wavy_mint.webp"
+        },
+        "long_straight_black": {
+          "back": "full/hair_back/long_straight_black.webp",
+          "style": "long_straight",
+          "color": "black",
+          "name": {
+            "ar": "شعر طويل ناعم · أسود",
+            "en": "Long Straight · Black"
+          },
+          "front": "full/hair_front/long_straight_black.webp"
+        },
+        "long_straight_espresso": {
+          "back": "full/hair_back/long_straight_espresso.webp",
+          "style": "long_straight",
+          "color": "espresso",
+          "name": {
+            "ar": "شعر طويل ناعم · بني غامق",
+            "en": "Long Straight · Espresso"
+          },
+          "front": "full/hair_front/long_straight_espresso.webp"
+        },
+        "long_straight_chestnut": {
+          "back": "full/hair_back/long_straight_chestnut.webp",
+          "style": "long_straight",
+          "color": "chestnut",
+          "name": {
+            "ar": "شعر طويل ناعم · كستنائي",
+            "en": "Long Straight · Chestnut"
+          },
+          "front": "full/hair_front/long_straight_chestnut.webp"
+        },
+        "long_straight_caramel": {
+          "back": "full/hair_back/long_straight_caramel.webp",
+          "style": "long_straight",
+          "color": "caramel",
+          "name": {
+            "ar": "شعر طويل ناعم · كراميل",
+            "en": "Long Straight · Caramel"
+          },
+          "front": "full/hair_front/long_straight_caramel.webp"
+        },
+        "long_straight_honey": {
+          "back": "full/hair_back/long_straight_honey.webp",
+          "style": "long_straight",
+          "color": "honey",
+          "name": {
+            "ar": "شعر طويل ناعم · عسلي",
+            "en": "Long Straight · Honey Blonde"
+          },
+          "front": "full/hair_front/long_straight_honey.webp"
+        },
+        "long_straight_platinum": {
+          "back": "full/hair_back/long_straight_platinum.webp",
+          "style": "long_straight",
+          "color": "platinum",
+          "name": {
+            "ar": "شعر طويل ناعم · بلاتيني",
+            "en": "Long Straight · Platinum"
+          },
+          "front": "full/hair_front/long_straight_platinum.webp"
+        },
+        "long_straight_auburn": {
+          "back": "full/hair_back/long_straight_auburn.webp",
+          "style": "long_straight",
+          "color": "auburn",
+          "name": {
+            "ar": "شعر طويل ناعم · نحاسي",
+            "en": "Long Straight · Auburn"
+          },
+          "front": "full/hair_front/long_straight_auburn.webp"
+        },
+        "long_straight_rose": {
+          "back": "full/hair_back/long_straight_rose.webp",
+          "style": "long_straight",
+          "color": "rose",
+          "name": {
+            "ar": "شعر طويل ناعم · وردي",
+            "en": "Long Straight · Rose"
+          },
+          "front": "full/hair_front/long_straight_rose.webp"
+        },
+        "long_straight_lilac": {
+          "back": "full/hair_back/long_straight_lilac.webp",
+          "style": "long_straight",
+          "color": "lilac",
+          "name": {
+            "ar": "شعر طويل ناعم · ليلكي",
+            "en": "Long Straight · Lilac"
+          },
+          "front": "full/hair_front/long_straight_lilac.webp"
+        },
+        "long_straight_mint": {
+          "back": "full/hair_back/long_straight_mint.webp",
+          "style": "long_straight",
+          "color": "mint",
+          "name": {
+            "ar": "شعر طويل ناعم · نعناعي",
+            "en": "Long Straight · Mint"
+          },
+          "front": "full/hair_front/long_straight_mint.webp"
+        },
+        "long_curly_black": {
+          "back": "full/hair_back/long_curly_black.webp",
+          "style": "long_curly",
+          "color": "black",
+          "name": {
+            "ar": "شعر كيرلي · أسود",
+            "en": "Long Curly · Black"
+          },
+          "front": "full/hair_front/long_curly_black.webp"
+        },
+        "long_curly_espresso": {
+          "back": "full/hair_back/long_curly_espresso.webp",
+          "style": "long_curly",
+          "color": "espresso",
+          "name": {
+            "ar": "شعر كيرلي · بني غامق",
+            "en": "Long Curly · Espresso"
+          },
+          "front": "full/hair_front/long_curly_espresso.webp"
+        },
+        "long_curly_chestnut": {
+          "back": "full/hair_back/long_curly_chestnut.webp",
+          "style": "long_curly",
+          "color": "chestnut",
+          "name": {
+            "ar": "شعر كيرلي · كستنائي",
+            "en": "Long Curly · Chestnut"
+          },
+          "front": "full/hair_front/long_curly_chestnut.webp"
+        },
+        "long_curly_caramel": {
+          "back": "full/hair_back/long_curly_caramel.webp",
+          "style": "long_curly",
+          "color": "caramel",
+          "name": {
+            "ar": "شعر كيرلي · كراميل",
+            "en": "Long Curly · Caramel"
+          },
+          "front": "full/hair_front/long_curly_caramel.webp"
+        },
+        "long_curly_honey": {
+          "back": "full/hair_back/long_curly_honey.webp",
+          "style": "long_curly",
+          "color": "honey",
+          "name": {
+            "ar": "شعر كيرلي · عسلي",
+            "en": "Long Curly · Honey Blonde"
+          },
+          "front": "full/hair_front/long_curly_honey.webp"
+        },
+        "long_curly_platinum": {
+          "back": "full/hair_back/long_curly_platinum.webp",
+          "style": "long_curly",
+          "color": "platinum",
+          "name": {
+            "ar": "شعر كيرلي · بلاتيني",
+            "en": "Long Curly · Platinum"
+          },
+          "front": "full/hair_front/long_curly_platinum.webp"
+        },
+        "long_curly_auburn": {
+          "back": "full/hair_back/long_curly_auburn.webp",
+          "style": "long_curly",
+          "color": "auburn",
+          "name": {
+            "ar": "شعر كيرلي · نحاسي",
+            "en": "Long Curly · Auburn"
+          },
+          "front": "full/hair_front/long_curly_auburn.webp"
+        },
+        "long_curly_rose": {
+          "back": "full/hair_back/long_curly_rose.webp",
+          "style": "long_curly",
+          "color": "rose",
+          "name": {
+            "ar": "شعر كيرلي · وردي",
+            "en": "Long Curly · Rose"
+          },
+          "front": "full/hair_front/long_curly_rose.webp"
+        },
+        "long_curly_lilac": {
+          "back": "full/hair_back/long_curly_lilac.webp",
+          "style": "long_curly",
+          "color": "lilac",
+          "name": {
+            "ar": "شعر كيرلي · ليلكي",
+            "en": "Long Curly · Lilac"
+          },
+          "front": "full/hair_front/long_curly_lilac.webp"
+        },
+        "long_curly_mint": {
+          "back": "full/hair_back/long_curly_mint.webp",
+          "style": "long_curly",
+          "color": "mint",
+          "name": {
+            "ar": "شعر كيرلي · نعناعي",
+            "en": "Long Curly · Mint"
+          },
+          "front": "full/hair_front/long_curly_mint.webp"
+        },
+        "shoulder_black": {
+          "back": "full/hair_back/shoulder_black.webp",
+          "style": "shoulder",
+          "color": "black",
+          "name": {
+            "ar": "لطول الكتف · أسود",
+            "en": "Shoulder Length · Black"
+          },
+          "front": "full/hair_front/shoulder_black.webp"
+        },
+        "shoulder_espresso": {
+          "back": "full/hair_back/shoulder_espresso.webp",
+          "style": "shoulder",
+          "color": "espresso",
+          "name": {
+            "ar": "لطول الكتف · بني غامق",
+            "en": "Shoulder Length · Espresso"
+          },
+          "front": "full/hair_front/shoulder_espresso.webp"
+        },
+        "shoulder_chestnut": {
+          "back": "full/hair_back/shoulder_chestnut.webp",
+          "style": "shoulder",
+          "color": "chestnut",
+          "name": {
+            "ar": "لطول الكتف · كستنائي",
+            "en": "Shoulder Length · Chestnut"
+          },
+          "front": "full/hair_front/shoulder_chestnut.webp"
+        },
+        "shoulder_caramel": {
+          "back": "full/hair_back/shoulder_caramel.webp",
+          "style": "shoulder",
+          "color": "caramel",
+          "name": {
+            "ar": "لطول الكتف · كراميل",
+            "en": "Shoulder Length · Caramel"
+          },
+          "front": "full/hair_front/shoulder_caramel.webp"
+        },
+        "shoulder_honey": {
+          "back": "full/hair_back/shoulder_honey.webp",
+          "style": "shoulder",
+          "color": "honey",
+          "name": {
+            "ar": "لطول الكتف · عسلي",
+            "en": "Shoulder Length · Honey Blonde"
+          },
+          "front": "full/hair_front/shoulder_honey.webp"
+        },
+        "shoulder_platinum": {
+          "back": "full/hair_back/shoulder_platinum.webp",
+          "style": "shoulder",
+          "color": "platinum",
+          "name": {
+            "ar": "لطول الكتف · بلاتيني",
+            "en": "Shoulder Length · Platinum"
+          },
+          "front": "full/hair_front/shoulder_platinum.webp"
+        },
+        "shoulder_auburn": {
+          "back": "full/hair_back/shoulder_auburn.webp",
+          "style": "shoulder",
+          "color": "auburn",
+          "name": {
+            "ar": "لطول الكتف · نحاسي",
+            "en": "Shoulder Length · Auburn"
+          },
+          "front": "full/hair_front/shoulder_auburn.webp"
+        },
+        "shoulder_rose": {
+          "back": "full/hair_back/shoulder_rose.webp",
+          "style": "shoulder",
+          "color": "rose",
+          "name": {
+            "ar": "لطول الكتف · وردي",
+            "en": "Shoulder Length · Rose"
+          },
+          "front": "full/hair_front/shoulder_rose.webp"
+        },
+        "shoulder_lilac": {
+          "back": "full/hair_back/shoulder_lilac.webp",
+          "style": "shoulder",
+          "color": "lilac",
+          "name": {
+            "ar": "لطول الكتف · ليلكي",
+            "en": "Shoulder Length · Lilac"
+          },
+          "front": "full/hair_front/shoulder_lilac.webp"
+        },
+        "shoulder_mint": {
+          "back": "full/hair_back/shoulder_mint.webp",
+          "style": "shoulder",
+          "color": "mint",
+          "name": {
+            "ar": "لطول الكتف · نعناعي",
+            "en": "Shoulder Length · Mint"
+          },
+          "front": "full/hair_front/shoulder_mint.webp"
+        },
+        "bob_black": {
+          "back": "full/hair_back/bob_black.webp",
+          "style": "bob",
+          "color": "black",
+          "name": {
+            "ar": "بوب · أسود",
+            "en": "Bob · Black"
+          },
+          "front": "full/hair_front/bob_black.webp"
+        },
         "bob_espresso": {
           "back": "full/hair_back/bob_espresso.webp",
           "style": "bob",
@@ -56,6 +860,26 @@
           },
           "front": "full/hair_front/bob_espresso.webp"
         },
+        "bob_chestnut": {
+          "back": "full/hair_back/bob_chestnut.webp",
+          "style": "bob",
+          "color": "chestnut",
+          "name": {
+            "ar": "بوب · كستنائي",
+            "en": "Bob · Chestnut"
+          },
+          "front": "full/hair_front/bob_chestnut.webp"
+        },
+        "bob_caramel": {
+          "back": "full/hair_back/bob_caramel.webp",
+          "style": "bob",
+          "color": "caramel",
+          "name": {
+            "ar": "بوب · كراميل",
+            "en": "Bob · Caramel"
+          },
+          "front": "full/hair_front/bob_caramel.webp"
+        },
         "bob_honey": {
           "back": "full/hair_back/bob_honey.webp",
           "style": "bob",
@@ -65,6 +889,156 @@
             "en": "Bob · Honey Blonde"
           },
           "front": "full/hair_front/bob_honey.webp"
+        },
+        "bob_platinum": {
+          "back": "full/hair_back/bob_platinum.webp",
+          "style": "bob",
+          "color": "platinum",
+          "name": {
+            "ar": "بوب · بلاتيني",
+            "en": "Bob · Platinum"
+          },
+          "front": "full/hair_front/bob_platinum.webp"
+        },
+        "bob_auburn": {
+          "back": "full/hair_back/bob_auburn.webp",
+          "style": "bob",
+          "color": "auburn",
+          "name": {
+            "ar": "بوب · نحاسي",
+            "en": "Bob · Auburn"
+          },
+          "front": "full/hair_front/bob_auburn.webp"
+        },
+        "bob_rose": {
+          "back": "full/hair_back/bob_rose.webp",
+          "style": "bob",
+          "color": "rose",
+          "name": {
+            "ar": "بوب · وردي",
+            "en": "Bob · Rose"
+          },
+          "front": "full/hair_front/bob_rose.webp"
+        },
+        "bob_lilac": {
+          "back": "full/hair_back/bob_lilac.webp",
+          "style": "bob",
+          "color": "lilac",
+          "name": {
+            "ar": "بوب · ليلكي",
+            "en": "Bob · Lilac"
+          },
+          "front": "full/hair_front/bob_lilac.webp"
+        },
+        "bob_mint": {
+          "back": "full/hair_back/bob_mint.webp",
+          "style": "bob",
+          "color": "mint",
+          "name": {
+            "ar": "بوب · نعناعي",
+            "en": "Bob · Mint"
+          },
+          "front": "full/hair_front/bob_mint.webp"
+        },
+        "pixie_black": {
+          "back": "full/hair_back/pixie_black.webp",
+          "style": "pixie",
+          "color": "black",
+          "name": {
+            "ar": "بيكسي · أسود",
+            "en": "Pixie · Black"
+          },
+          "front": "full/hair_front/pixie_black.webp"
+        },
+        "pixie_espresso": {
+          "back": "full/hair_back/pixie_espresso.webp",
+          "style": "pixie",
+          "color": "espresso",
+          "name": {
+            "ar": "بيكسي · بني غامق",
+            "en": "Pixie · Espresso"
+          },
+          "front": "full/hair_front/pixie_espresso.webp"
+        },
+        "pixie_chestnut": {
+          "back": "full/hair_back/pixie_chestnut.webp",
+          "style": "pixie",
+          "color": "chestnut",
+          "name": {
+            "ar": "بيكسي · كستنائي",
+            "en": "Pixie · Chestnut"
+          },
+          "front": "full/hair_front/pixie_chestnut.webp"
+        },
+        "pixie_caramel": {
+          "back": "full/hair_back/pixie_caramel.webp",
+          "style": "pixie",
+          "color": "caramel",
+          "name": {
+            "ar": "بيكسي · كراميل",
+            "en": "Pixie · Caramel"
+          },
+          "front": "full/hair_front/pixie_caramel.webp"
+        },
+        "pixie_honey": {
+          "back": "full/hair_back/pixie_honey.webp",
+          "style": "pixie",
+          "color": "honey",
+          "name": {
+            "ar": "بيكسي · عسلي",
+            "en": "Pixie · Honey Blonde"
+          },
+          "front": "full/hair_front/pixie_honey.webp"
+        },
+        "pixie_platinum": {
+          "back": "full/hair_back/pixie_platinum.webp",
+          "style": "pixie",
+          "color": "platinum",
+          "name": {
+            "ar": "بيكسي · بلاتيني",
+            "en": "Pixie · Platinum"
+          },
+          "front": "full/hair_front/pixie_platinum.webp"
+        },
+        "pixie_auburn": {
+          "back": "full/hair_back/pixie_auburn.webp",
+          "style": "pixie",
+          "color": "auburn",
+          "name": {
+            "ar": "بيكسي · نحاسي",
+            "en": "Pixie · Auburn"
+          },
+          "front": "full/hair_front/pixie_auburn.webp"
+        },
+        "pixie_rose": {
+          "back": "full/hair_back/pixie_rose.webp",
+          "style": "pixie",
+          "color": "rose",
+          "name": {
+            "ar": "بيكسي · وردي",
+            "en": "Pixie · Rose"
+          },
+          "front": "full/hair_front/pixie_rose.webp"
+        },
+        "pixie_lilac": {
+          "back": "full/hair_back/pixie_lilac.webp",
+          "style": "pixie",
+          "color": "lilac",
+          "name": {
+            "ar": "بيكسي · ليلكي",
+            "en": "Pixie · Lilac"
+          },
+          "front": "full/hair_front/pixie_lilac.webp"
+        },
+        "pixie_mint": {
+          "back": "full/hair_back/pixie_mint.webp",
+          "style": "pixie",
+          "color": "mint",
+          "name": {
+            "ar": "بيكسي · نعناعي",
+            "en": "Pixie · Mint"
+          },
+          "front": "full/hair_front/pixie_mint.webp"
         }
       },
       "garments": {
@@ -82,6 +1056,156 @@
           "name": {
             "ar": "تيشيرت كريمي",
             "en": "Cream Tee"
+          }
+        },
+        "top_tee_rose": {
+          "src": "full/top/top_tee_rose.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "تيشيرت وردي",
+            "en": "Rose Tee"
+          }
+        },
+        "top_tee_ink": {
+          "src": "full/top/top_tee_ink.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "bold"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "تيشيرت أسود",
+            "en": "Ink Tee"
+          }
+        },
+        "top_crop_sage": {
+          "src": "full/top/top_crop_sage.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "casual"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "كروب ساج",
+            "en": "Sage Crop"
+          }
+        },
+        "top_tank_ivory": {
+          "src": "full/top/top_tank_ivory.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "sporty"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "توب عاجي",
+            "en": "Ivory Tank"
+          }
+        },
+        "top_blouse_pearl": {
+          "src": "full/top/top_blouse_pearl.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "formal",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "بلوزة لؤلؤية",
+            "en": "Pearl Blouse"
+          }
+        },
+        "top_blouse_wine": {
+          "src": "full/top/top_blouse_wine.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "formal",
+            "bold"
+          ],
+          "starter": false,
+          "level": 5,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "بلوزة نبيتي",
+            "en": "Wine Blouse"
+          }
+        },
+        "top_sweater_oat": {
+          "src": "full/top/top_sweater_oat.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "cozy",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "سويتر بيج",
+            "en": "Oat Sweater"
+          }
+        },
+        "top_sweater_moss": {
+          "src": "full/top/top_sweater_moss.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "cozy"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "سويتر أخضر",
+            "en": "Moss Sweater"
           }
         },
         "top_hoodie_lilac": {
@@ -103,6 +1227,82 @@
             "en": "Lilac Hoodie"
           }
         },
+        "top_hoodie_grey": {
+          "src": "full/top/top_hoodie_grey.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "cozy",
+            "sporty"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "هودي رمادي",
+            "en": "Grey Hoodie"
+          }
+        },
+        "top_cardigan_blush": {
+          "src": "full/top/top_cardigan_blush.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "cozy",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "كارديجان وردي",
+            "en": "Blush Cardigan"
+          }
+        },
+        "top_jacket_denim": {
+          "src": "full/top/top_jacket_denim.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "casual",
+            "bold"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "جاكيت جينز",
+            "en": "Denim Jacket"
+          }
+        },
+        "top_jacket_night": {
+          "src": "full/top/top_jacket_night.webp",
+          "category": "top",
+          "rarity": "epic",
+          "tags": [
+            "bold",
+            "dreamy"
+          ],
+          "starter": false,
+          "level": 10,
+          "price": {
+            "currency": "gems",
+            "amount": 24
+          },
+          "name": {
+            "ar": "جاكيت ليلي",
+            "en": "Midnight Jacket"
+          }
+        },
         "bot_jeans_classic": {
           "src": "full/bottom/bot_jeans_classic.webp",
           "category": "bottom",
@@ -116,6 +1316,120 @@
           "name": {
             "ar": "جينز كلاسيك",
             "en": "Classic Jeans"
+          }
+        },
+        "bot_jeans_black": {
+          "src": "full/bottom/bot_jeans_black.webp",
+          "category": "bottom",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "bold"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "جينز أسود",
+            "en": "Black Jeans"
+          }
+        },
+        "bot_joggers_grey": {
+          "src": "full/bottom/bot_joggers_grey.webp",
+          "category": "bottom",
+          "rarity": "common",
+          "tags": [
+            "cozy",
+            "sporty"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "جوجر رمادي",
+            "en": "Grey Joggers"
+          }
+        },
+        "bot_joggers_rose": {
+          "src": "full/bottom/bot_joggers_rose.webp",
+          "category": "bottom",
+          "rarity": "rare",
+          "tags": [
+            "cozy",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "جوجر وردي",
+            "en": "Rose Joggers"
+          }
+        },
+        "bot_wide_ivory": {
+          "src": "full/bottom/bot_wide_ivory.webp",
+          "category": "bottom",
+          "rarity": "rare",
+          "tags": [
+            "formal",
+            "soft"
+          ],
+          "starter": false,
+          "level": 6,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "بنطلون واسع",
+            "en": "Ivory Wide-Leg"
+          }
+        },
+        "bot_shorts_denim": {
+          "src": "full/bottom/bot_shorts_denim.webp",
+          "category": "bottom",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "sporty"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "شورت جينز",
+            "en": "Denim Shorts"
+          }
+        },
+        "bot_skirt_cream": {
+          "src": "full/bottom/bot_skirt_cream.webp",
+          "category": "bottom",
+          "rarity": "common",
+          "tags": [
+            "soft",
+            "formal"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "جيبة كريمي",
+            "en": "Cream Skirt"
           }
         },
         "bot_skirt_navy": {
@@ -134,6 +1448,43 @@
           "name": {
             "ar": "جيبة كحلي",
             "en": "Navy Pleats"
+          }
+        },
+        "bot_skirt_plaid": {
+          "src": "full/bottom/bot_skirt_plaid.webp",
+          "category": "bottom",
+          "rarity": "rare",
+          "tags": [
+            "casual",
+            "bold"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "جيبة كاروهات",
+            "en": "Plaid Skirt"
+          }
+        },
+        "bot_skirt_midi": {
+          "src": "full/bottom/bot_skirt_midi.webp",
+          "category": "bottom",
+          "rarity": "rare",
+          "tags": [
+            "formal"
+          ],
+          "starter": false,
+          "level": 7,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "جيبة ميدي",
+            "en": "Midi Skirt"
           }
         },
         "dr_sun_butter": {
@@ -155,6 +1506,100 @@
             "en": "Butter Sundress"
           }
         },
+        "dr_sun_mint": {
+          "src": "full/dress/dr_sun_mint.webp",
+          "category": "dress",
+          "rarity": "rare",
+          "tags": [
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "فستان نعناعي",
+            "en": "Mint Sundress"
+          }
+        },
+        "dr_day_rose": {
+          "src": "full/dress/dr_day_rose.webp",
+          "category": "dress",
+          "rarity": "rare",
+          "tags": [
+            "casual",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "فستان وردي",
+            "en": "Rose Day Dress"
+          }
+        },
+        "dr_hoodie_grey": {
+          "src": "full/dress/dr_hoodie_grey.webp",
+          "category": "dress",
+          "rarity": "rare",
+          "tags": [
+            "cozy",
+            "casual"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "فستان هودي",
+            "en": "Hoodie Dress"
+          }
+        },
+        "dr_party_night": {
+          "src": "full/dress/dr_party_night.webp",
+          "category": "dress",
+          "rarity": "epic",
+          "tags": [
+            "formal",
+            "dreamy"
+          ],
+          "starter": false,
+          "level": 9,
+          "price": {
+            "currency": "gems",
+            "amount": 24
+          },
+          "name": {
+            "ar": "فستان ليلي",
+            "en": "Midnight Dress"
+          }
+        },
+        "dr_gown_gold": {
+          "src": "full/dress/dr_gown_gold.webp",
+          "category": "dress",
+          "rarity": "legendary",
+          "tags": [
+            "formal",
+            "bold"
+          ],
+          "starter": false,
+          "level": 15,
+          "price": {
+            "currency": "gems",
+            "amount": 60
+          },
+          "name": {
+            "ar": "فستان ذهبي",
+            "en": "Gilded Gown"
+          }
+        },
         "sh_sneak_white": {
           "src": "full/shoes/sh_sneak_white.webp",
           "category": "shoes",
@@ -169,6 +1614,81 @@
           "name": {
             "ar": "سنيكرز أبيض",
             "en": "White Sneakers"
+          }
+        },
+        "sh_sneak_rose": {
+          "src": "full/shoes/sh_sneak_rose.webp",
+          "category": "shoes",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "سنيكرز وردي",
+            "en": "Rose Sneakers"
+          }
+        },
+        "sh_flats_nude": {
+          "src": "full/shoes/sh_flats_nude.webp",
+          "category": "shoes",
+          "rarity": "common",
+          "tags": [
+            "formal",
+            "soft"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "باليرينا نيود",
+            "en": "Nude Flats"
+          }
+        },
+        "sh_boots_choco": {
+          "src": "full/shoes/sh_boots_choco.webp",
+          "category": "shoes",
+          "rarity": "rare",
+          "tags": [
+            "cozy",
+            "casual"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "بوت بني",
+            "en": "Chocolate Boots"
+          }
+        },
+        "sh_boots_black": {
+          "src": "full/shoes/sh_boots_black.webp",
+          "category": "shoes",
+          "rarity": "epic",
+          "tags": [
+            "bold"
+          ],
+          "starter": false,
+          "level": 8,
+          "price": {
+            "currency": "gems",
+            "amount": 24
+          },
+          "name": {
+            "ar": "بوت أسود طويل",
+            "en": "Black Tall Boots"
           }
         }
       }
@@ -378,7 +1898,7 @@
       }
     }
   },
-  "generatedAt": 1788258963,
+  "generatedAt": 1788265221,
   "cast": {
     "salma": {
       "neutral": "bust/cast/salma_neutral.webp",
