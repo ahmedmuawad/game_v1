@@ -1,0 +1,79 @@
+@import './tokens.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root { height: 100%; }
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  /* سلوك شبيه بالتطبيقات الأصلية: لا تحديد نص ولا سحب */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  background: var(--c-bg);
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button { cursor: pointer; }
+
+/* المدخلات هي الاستثناء الوحيد لتحديد النص */
+input, textarea { -webkit-user-select: text; user-select: text; }
+
+img, svg { display: block; max-width: 100%; }
+
+ul, ol { list-style: none; }
+
+/* شريط تمرير خفيف */
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* حلقة تركيز واضحة لإمكانية الوصول */
+:focus-visible {
+  outline: 2px solid var(--c-secondary-soft);
+  outline-offset: 2px;
+  border-radius: var(--r-xs);
+}
+
+/* ===== أدوات مساعدة ===== */
+.u-num { font-family: var(--font-num); font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+.u-display { font-family: var(--font-display); font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: -0.02em; }
+.u-truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.u-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* الأرقام تبقى لاتينية دائمًا حتى في الوضع العربي (أسهل للمسح البصري في الاقتصاد) */
+[dir="rtl"] .u-num { direction: ltr; unicode-bidi: isolate; }

@@ -1,0 +1,145 @@
+/* =============================================================
+   LIVI — Design Tokens
+   الاتجاه البصري: عميق، دافئ، أنيق، معاصر.
+   قاعدة داكنة بلون البرقوق + لمسات وردية/بنفسجية/ذهبية.
+   المرجع الذهني: مجلة موضة معاصرة + غرفة Pinterest ليلاً.
+   ============================================================= */
+
+:root {
+  /* ---------- Base / Surfaces ---------- */
+  --c-bg:            #0D0912;  /* خلفية التطبيق العميقة */
+  --c-bg-elevated:   #150F1D;
+  --c-surface:       #1C1427;  /* البطاقات */
+  --c-surface-2:     #251B32;  /* بطاقات مرفوعة / حقول */
+  --c-surface-3:     #31243F;
+  --c-overlay:       rgba(8, 5, 12, 0.72);
+
+  /* ---------- Brand ---------- */
+  --c-primary:       #FF5C8A;  /* Blush — الفعل الأساسي */
+  --c-primary-soft:  #FF87A8;
+  --c-primary-deep:  #D63C6B;
+  --c-primary-tint:  rgba(255, 92, 138, 0.14);
+
+  --c-secondary:      #9B8CFF;  /* Periwinkle — الثانوي/السرد */
+  --c-secondary-soft: #B9AEFF;
+  --c-secondary-tint: rgba(155, 140, 255, 0.14);
+
+  --c-accent:        #F5C97A;  /* Warm gold — المكافآت */
+  --c-accent-tint:   rgba(245, 201, 122, 0.14);
+
+  /* ---------- Text ---------- */
+  --c-text:          #F7F2FA;
+  --c-text-muted:    #B7A9C4;
+  --c-text-subtle:   #7E6F8D;
+  --c-text-inverse:  #140E1B;
+
+  /* ---------- Feedback ---------- */
+  --c-success:       #57D6A6;
+  --c-warning:       #FFB765;
+  --c-error:         #FF6B6B;
+  --c-info:          #6FA8FF;
+
+  /* ---------- Rarity ---------- */
+  --c-common:        #8E82A0;
+  --c-rare:          #6FA8FF;
+  --c-epic:          #B57BFF;
+  --c-legendary:     #F5C97A;
+
+  --g-common:    linear-gradient(135deg, #6E6480, #9B8FAD);
+  --g-rare:      linear-gradient(135deg, #3E7BD1, #7FB6FF);
+  --g-epic:      linear-gradient(135deg, #8A4BE0, #C98BFF);
+  --g-legendary: linear-gradient(135deg, #D99A3E, #FFE3A8);
+
+  /* ---------- Currency ---------- */
+  --c-coins:         #F5C97A;
+  --c-gems:          #7FE7FF;
+  --c-energy:        #FF9BC4;
+
+  /* ---------- Gradients ---------- */
+  --g-primary:   linear-gradient(135deg, #FF5C8A 0%, #C86BFF 100%);
+  --g-secondary: linear-gradient(135deg, #9B8CFF 0%, #6FD8FF 100%);
+  --g-warm:      linear-gradient(135deg, #FFB765 0%, #FF5C8A 100%);
+  --g-dusk:      linear-gradient(160deg, #2A1B3D 0%, #120D18 100%);
+  --g-sheen:     linear-gradient(120deg, transparent 20%, rgba(255,255,255,.16) 50%, transparent 80%);
+
+  /* ---------- Typography ---------- */
+  --font-display: 'Readex Pro', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body-ar: 'IBM Plex Sans Arabic', 'Readex Pro', system-ui, sans-serif;
+  --font-body: var(--font-body-en);
+  --font-num: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* حجم النص — مقياس مضبوط للهاتف */
+  --t-display:   clamp(30px, 8.4vw, 38px);
+  --t-h1:        clamp(24px, 6.6vw, 30px);
+  --t-h2:        clamp(20px, 5.4vw, 24px);
+  --t-h3:        17px;
+  --t-body:      15px;
+  --t-body-sm:   13.5px;
+  --t-caption:   12px;
+  --t-micro:     10.5px;
+
+  --lh-tight: 1.14;
+  --lh-snug:  1.32;
+  --lh-body:  1.58;
+
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --s-0: 0px;   --s-1: 4px;   --s-2: 8px;   --s-3: 12px;
+  --s-4: 16px;  --s-5: 20px;  --s-6: 24px;  --s-7: 32px;
+  --s-8: 40px;  --s-9: 48px;  --s-10: 64px; --s-11: 80px;
+
+  /* ---------- Radius ---------- */
+  --r-xs: 8px;  --r-sm: 12px; --r-md: 16px; --r-lg: 22px;
+  --r-xl: 28px; --r-2xl: 36px; --r-pill: 999px;
+
+  /* ---------- Elevation ---------- */
+  --e-1: 0 1px 2px rgba(0,0,0,.28);
+  --e-2: 0 4px 14px rgba(0,0,0,.34);
+  --e-3: 0 10px 30px rgba(0,0,0,.42);
+  --e-4: 0 20px 52px rgba(0,0,0,.5);
+  --e-glow-primary:   0 6px 24px rgba(255, 92, 138, .38);
+  --e-glow-secondary: 0 6px 24px rgba(155, 140, 255, .34);
+  --e-glow-accent:    0 6px 24px rgba(245, 201, 122, .34);
+
+  /* ---------- Borders ---------- */
+  --b-hairline: 1px solid rgba(255,255,255,.07);
+  --b-soft:     1px solid rgba(255,255,255,.11);
+  --b-strong:   1px solid rgba(255,255,255,.18);
+
+  /* ---------- Motion ---------- */
+  --d-instant: 90ms;
+  --d-fast:    170ms;
+  --d-base:    260ms;
+  --d-slow:    420ms;
+  --d-story:   620ms;
+
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring:cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ---------- Layout ---------- */
+  --app-max-w: 480px;
+  --nav-h: 66px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  --z-base: 0; --z-sticky: 10; --z-nav: 100;
+  --z-sheet: 200; --z-modal: 300; --z-toast: 400; --z-celebration: 500;
+}
+
+/* اللغة العربية: تبديل خط النص الأساسي */
+:root:lang(ar), [dir="rtl"] {
+  --font-body: var(--font-body-ar);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --d-instant: 1ms; --d-fast: 1ms; --d-base: 1ms;
+    --d-slow: 1ms; --d-story: 1ms;
+  }
+}
