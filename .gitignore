@@ -20,3 +20,7 @@ tools/avatar/*.png
 
 # نسخة الملف الواحد (تُبنى عند الطلب)
 dist-single
+
+# Capacitor
+android/
+ios/

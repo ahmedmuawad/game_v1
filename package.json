@@ -14,15 +14,27 @@
     "export:avatar:full": "cd tools/avatar && python3 export_layers.py --out ../../public/avatar --view full --preset full",
     "shot": "node tools/qa/screenshot.mjs",
     "bundle": "vite build && node tools/qa/bundle.mjs",
-    "story:check": "node tools/qa/story-run.mjs"
+    "story:check": "node tools/qa/story-run.mjs",
+    "cap:sync": "vite build && cap sync",
+    "cap:android": "vite build && cap sync android && cap open android",
+    "cap:ios": "vite build && cap sync ios && cap open ios",
+    "android:apk": "vite build && cap sync android && cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.1",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.3",
     "framer-motion": "^12.23.12",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/ios": "^8.5.1",
     "@types/node": "^26.4.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",

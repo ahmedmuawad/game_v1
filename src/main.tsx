@@ -5,6 +5,7 @@ import { ToastProvider } from '@/app/toast'
 import { setHapticsEnabled, haptic } from '@/app/haptics'
 import { useGame } from '@/state/store'
 import { initAds } from '@/systems/ads'
+import { initNative } from '@/app/native'
 import { loadManifest, type AvatarManifest } from '@/content/manifest'
 import { StoryHome } from '@/features/story/StoryHome'
 import { StyleScreen } from '@/features/StyleScreen'
@@ -65,6 +66,7 @@ function App() {
   useEffect(() => { setHapticsEnabled(settings.haptics) }, [settings.haptics])
   useEffect(() => {
     boot()
+    void initNative()
     void initAds()
     loadManifest().then(setManifest).catch((e) => console.error('[assets]', e))
   }, [boot])
