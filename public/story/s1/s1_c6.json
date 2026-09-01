@@ -1,0 +1,91 @@
+{
+  "id": "s1_c6", "seasonId": "s1", "index": 6,
+  "title": { "ar": "المهرجان", "en": "The Festival" },
+  "teaser": { "ar": "كل اللي اخترتيه بيقف معاكِ على المسرح النهاردة.", "en": "Everything you chose stands with you on that stage tonight." },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "hall", "mood": "night", "cast": ["player", "salma", "nour"], "next": "n1" },
+    "n1": { "id": "n1", "type": "narrate", "next": "look_check",
+      "text": { "ar": "الصالة مليانة. الإضاءة نزلت على المشاية، والصوت هدي فجأة.",
+                "en": "The hall is full. The lights drop onto the runway, and the noise falls away all at once." } },
+
+    "look_check": { "id": "look_check", "type": "branch",
+      "branches": [
+        { "when": { "all": [{ "wearing": "formal" }, { "wearingRarity": ">=", "value": "epic" }] }, "to": "look_epic" },
+        { "when": { "wearing": "formal" }, "to": "look_formal" },
+        { "when": { "wearing": "bold" }, "to": "look_bold" }
+      ], "fallback": "look_own" },
+
+    "look_epic": { "id": "look_epic", "type": "say", "who": "nour", "emote": "surprised", "next": "look_fx",
+      "text": { "ar": "إنتِ… طلعتي كده على المسرح؟ الصالة كلها سكتت.",
+                "en": "You… walked out like *that*? The whole hall went quiet." } },
+    "look_formal": { "id": "look_formal", "type": "say", "who": "nour", "emote": "smile", "next": "look_fx",
+      "text": { "ar": "أنيقة. مضبوطة. أنا فخورة بيكِ.", "en": "Elegant. Right. I'm proud of you." } },
+    "look_bold": { "id": "look_bold", "type": "say", "who": "nour", "emote": "happy", "next": "look_fx",
+      "text": { "ar": "دي أجرأ إطلالة في العرض كله. أنا مبسوطة إنك مخافتيش.",
+                "en": "That's the boldest look in the whole show. I'm glad you weren't scared." } },
+    "look_own": { "id": "look_own", "type": "say", "who": "nour", "emote": "smile", "next": "look_fx",
+      "text": { "ar": "دي إنتِ. ومش محتاجة تبقى حاجة تانية.", "en": "That's you. And it doesn't need to be anything else." } },
+    "look_fx": { "id": "look_fx", "type": "effect", "next": "path",
+      "effects": [{ "trait": "confidence", "delta": 5 }, { "rel": "nour", "delta": 5 }] },
+
+    "path": { "id": "path", "type": "branch",
+      "branches": [
+        { "when": { "flag": "path_together" }, "to": "p_tog" },
+        { "when": { "flag": "path_public" },   "to": "p_pub" },
+        { "when": { "flag": "path_private" },  "to": "p_pri" },
+        { "when": { "flag": "path_hide" },     "to": "p_hid" }
+      ], "fallback": "p_none" },
+
+    "p_tog": { "id": "p_tog", "type": "narrate", "next": "p_tog2",
+      "text": { "ar": "قبل العرض بدقيقة، دينا مسكت إيدك ومشيتوا الاتنين ناحية سلمى.",
+                "en": "A minute before the show, Dina took your hand and you both walked toward Salma." } },
+    "p_tog2": { "id": "p_tog2", "type": "say", "who": "salma", "emote": "surprised", "next": "resolve",
+      "text": { "ar": "إنتوا الاتنين؟ … طيب. أنا سامعة.", "en": "Both of you? … Okay. I'm listening." },
+      "effects": [] },
+
+    "p_pub": { "id": "p_pub", "type": "narrate", "next": "resolve",
+      "text": { "ar": "دينا وقفت على المسرح وقالتها قدام كل الصالة. صوتها كان بيرتعش، بس ما وقفتش.",
+                "en": "Dina stood on the stage and said it in front of the whole hall. Her voice shook, but she didn't stop." } },
+    "p_pri": { "id": "p_pri", "type": "narrate", "next": "resolve",
+      "text": { "ar": "ورا الستارة، دينا وسلمى قعدوا على الأرض جنب الصناديق يتكلموا. طلعوا بعد عشر دقايق.",
+                "en": "Behind the curtain, Dina and Salma sat on the floor by the boxes and talked. They came out ten minutes later." } },
+    "p_hid": { "id": "p_hid", "type": "narrate", "next": "resolve",
+      "text": { "ar": "محدش عرف. العرض عدّى، وسلمى ضحكت — بس فضلت تبص ناحية اللوحة كل شوية.",
+                "en": "Nobody found out. The show went on, and Salma laughed — but she kept glancing at the board." } },
+    "p_none": { "id": "p_none", "type": "narrate", "next": "resolve",
+      "text": { "ar": "العرض عدّى وكل واحدة واقفة في مكانها، والمسافة اللي بينهم لسه موجودة.",
+                "en": "The show went on with everyone in her place, and the distance between them still there." } },
+
+    "resolve": { "id": "resolve", "type": "branch",
+      "branches": [
+        { "when": { "all": [{ "rel": "salma", "op": ">=", "value": 78 }, { "rel": "dina", "op": ">=", "value": 62 }] }, "to": "best" },
+        { "when": { "rel": "salma", "op": ">=", "value": 62 }, "to": "good" },
+        { "when": { "rel": "salma", "op": "<", "value": 45 } , "to": "cold" }
+      ], "fallback": "mid" },
+
+    "best": { "id": "best", "type": "say", "who": "salma", "emote": "happy", "next": "final",
+      "text": { "ar": "السنة دي كانت وحشة في نصها. بس إنتِ كنتي هنا في النص ده كله.",
+                "en": "Half of this year was awful. But you were here for all of that half." },
+      "effects": [] },
+    "good": { "id": "good", "type": "say", "who": "salma", "emote": "smile", "next": "final",
+      "text": { "ar": "شكراً إنك مسبتنيش.", "en": "Thanks for not leaving me." } },
+    "mid": { "id": "mid", "type": "say", "who": "salma", "emote": "neutral", "next": "final",
+      "text": { "ar": "خلصت. أخيراً.", "en": "It's over. Finally." } },
+    "cold": { "id": "cold", "type": "say", "who": "salma", "emote": "sad", "next": "final",
+      "text": { "ar": "أنا لسه مش عارفة أقولك إيه.", "en": "I still don't know what to say to you." } },
+
+    "final": { "id": "final", "type": "narrate", "next": "hook",
+      "text": { "ar": "الإضاءة اتقفلت، والصالة فضيت، وفضلتوا واقفين تلاتة على المشاية الفاضية.",
+                "en": "The lights go out, the hall empties, and the three of you stay standing on the empty runway." } },
+    "hook": { "id": "hook", "type": "say", "who": "nour", "emote": "thinking", "next": "fin",
+      "text": { "ar": "على فكرة… فيه حاجة تانية في الترم الجاي. وأنا محتاجة أعرف مين معايا فيها.",
+                "en": "By the way… there's something else next term. And I need to know who's in it with me." } },
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 320, "gems": 8, "xp": 140 },
+      "nextChapter": null,
+      "teaser": { "ar": "الموسم الأول خلص. الترم الجاي — ونور مش بتسأل عبط.",
+                  "en": "Season one is done. Next term — and Nour never asks idly." } }
+  }
+}

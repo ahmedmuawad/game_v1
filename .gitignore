@@ -17,3 +17,6 @@ tools/avatar/assets/*.obj
 
 # مخرجات معاينة أدوات الأفاتار
 tools/avatar/*.png
+
+# نسخة الملف الواحد (تُبنى عند الطلب)
+dist-single

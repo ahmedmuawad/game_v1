@@ -172,6 +172,12 @@
           }
         }
       }
+    },
+    "bust": {
+      "size": [
+        384,
+        480
+      ]
     }
   },
   "layerOrder": {
@@ -372,5 +378,39 @@
       }
     }
   },
-  "generatedAt": 1788258963
+  "generatedAt": 1788258963,
+  "cast": {
+    "salma": {
+      "neutral": "bust/cast/salma_neutral.webp",
+      "smile": "bust/cast/salma_smile.webp",
+      "happy": "bust/cast/salma_happy.webp",
+      "sad": "bust/cast/salma_sad.webp",
+      "surprised": "bust/cast/salma_surprised.webp",
+      "thinking": "bust/cast/salma_thinking.webp"
+    },
+    "nour": {
+      "neutral": "bust/cast/nour_neutral.webp",
+      "smile": "bust/cast/nour_smile.webp",
+      "happy": "bust/cast/nour_happy.webp",
+      "sad": "bust/cast/nour_sad.webp",
+      "surprised": "bust/cast/nour_surprised.webp",
+      "thinking": "bust/cast/nour_thinking.webp"
+    },
+    "dina": {
+      "neutral": "bust/cast/dina_neutral.webp",
+      "smile": "bust/cast/dina_smile.webp",
+      "happy": "bust/cast/dina_happy.webp",
+      "sad": "bust/cast/dina_sad.webp",
+      "surprised": "bust/cast/dina_surprised.webp",
+      "thinking": "bust/cast/dina_thinking.webp"
+    },
+    "yara": {
+      "neutral": "bust/cast/yara_neutral.webp",
+      "smile": "bust/cast/yara_smile.webp",
+      "happy": "bust/cast/yara_happy.webp",
+      "sad": "bust/cast/yara_sad.webp",
+      "surprised": "bust/cast/yara_surprised.webp",
+      "thinking": "bust/cast/yara_thinking.webp"
+    }
+  }
 }

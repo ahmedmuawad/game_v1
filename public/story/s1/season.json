@@ -1,0 +1,30 @@
+{
+  "id": "s1",
+  "title": { "ar": "سنة جديدة", "en": "A New Year" },
+  "teaser": {
+    "ar": "أول يوم في السنة الجديدة، وحاجة اتغيّرت في الصف — بس محدش عايز يقول إيه.",
+    "en": "First day of the new year, and something has shifted in your class — but nobody wants to say what."
+  },
+  "characters": {
+    "player": { "id": "player", "name": { "ar": "إنتِ", "en": "You" }, "color": "#FF87A8" },
+    "salma":  { "id": "salma",  "name": { "ar": "سلمى", "en": "Salma" },  "color": "#FF9BC4", "portrait": "salma", "startRel": 72 },
+    "nour":   { "id": "nour",   "name": { "ar": "نور", "en": "Nour" },    "color": "#B9AEFF", "portrait": "nour",  "startRel": 45 },
+    "dina":   { "id": "dina",   "name": { "ar": "دينا", "en": "Dina" },   "color": "#7FE7FF", "portrait": "dina",  "startRel": 50 },
+    "yara":   { "id": "yara",   "name": { "ar": "يارا", "en": "Yara" },   "color": "#F5C97A", "portrait": "yara",  "startRel": 40 },
+    "huda":   { "id": "huda",   "name": { "ar": "مس هدى", "en": "Ms. Huda" }, "color": "#57D6A6", "startRel": 50 }
+  },
+  "chapters": [
+    { "id": "s1_c1", "title": { "ar": "أول يوم", "en": "First Day" },
+      "teaser": { "ar": "الصف اتغيّر، وسلمى مستنياكِ عند البوابة.", "en": "The class has changed, and Salma is waiting at the gate." } },
+    { "id": "s1_c2", "title": { "ar": "الدعوة", "en": "The Invitation" },
+      "teaser": { "ar": "نور بتفتح باب، وسلمى بتحس إن الباب ده مش ليها.", "en": "Nour opens a door, and Salma feels it isn't hers." } },
+    { "id": "s1_c3", "title": { "ar": "اللي محدش قاله", "en": "What Nobody Said" },
+      "teaser": { "ar": "كلمة واحدة على لوحة المدرسة، ومحدش عارف مين كتبها.", "en": "One line on the school board, and nobody knows who wrote it." } },
+    { "id": "s1_c4", "title": { "ar": "البروفة", "en": "Rehearsal" },
+      "teaser": { "ar": "حاجة اتكسرت قبل العرض بيوم، وفيه حد لازم يتحمّل.", "en": "Something breaks a day before the show, and someone has to take the blame." } },
+    { "id": "s1_c5", "title": { "ar": "الحقيقة", "en": "The Truth" },
+      "teaser": { "ar": "عرفتي مين كتبها. والسؤال دلوقتي إنتِ هتعملي إيه.", "en": "You know who wrote it. Now the question is what you do." } },
+    { "id": "s1_c6", "title": { "ar": "المهرجان", "en": "The Festival" },
+      "teaser": { "ar": "كل اللي اخترتيه بيقف معاكِ على المسرح النهاردة.", "en": "Everything you chose stands with you on that stage tonight." } }
+  ]
+}

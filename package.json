@@ -12,7 +12,9 @@
     "test": "vitest run",
     "export:avatar": "cd tools/avatar && python3 export_layers.py --out ../../public/avatar --view full --preset demo",
     "export:avatar:full": "cd tools/avatar && python3 export_layers.py --out ../../public/avatar --view full --preset full",
-    "shot": "node tools/qa/screenshot.mjs"
+    "shot": "node tools/qa/screenshot.mjs",
+    "bundle": "vite build && node tools/qa/bundle.mjs",
+    "story:check": "node tools/qa/story-run.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",

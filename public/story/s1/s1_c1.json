@@ -1,0 +1,532 @@
+{
+  "id": "s1_c1",
+  "seasonId": "s1",
+  "index": 1,
+  "title": {
+    "ar": "أول يوم",
+    "en": "First Day"
+  },
+  "teaser": {
+    "ar": "الصف اتغيّر، وسلمى مستنياكِ عند البوابة.",
+    "en": "The class has changed, and Salma is waiting at the gate."
+  },
+  "start": "open",
+  "nodes": {
+    "open": {
+      "id": "open",
+      "type": "stage",
+      "bg": "school_gate",
+      "mood": "day",
+      "cast": [
+        "player"
+      ],
+      "next": "n1"
+    },
+    "n1": {
+      "id": "n1",
+      "type": "narrate",
+      "next": "n2",
+      "text": {
+        "ar": "الجرس لسه ما رنّش. البوابة مليانة وشوش عرفاها من سنة، وحاجة صغيرة مختلفة من غير ما تعرفي إيه هي.",
+        "en": "The bell hasn't rung yet. The gate is full of faces you've known for a year, and something small is different without you knowing what."
+      }
+    },
+    "n2": {
+      "id": "n2",
+      "type": "stage",
+      "cast": [
+        "player",
+        "salma"
+      ],
+      "next": "s1"
+    },
+    "s1": {
+      "id": "s1",
+      "type": "say",
+      "who": "salma",
+      "emote": "happy",
+      "next": "s2",
+      "text": {
+        "ar": "أخيراً! أنا واقفة هنا من ربع ساعة. تعالي بسرعة، عندي كلام.",
+        "en": "Finally! I've been standing here fifteen minutes. Come quick, I have news."
+      }
+    },
+    "s2": {
+      "id": "s2",
+      "type": "say",
+      "who": "salma",
+      "emote": "smile",
+      "next": "s3",
+      "text": {
+        "ar": "مهرجان الخريف السنة دي مش زي كل سنة. مس هدى قالت إن فيه عرض كبير، وكل واحدة تقدر تشترك بحاجة من عندها.",
+        "en": "The autumn festival isn't like every year this time. Ms. Huda said there's a real showcase, and everyone can enter something of their own."
+      }
+    },
+    "s3": {
+      "id": "s3",
+      "type": "say",
+      "who": "salma",
+      "emote": "neutral",
+      "next": "c1",
+      "text": {
+        "ar": "بس فيه حاجة… نور بقت مسؤولة عن نادي الستايل. هي اللي بتختار مين يدخل.",
+        "en": "But there's a thing… Nour is running the style club now. She's the one who picks who gets in."
+      }
+    },
+    "c1": {
+      "id": "c1",
+      "type": "choice",
+      "prompt": {
+        "ar": "إنتِ هتقولي إيه؟",
+        "en": "What do you say?"
+      },
+      "options": [
+        {
+          "id": "c1_go",
+          "to": "go1",
+          "text": {
+            "ar": "«يلا نروح نشوفها دلوقتي.»",
+            "en": "\"Let's go find her right now.\""
+          },
+          "hint": {
+            "ar": "جرأة",
+            "en": "Bold"
+          },
+          "effects": [
+            {
+              "trait": "confidence",
+              "delta": 4
+            },
+            {
+              "flag": "eager",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c1_wait",
+          "to": "wait1",
+          "text": {
+            "ar": "«استني بس… إنتِ عايزة تشتركي؟»",
+            "en": "\"Wait — do you want to enter?\""
+          },
+          "hint": {
+            "ar": "انتباه لسلمى",
+            "en": "Attentive"
+          },
+          "effects": [
+            {
+              "trait": "empathy",
+              "delta": 5
+            },
+            {
+              "rel": "salma",
+              "delta": 6
+            }
+          ]
+        },
+        {
+          "id": "c1_think",
+          "to": "think1",
+          "text": {
+            "ar": "«ونور بتختار على أساس إيه بالظبط؟»",
+            "en": "\"And what exactly is Nour picking on?\""
+          },
+          "hint": {
+            "ar": "تفكير",
+            "en": "Sharp"
+          },
+          "effects": [
+            {
+              "trait": "wits",
+              "delta": 5
+            },
+            {
+              "flag": "asked_criteria",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    "go1": {
+      "id": "go1",
+      "type": "say",
+      "who": "salma",
+      "emote": "surprised",
+      "next": "join",
+      "text": {
+        "ar": "دلوقتي؟! طب استني الجرس على الأقل… طيب طيب، أنا جاية.",
+        "en": "Right now?! At least wait for the bell… okay okay, I'm coming."
+      }
+    },
+    "wait1": {
+      "id": "wait1",
+      "type": "say",
+      "who": "salma",
+      "emote": "sad",
+      "next": "wait2",
+      "text": {
+        "ar": "أنا؟ لأ… يعني… مش عارفة. أنا مش زيهم.",
+        "en": "Me? No… I mean… I don't know. I'm not like them."
+      }
+    },
+    "wait2": {
+      "id": "wait2",
+      "type": "choice",
+      "options": [
+        {
+          "id": "w_push",
+          "to": "join",
+          "text": {
+            "ar": "«إنتِ مش لازم تبقي زيهم عشان تشتركي.»",
+            "en": "\"You don't have to be like them to enter.\""
+          },
+          "effects": [
+            {
+              "rel": "salma",
+              "delta": 8
+            },
+            {
+              "trait": "empathy",
+              "delta": 4
+            },
+            {
+              "flag": "salma_encouraged",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "w_drop",
+          "to": "join",
+          "text": {
+            "ar": "تسكتي وتمشي جنبها.",
+            "en": "Say nothing and walk beside her."
+          },
+          "effects": [
+            {
+              "trait": "empathy",
+              "delta": 2
+            }
+          ]
+        }
+      ]
+    },
+    "think1": {
+      "id": "think1",
+      "type": "say",
+      "who": "salma",
+      "emote": "thinking",
+      "next": "join",
+      "text": {
+        "ar": "مش عارفة. بس عارفة إنها بتلاحظ كل حاجة. حرفياً كل حاجة.",
+        "en": "I don't know. But I know she notices everything. Literally everything."
+      }
+    },
+    "join": {
+      "id": "join",
+      "type": "stage",
+      "bg": "corridor",
+      "mood": "warm",
+      "cast": [
+        "player",
+        "salma",
+        "nour"
+      ],
+      "next": "nr1"
+    },
+    "nr1": {
+      "id": "nr1",
+      "type": "narrate",
+      "next": "nour1",
+      "text": {
+        "ar": "نور واقفة عند لوحة الإعلانات ومعاها ورقة. بصّتلك قبل ما تتكلم — بصّة كاملة، من فوق لتحت.",
+        "en": "Nour is at the notice board with a sheet of paper. She looks at you before she speaks — a full look, top to bottom."
+      }
+    },
+    "outfit_check": {
+      "id": "outfit_check",
+      "type": "branch",
+      "branches": [
+        {
+          "when": {
+            "wearingRarity": ">=",
+            "value": "epic"
+          },
+          "to": "nour_wow"
+        },
+        {
+          "when": {
+            "any": [
+              {
+                "wearing": "formal"
+              },
+              {
+                "wearing": "bold"
+              }
+            ]
+          },
+          "to": "nour_impressed"
+        },
+        {
+          "when": {
+            "wearing": "cozy"
+          },
+          "to": "nour_cozy"
+        }
+      ],
+      "fallback": "nour_plain"
+    },
+    "nour1": {
+      "id": "nour1",
+      "type": "say",
+      "who": "nour",
+      "emote": "neutral",
+      "next": "outfit_check",
+      "text": {
+        "ar": "أهلاً. جايين تسجّلوا؟",
+        "en": "Hey. Here to sign up?"
+      }
+    },
+    "nour_wow": {
+      "id": "nour_wow",
+      "type": "say",
+      "who": "nour",
+      "emote": "surprised",
+      "next": "nour_note",
+      "text": {
+        "ar": "استني… إنتِ لابسة دي؟ في أول يوم؟ طيب. أنا لاحظت.",
+        "en": "Hold on — you're wearing *that*? On day one? Okay. Noted."
+      }
+    },
+    "nour_impressed": {
+      "id": "nour_impressed",
+      "type": "say",
+      "who": "nour",
+      "emote": "smile",
+      "next": "nour_note",
+      "text": {
+        "ar": "حلو اللي لابساه. مش كل واحدة بتيجي أول يوم وهي مهتمة.",
+        "en": "Nice look. Not everyone shows up on day one actually trying."
+      }
+    },
+    "nour_cozy": {
+      "id": "nour_cozy",
+      "type": "say",
+      "who": "nour",
+      "emote": "smile",
+      "next": "nour2",
+      "text": {
+        "ar": "شكلك مرتاحة. صراحة أنا كنت عايزة أعمل كده بس مقدرتش.",
+        "en": "You look comfortable. Honestly I wanted to do that but I didn't dare."
+      }
+    },
+    "nour_plain": {
+      "id": "nour_plain",
+      "type": "say",
+      "who": "nour",
+      "emote": "neutral",
+      "next": "nour2",
+      "text": {
+        "ar": "تمام. الأسماء هنا.",
+        "en": "Sure. Names go here."
+      }
+    },
+    "nour_note": {
+      "id": "nour_note",
+      "type": "effect",
+      "next": "nour2",
+      "when": {
+        "wearingRarity": ">=",
+        "value": "rare"
+      },
+      "effects": [
+        {
+          "rel": "nour",
+          "delta": 5
+        },
+        {
+          "flag": "nour_noticed_outfit",
+          "value": true
+        }
+      ],
+      "else": "nour2"
+    },
+    "nour2": {
+      "id": "nour2",
+      "type": "say",
+      "who": "nour",
+      "emote": "neutral",
+      "next": "c2",
+      "text": {
+        "ar": "بس خليني أوضّح حاجة. النادي مش مسابقة شكل. أنا بدوّر على حد عنده فكرة، مش حد عنده دولاب.",
+        "en": "But let me be clear. The club isn't a looks contest. I'm looking for someone with an idea, not someone with a wardrobe."
+      }
+    },
+    "c2": {
+      "id": "c2",
+      "type": "choice",
+      "prompt": {
+        "ar": "إنتِ هتعملي إيه؟",
+        "en": "What do you do?"
+      },
+      "options": [
+        {
+          "id": "c2_sign",
+          "to": "sign",
+          "text": {
+            "ar": "تكتبي اسمك على الورقة.",
+            "en": "Write your name on the sheet."
+          },
+          "effects": [
+            {
+              "trait": "confidence",
+              "delta": 5
+            },
+            {
+              "flag": "joined_club",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c2_both",
+          "to": "both",
+          "text": {
+            "ar": "«وسلمى كمان.»",
+            "en": "\"Salma too.\""
+          },
+          "when": {
+            "flag": "salma_encouraged"
+          },
+          "lockedHint": {
+            "ar": "محتاجة سلمى تكون واثقة فيكِ",
+            "en": "Salma needs to trust you first"
+          },
+          "effects": [
+            {
+              "rel": "salma",
+              "delta": 10
+            },
+            {
+              "trait": "empathy",
+              "delta": 5
+            },
+            {
+              "flag": "joined_club",
+              "value": true
+            },
+            {
+              "flag": "salma_joined",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c2_later",
+          "to": "later",
+          "text": {
+            "ar": "«هفكّر وأرجعلك.»",
+            "en": "\"I'll think about it and get back to you.\""
+          },
+          "hint": {
+            "ar": "هتقدري تسجّلي بعدين",
+            "en": "You can still sign up later"
+          },
+          "effects": [
+            {
+              "trait": "wits",
+              "delta": 3
+            }
+          ]
+        }
+      ]
+    },
+    "sign": {
+      "id": "sign",
+      "type": "say",
+      "who": "nour",
+      "emote": "smile",
+      "next": "bell",
+      "text": {
+        "ar": "كويس. أول اجتماع بكرة بعد الحصة السادسة.",
+        "en": "Good. First meeting tomorrow after sixth period."
+      }
+    },
+    "both": {
+      "id": "both",
+      "type": "say",
+      "who": "nour",
+      "emote": "surprised",
+      "next": "both2",
+      "text": {
+        "ar": "سلمى؟ … تمام. اكتبوا الاتنين.",
+        "en": "Salma? … Fine. Both of you, write it down."
+      }
+    },
+    "both2": {
+      "id": "both2",
+      "type": "say",
+      "who": "salma",
+      "emote": "happy",
+      "next": "bell",
+      "text": {
+        "ar": "إنتِ عبيطة. … شكراً.",
+        "en": "You're ridiculous. … Thank you."
+      }
+    },
+    "later": {
+      "id": "later",
+      "type": "say",
+      "who": "nour",
+      "emote": "neutral",
+      "next": "bell",
+      "text": {
+        "ar": "الورقة هتفضل هنا لآخر الأسبوع. براحتك.",
+        "en": "The sheet stays up till the end of the week. Your call."
+      }
+    },
+    "bell": {
+      "id": "bell",
+      "type": "stage",
+      "mood": "day",
+      "cast": [
+        "player",
+        "salma"
+      ],
+      "next": "end_n1"
+    },
+    "end_n1": {
+      "id": "end_n1",
+      "type": "narrate",
+      "next": "end_n2",
+      "text": {
+        "ar": "الجرس رنّ. سلمى مشيت جنبك من غير ما تتكلم، وكل شوية بتبص ناحية لوحة الإعلانات.",
+        "en": "The bell rings. Salma walks beside you without speaking, glancing back at the notice board every few steps."
+      }
+    },
+    "end_n2": {
+      "id": "end_n2",
+      "type": "narrate",
+      "next": "fin",
+      "text": {
+        "ar": "وإنتِ داخلة الفصل، لاحظتي بنت قاعدة في آخر الصف بتكتب في نوتة صغيرة. رفعت عينيها وبصّتلك، وبعدين رجّعتهم بسرعة.",
+        "en": "As you enter class, you notice a girl at the back writing in a small notebook. She looks up at you, then quickly looks back down."
+      }
+    },
+    "fin": {
+      "id": "fin",
+      "type": "end",
+      "reward": {
+        "coins": 120,
+        "xp": 45
+      },
+      "nextChapter": "s1_c2",
+      "teaser": {
+        "ar": "بكرة أول اجتماع. وسلمى لسه مش قايلة اللي في دماغها.",
+        "en": "Tomorrow is the first meeting. And Salma still hasn't said what's on her mind."
+      }
+    }
+  }
+}

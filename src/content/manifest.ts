@@ -49,6 +49,8 @@ export interface AvatarView {
 
 export interface AvatarManifest {
   views: Record<string, AvatarView>
+  /** بورتريهات طاقم القصة: character → expression → مسار الصورة. */
+  cast?: Record<string, Record<string, string>>
   layerOrder: Record<string, number>
   skinTones: Record<string, { name: LayerName }>
   eyeColors: Record<string, { name: LayerName }>
@@ -62,12 +64,21 @@ const BASE = `${import.meta.env.BASE_URL}avatar/`
 let cache: AvatarManifest | null = null
 let pending: Promise<AvatarManifest> | null = null
 
+/**
+ * في نسخة «الملف الواحد» (للمعاينة والمشاركة) بتتحقن الأصول كـ data URIs
+ * في `__LIVI_ASSETS__`. البناء العادي بيتجاهل ده تمامًا.
+ */
+interface EmbeddedAssets { [path: string]: string }
+
 export function assetUrl(src: string): string {
-  return BASE + src
+  const embedded = (globalThis as { __LIVI_ASSETS__?: EmbeddedAssets }).__LIVI_ASSETS__
+  return embedded?.[src] ?? BASE + src
 }
 
 export async function loadManifest(): Promise<AvatarManifest> {
   if (cache) return cache
+  const embedded = (globalThis as { __LIVI_MANIFEST__?: AvatarManifest }).__LIVI_MANIFEST__
+  if (embedded) { cache = embedded; return embedded }
   if (!pending) {
     pending = fetch(`${BASE}manifest.json`)
       .then((r) => {
@@ -125,6 +136,17 @@ export function garmentsByCategory(
 
 export function garment(v: AvatarView, id: string): GarmentLayer | undefined {
   return v.garments[id]
+}
+
+/** بورتريه شخصية بتعبير معيّن، مع رجوع للتعبير المحايد. */
+export function castPortrait(
+  m: AvatarManifest | null,
+  character: string,
+  emote = 'neutral',
+): string | null {
+  const set = m?.cast?.[character]
+  if (!set) return null
+  return set[emote] ?? set.neutral ?? Object.values(set)[0] ?? null
 }
 
 /** أوسمة الأسلوب للإطلالة الحالية — يستخدمها محرك القصص. */

@@ -1,0 +1,179 @@
+/*
+  القارئ يغطي الشاشة كاملة فوق شريط التنقل: القراءة تجربة غامرة،
+  ووجود شريط التنقل تحتها بيقطع الانغماس وبيخبّي الاختيارات.
+*/
+.story {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-nav) + 10);
+  max-width: var(--app-max-w);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.story--error {
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  background: var(--c-bg);
+}
+
+/* ===== الشريط العلوي ===== */
+.story__top {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: calc(var(--safe-top) + var(--s-3)) var(--s-4) var(--s-2);
+}
+.story__back {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  color: var(--c-text);
+}
+[dir='rtl'] .story__back svg { transform: scaleX(-1); }
+.story__chapter { flex: 1; text-align: center; color: var(--c-text-muted); }
+.story__spacer { width: 32px; }
+
+/* ===== المسرح ===== */
+.story__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.story__char {
+  position: absolute;
+  bottom: -3%;
+  height: 56%;
+  max-height: 340px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .45));
+  pointer-events: none;
+  transition: filter var(--d-base) var(--ease-out);
+  /* إطار التصيير بيقطع الكتف بحدّ حاد — التلاشي بيذوّب الحافة في المشهد */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 72%, transparent 99%),
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 72%, transparent 99%),
+    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-composite: intersect;
+}
+.story__char--active { filter: drop-shadow(0 14px 32px rgba(0, 0, 0, .52)); }
+
+/* اللاعبة دائمًا على الجانب المقابل عشان المواجهة تتقري صح */
+.story__char--player {
+  -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 99%);
+  mask-image: linear-gradient(to bottom, #000 74%, transparent 99%);
+  inset-inline-start: auto !important;
+  inset-inline-end: 2%;
+  height: auto;
+  bottom: -2%;
+  z-index: 2;
+  opacity: .94;
+}
+.story__char--player.story__char--active { z-index: 4; opacity: 1; }
+
+/* ===== لوحة النص ===== */
+.story__panel {
+  position: relative;
+  z-index: 6;
+  padding: 0 var(--s-4) calc(var(--s-5) + var(--safe-bottom));
+  flex: none;
+}
+
+.bubble {
+  background: rgba(24, 17, 34, .93);
+  border: var(--b-soft);
+  border-radius: var(--r-xl);
+  padding: var(--s-4) var(--s-4) var(--s-3);
+  backdrop-filter: blur(18px) saturate(1.2);
+  box-shadow: var(--e-3);
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+.bubble--narrate {
+  background: rgba(16, 11, 24, .88);
+  border-color: rgba(255, 255, 255, .06);
+}
+.bubble__who {
+  font-family: var(--font-display);
+  font-size: var(--t-body-sm);
+  font-weight: var(--fw-semi);
+  letter-spacing: -.01em;
+}
+.bubble__text {
+  font-size: 15.5px;
+  line-height: 1.62;
+  flex: 1;
+}
+.bubble--narrate .bubble__text { color: var(--c-text-muted); font-style: italic; }
+.bubble__hint { align-self: flex-end; opacity: .55; }
+
+/* ===== الاختيارات ===== */
+.choices { display: flex; flex-direction: column; gap: var(--s-2); }
+.choices__prompt { text-align: center; margin-bottom: var(--s-1); }
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: start;
+  padding: 13px var(--s-4);
+  border-radius: var(--r-lg);
+  background: rgba(28, 20, 39, .92);
+  border: 1px solid rgba(255, 255, 255, .13);
+  backdrop-filter: blur(14px);
+  transition: border-color var(--d-fast) var(--ease-out),
+              background var(--d-fast) var(--ease-out);
+}
+.choice:not(:disabled):hover {
+  border-color: rgba(255, 92, 138, .5);
+  background: rgba(255, 92, 138, .10);
+}
+.choice--locked { opacity: .45; }
+.choice__text { font-size: 14.5px; line-height: 1.5; }
+.choice__hint {
+  font-size: 11px;
+  font-weight: var(--fw-semi);
+  color: var(--c-secondary-soft);
+}
+.choice__hint--locked { color: var(--c-text-subtle); }
+
+/* ===== نهاية الفصل ===== */
+.chapter-end {
+  background: linear-gradient(160deg, rgba(255, 92, 138, .13), rgba(155, 140, 255, .10)),
+              rgba(22, 15, 30, .95);
+  border: var(--b-soft);
+  border-radius: var(--r-xl);
+  padding: var(--s-5) var(--s-4) var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  box-shadow: var(--e-3);
+}
+.chapter-end__label {
+  color: var(--c-primary-soft);
+  font-weight: var(--fw-bold);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.chapter-end__teaser { line-height: 1.6; }
+.chapter-end__reward {
+  display: flex; gap: var(--s-3); flex-wrap: wrap;
+  font-size: var(--t-body-sm);
+  font-weight: var(--fw-semi);
+  color: var(--c-accent);
+}

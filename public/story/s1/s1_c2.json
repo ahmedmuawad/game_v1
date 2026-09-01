@@ -1,0 +1,130 @@
+{
+  "id": "s1_c2",
+  "seasonId": "s1",
+  "index": 2,
+  "title": { "ar": "الدعوة", "en": "The Invitation" },
+  "teaser": { "ar": "نور بتفتح باب، وسلمى بتحس إن الباب ده مش ليها.", "en": "Nour opens a door, and Salma feels it isn't hers." },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "art_room", "mood": "sunset", "cast": ["player", "nour", "dina"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2",
+      "text": { "ar": "غرفة الفن بعد آخر حصة. الشمس داخلة من الشباك على الترابيزة الكبيرة، وفيه ريحة ألوان وورق.",
+                "en": "The art room after the last period. Sun coming through the window onto the big table, and the smell of paint and paper." } },
+
+    "n2": { "id": "n2", "type": "say", "who": "nour", "emote": "smile", "next": "n3",
+      "text": { "ar": "قاعدة. مش هنعمل عرض أزياء. هنعمل حاجة أصعب.",
+                "en": "Sit. We're not doing a fashion show. We're doing something harder." } },
+
+    "n3": { "id": "n3", "type": "say", "who": "nour", "emote": "neutral", "next": "n4",
+      "text": { "ar": "كل واحدة هتعمل «إطلالة» تحكي حاجة عنها هي. مش أحلى هدوم — أصدق هدوم.",
+                "en": "Each of you builds a look that says something about *you*. Not the prettiest clothes — the truest ones." } },
+
+    "n4": { "id": "n4", "type": "stage", "cast": ["player", "nour", "dina"], "next": "dina1" },
+
+    "dina1": { "id": "dina1", "type": "say", "who": "dina", "emote": "neutral", "next": "c1",
+      "text": { "ar": "وإحنا لازم نقولها قدام كل الناس؟", "en": "And we have to say it in front of everyone?" } },
+
+    "c1": { "id": "c1", "type": "choice",
+      "prompt": { "ar": "إنتِ رأيك إيه؟", "en": "What do you think?" },
+      "options": [
+        { "id": "c1_yes", "to": "y1",
+          "text": { "ar": "«ده أحلى حاجة فيها.»", "en": "\"That's the best part of it.\"" },
+          "hint": { "ar": "ثقة", "en": "Confident" },
+          "effects": [{ "trait": "confidence", "delta": 6 }, { "rel": "nour", "delta": 5 }] },
+        { "id": "c1_soft", "to": "y2",
+          "text": { "ar": "«ممكن نبدأ بحاجة صغيرة، مش لازم نحكي كل حاجة.»", "en": "\"We could start small. We don't have to tell everything.\"" },
+          "hint": { "ar": "مراعاة", "en": "Considerate" },
+          "effects": [{ "trait": "empathy", "delta": 6 }, { "rel": "dina", "delta": 8 }] },
+        { "id": "c1_ask", "to": "y3",
+          "text": { "ar": "«وإنتِ هتقولي إيه عن نفسك يا نور؟»", "en": "\"And what will *you* say about yourself, Nour?\"" },
+          "hint": { "ar": "ذكاء", "en": "Sharp" },
+          "effects": [{ "trait": "wits", "delta": 6 }, { "flag": "pushed_nour", "value": true }] }
+      ] },
+
+    "y1": { "id": "y1", "type": "say", "who": "nour", "emote": "happy", "next": "salma_in",
+      "text": { "ar": "أهو. ده اللي كنت مستنياه من حد.", "en": "There. That's what I was waiting for someone to say." } },
+
+    "y2": { "id": "y2", "type": "say", "who": "dina", "emote": "smile", "next": "salma_in",
+      "text": { "ar": "شكراً. أنا… مش بحب أتكلم قدام الناس.", "en": "Thanks. I… don't like speaking in front of people." } },
+
+    "y3": { "id": "y3", "type": "say", "who": "nour", "emote": "surprised", "next": "y3b",
+      "text": { "ar": "أنا؟ … مش عارفة لسه.", "en": "Me? … I don't know yet." } },
+
+    "y3b": { "id": "y3b", "type": "say", "who": "nour", "emote": "thinking", "next": "salma_in",
+      "text": { "ar": "وده مش رد كويس، أعرف.", "en": "And that's not a good answer, I know." } },
+
+    "salma_in": { "id": "salma_in", "type": "stage", "cast": ["player", "salma", "nour"], "next": "sal_branch" },
+
+    "sal_branch": { "id": "sal_branch", "type": "branch",
+      "branches": [{ "when": { "flag": "salma_joined" }, "to": "sal_in1" }],
+      "fallback": "sal_out1" },
+
+    "sal_in1": { "id": "sal_in1", "type": "say", "who": "salma", "emote": "neutral", "next": "sal_in2",
+      "text": { "ar": "أنا قعدت طول الحصة بفكّر أقول إيه. ومطلعش حاجة.",
+                "en": "I sat the whole period trying to think what to say. Nothing came." } },
+
+    "sal_in2": { "id": "sal_in2", "type": "choice",
+      "options": [
+        { "id": "si_a", "to": "sal_in3",
+          "text": { "ar": "«أنا أعرف حاجة عنك تنفع.»", "en": "\"I know something about you that would work.\"" },
+          "effects": [{ "rel": "salma", "delta": 10 }, { "trait": "empathy", "delta": 5 }, { "flag": "helped_salma", "value": true }] },
+        { "id": "si_b", "to": "sal_in3",
+          "text": { "ar": "«خدي وقتك. مش مسابقة.»", "en": "\"Take your time. It's not a race.\"" },
+          "effects": [{ "rel": "salma", "delta": 5 }, { "trait": "empathy", "delta": 3 }] }
+      ] },
+
+    "sal_in3": { "id": "sal_in3", "type": "say", "who": "salma", "emote": "smile", "next": "board",
+      "text": { "ar": "طيب. بس متسيبنيش لوحدي هناك.", "en": "Okay. Just don't leave me up there alone." } },
+
+    "sal_out1": { "id": "sal_out1", "type": "say", "who": "salma", "emote": "sad", "next": "sal_out2",
+      "text": { "ar": "جيت أشوفك بس. أنا مش في النادي أصلاً.",
+                "en": "I just came to see you. I'm not in the club anyway." } },
+
+    "sal_out2": { "id": "sal_out2", "type": "choice",
+      "options": [
+        { "id": "so_a", "to": "sal_out3",
+          "text": { "ar": "«الورقة لسه معلّقة. يلا نكتب اسمك.»", "en": "\"The sheet's still up. Let's put your name on it.\"" },
+          "effects": [{ "rel": "salma", "delta": 12 }, { "trait": "confidence", "delta": 4 },
+                      { "flag": "salma_joined", "value": true }, { "flag": "helped_salma", "value": true }] },
+        { "id": "so_b", "to": "sal_out3",
+          "text": { "ar": "«أنا هحكيلك كل حاجة أول بأول.»", "en": "\"I'll tell you everything as it happens.\"" },
+          "effects": [{ "rel": "salma", "delta": 3 }, { "flag": "salma_outside", "value": true }] }
+      ] },
+
+    "sal_out3": { "id": "sal_out3", "type": "say", "who": "salma", "emote": "neutral", "next": "board",
+      "text": { "ar": "ماشي.", "en": "Okay." } },
+
+    "board": { "id": "board", "type": "stage", "bg": "corridor", "mood": "cool", "cast": ["player", "dina"], "next": "b1" },
+
+    "b1": { "id": "b1", "type": "narrate", "next": "b2",
+      "text": { "ar": "في طريقك للبوابة، لقيتي دينا واقفة قدام لوحة الإعلانات، ساكتة، وإيديها في جيبها.",
+                "en": "On your way to the gate, you find Dina standing at the notice board, silent, hands in her pockets." } },
+
+    "b2": { "id": "b2", "type": "say", "who": "dina", "emote": "neutral", "next": "b3",
+      "text": { "ar": "فيه حد كتب حاجة هنا الصبح. مسحوها بسرعة.",
+                "en": "Someone wrote something here this morning. They wiped it off fast." } },
+
+    "b3": { "id": "b3", "type": "choice",
+      "options": [
+        { "id": "b3_what", "to": "b4",
+          "text": { "ar": "«كتب إيه؟»", "en": "\"Wrote what?\"" },
+          "effects": [{ "trait": "wits", "delta": 4 }, { "flag": "asked_board", "value": true }] },
+        { "id": "b3_leave", "to": "b5",
+          "text": { "ar": "«يمكن حاجة مالهاش لازمة.»", "en": "\"Probably nothing worth reading.\"" },
+          "effects": [{ "trait": "empathy", "delta": 2 }] }
+      ] },
+
+    "b4": { "id": "b4", "type": "say", "who": "dina", "emote": "sad", "next": "b5",
+      "text": { "ar": "حاجة عن سلمى. ومش حلوة.", "en": "Something about Salma. And it wasn't kind." } },
+
+    "b5": { "id": "b5", "type": "say", "who": "dina", "emote": "neutral", "next": "fin",
+      "text": { "ar": "أنا شفت اللي كتبتها. بس مش هقول.", "en": "I saw who wrote it. But I'm not saying." } },
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 140, "xp": 55 },
+      "nextChapter": "s1_c3",
+      "teaser": { "ar": "دينا شافت. ودينا مش بتكدب. وسلمى لسه ماتعرفش.",
+                  "en": "Dina saw it. Dina doesn't lie. And Salma still doesn't know." } }
+  }
+}

@@ -1,0 +1,74 @@
+.home__hero {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0 var(--s-4) var(--s-4);
+}
+.home__hero-text { flex: 1; min-width: 0; }
+
+/* إطار مستدير للوجه: القصّ المربّع بيبان كصورة مقطوعة */
+.home__face {
+  border-radius: var(--r-lg);
+  border: var(--b-soft);
+  background: linear-gradient(160deg, #2E2148, #1A1226);
+  box-shadow: var(--e-2);
+}
+
+.chapter-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 var(--s-4) var(--s-5);
+  background: linear-gradient(155deg, #2E1F42 0%, #1A1226 100%);
+  border-color: rgba(155, 140, 255, .26);
+  padding: var(--s-4);
+}
+.chapter-hero__glow {
+  position: absolute;
+  top: -46px;
+  inset-inline-end: -32px;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155, 140, 255, .32), transparent 70%);
+  pointer-events: none;
+}
+.chapter-hero__body { position: relative; display: flex; flex-direction: column; gap: var(--s-2); }
+.chapter-hero__eyebrow {
+  color: var(--c-secondary-soft);
+  font-weight: var(--fw-bold);
+  letter-spacing: .07em;
+}
+.chapter-hero .btn { margin-top: var(--s-2); }
+
+.chapter-list { padding: 0 var(--s-4) var(--s-8); display: flex; flex-direction: column; gap: var(--s-2); }
+.chapter-list__title { margin-bottom: var(--s-1); }
+
+.chapter-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  border-radius: var(--r-lg);
+  background: var(--c-surface);
+  border: var(--b-hairline);
+  text-align: start;
+  transition: border-color var(--d-fast) var(--ease-out);
+}
+.chapter-row:not(:disabled):hover { border-color: rgba(255, 92, 138, .34); }
+.chapter-row--locked { opacity: .45; }
+
+.chapter-row__num {
+  width: 30px; height: 30px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .06);
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: var(--fw-bold);
+  color: var(--c-text-muted);
+}
+.chapter-row__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.chapter-row__title { font-family: var(--font-display); font-size: 15px; font-weight: var(--fw-semi); }
+.chapter-row__teaser {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.chapter-row__state { flex: none; color: var(--c-success); width: 18px; }
