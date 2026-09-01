@@ -13,7 +13,18 @@ import { CurrencyPill, RarityBadge, Tabs } from '@/components/ui'
 import { IconCheck, IconLock } from '@/app/icons'
 import './style-screen.css'
 
-type Tab = 'skin' | 'hair' | 'top' | 'bottom' | 'dress' | 'shoes'
+type Tab = 'skin' | 'hair' | 'top' | 'bottom' | 'dress' | 'shoes' | 'accessory'
+
+/**
+ * ألوان عيّنات الشعر في المنتقي.
+ * قيم عرض فقط — القيم الحقيقية للتصيير في `tools/avatar/wardrobe.py`.
+ * هنا نستخدم نسخة أفتح لأن اللون الخطي الداكن يبان أسود على شاشة صغيرة.
+ */
+const HAIR_SWATCH: Record<string, string> = {
+  black: '#1E1922', espresso: '#3A2419', chestnut: '#6B3F26', caramel: '#A8703C',
+  honey: '#D6A257', platinum: '#E4DCD1', auburn: '#9B3B2A', rose: '#E77398',
+  lilac: '#A48BE0', mint: '#6FCFB0',
+}
 
 export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
   const { t, tx, n } = useI18n()
@@ -37,6 +48,7 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
       { id: 'bottom' as Tab, label: t('style.cat.bottom') },
       { id: 'dress' as Tab, label: t('style.cat.dress') },
       { id: 'shoes' as Tab, label: t('style.cat.shoes') },
+      { id: 'accessory' as Tab, label: t('style.cat.acc') },
       { id: 'hair' as Tab, label: t('style.cat.hair') },
       { id: 'skin' as Tab, label: t('style.skin') },
     ],
@@ -101,31 +113,49 @@ export function StyleScreen({ manifest }: { manifest: AvatarManifest | null }) {
               )
             })}
 
-          {tab === 'hair' && manifest &&
-            Object.keys(manifest.hairStyles).flatMap((style) =>
-              Object.keys(manifest.hairColors).map((color) => {
-                const key = hairKey(style, color)
-                const layer = v?.hair[key]
+          {/*
+            الشعر يُختار على خطوتين: التسريحة ثم اللون.
+            العرض المسطّح لكل التركيبات (6 × 10 = 60 بلاطة) بيحوّل
+            القرار البسيط لبحث في شبكة، وبيخبّي إن اللون والتسريحة
+            بُعدان مستقلان.
+          */}
+          {tab === 'hair' && manifest && (
+            <>
+              {Object.keys(manifest.hairStyles).map((style) => {
+                const layer = v?.hair[hairKey(style, avatar.hairColor)]
+                            ?? v?.hair[hairKey(style, Object.keys(manifest.hairColors)[0])]
                 if (!layer) return null
-                const on = avatar.hairStyle === style && avatar.hairColor === color
+                const on = avatar.hairStyle === style
                 return (
                   <motion.button
-                    key={key}
+                    key={style}
                     className={`tile${on ? ' tile--on' : ''}`}
                     whileTap={{ scale: 0.94 }}
-                    onClick={() => {
-                      setAvatarPart('hairStyle', style)
-                      setAvatarPart('hairColor', color)
-                      haptic('select')
-                    }}
-                    aria-label={tx(layer.name)}
+                    onClick={() => { setAvatarPart('hairStyle', style); haptic('select') }}
+                    aria-label={tx(manifest.hairStyles[style].name)}
                   >
                     <img className="tile__thumb tile__thumb--head" src={assetUrl(layer.front)} alt="" />
                     {on && <span className="tile__check"><IconCheck size={13} /></span>}
                   </motion.button>
                 )
-              }),
-            )}
+              })}
+              <div className="style__swatches">
+                {Object.entries(manifest.hairColors).map(([color, meta]) => {
+                  const on = avatar.hairColor === color
+                  return (
+                    <motion.button
+                      key={color}
+                      className={`swatch${on ? ' swatch--on' : ''}`}
+                      whileTap={{ scale: 0.9 }}
+                      style={{ background: HAIR_SWATCH[color] ?? '#3A2419' }}
+                      onClick={() => { setAvatarPart('hairColor', color); haptic('select') }}
+                      aria-label={tx(meta.name)}
+                    />
+                  )
+                })}
+              </div>
+            </>
+          )}
 
           {tab !== 'skin' && tab !== 'hair' && v &&
             garmentsByCategory(v, tab).map((g) => {

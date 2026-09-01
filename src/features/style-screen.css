@@ -102,3 +102,28 @@
 }
 .tile__price { color: var(--c-accent); }
 .tile__lock { color: var(--c-text-subtle); }
+
+/* ===== عيّنات الألوان (الشعر) ===== */
+.style__swatches {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-1) var(--s-1);
+  margin-top: var(--s-1);
+  border-top: var(--b-hairline);
+}
+
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .14);
+  transition: transform var(--d-fast) var(--ease-spring),
+              border-color var(--d-fast) var(--ease-out);
+}
+.swatch--on {
+  border-color: var(--c-primary);
+  transform: scale(1.12);
+  box-shadow: var(--e-glow-primary);
+}
