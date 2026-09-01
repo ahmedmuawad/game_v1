@@ -379,11 +379,29 @@ export const useGame = create<GameStore>()(
         return data as PlayerState
       },
       migrate: (persisted, fromVersion) => {
-        // ترحيل الإصدارات المستقبلية يُضاف هنا.
-        if (fromVersion < SCHEMA_VERSION) {
-          return { ...createInitialState(), ...(persisted as Partial<PlayerState>), version: SCHEMA_VERSION }
+        if (fromVersion >= SCHEMA_VERSION) return persisted as PlayerState
+
+        const base = createInitialState()
+        const old = (persisted ?? {}) as Partial<PlayerState>
+
+        /*
+          النشر السطحي وحده مش كفاية: الكائنات المتداخلة بتتدهس بالنسخة
+          القديمة كاملة، فأي حقل جديد جوّاها يفضل `undefined`. حصل ده
+          فعلًا مع `settings.locale` في الإصدار 3. بندمج المتداخلات
+          حقلًا حقلًا عشان الحقول الجديدة تاخد قيمتها الافتراضية.
+        */
+        return {
+          ...base,
+          ...old,
+          settings: { ...base.settings, ...(old.settings ?? {}) },
+          story:    { ...base.story,    ...(old.story ?? {}) },
+          daily:    { ...base.daily,    ...(old.daily ?? {}) },
+          stats:    { ...base.stats,    ...(old.stats ?? {}) },
+          avatar:   { ...base.avatar,   ...(old.avatar ?? {}) },
+          room:     { ...base.room,     ...(old.room ?? {}) },
+          traits:   { ...base.traits,   ...(old.traits ?? {}) },
+          version: SCHEMA_VERSION,
         }
-        return persisted as PlayerState
       },
     },
   ),

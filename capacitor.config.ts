@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'me.splus.livi',
+  appId: 'com.stop4web.livi',
   appName: 'LIVI',
   webDir: 'dist',
   // الخلفية لازم تطابق `--c-bg` وإلا هتبان ومضة بيضا عند الإقلاع

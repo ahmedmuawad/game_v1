@@ -24,3 +24,8 @@ dist-single
 # Capacitor
 android/
 ios/
+
+# إعدادات Firebase — تتحط محليًا ولا تُرفع
+google-services.json
+GoogleService-Info.plist
+.env

@@ -1,7 +1,8 @@
 import { getConfig } from '@/systems/config'
 import type { PlayerState } from './types'
 
-export const SCHEMA_VERSION = 2
+/** 3: أُضيفت `settings.locale` — اللغة بقت محفوظة بدل ما ترجع للعربي كل تشغيل. */
+export const SCHEMA_VERSION = 3
 
 /**
  * العناصر الممنوحة عند بدء اللعب.
@@ -90,7 +91,7 @@ export function createInitialState(): PlayerState {
       adsWatched: 0,
     },
 
-    settings: { music: true, sfx: true, haptics: true, reduceMotion: false },
+    settings: { music: true, sfx: true, haptics: true, reduceMotion: false, locale: 'ar' },
 
     stats: {
       sessions: 0,

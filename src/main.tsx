@@ -1,6 +1,6 @@
 import { StrictMode, useEffect, useMemo, useState, type ReactElement } from 'react'
 import { createRoot } from 'react-dom/client'
-import { I18nContext, applyLocaleToDocument, createI18n, type Locale, useI18n } from '@/i18n'
+import { I18nContext, applyLocaleToDocument, createI18n, useI18n } from '@/i18n'
 import { ToastProvider } from '@/app/toast'
 import { setHapticsEnabled, haptic } from '@/app/haptics'
 import { useGame } from '@/state/store'
@@ -54,11 +54,11 @@ function Placeholder({ titleKey }: { titleKey: string }) {
 }
 
 function App() {
-  const [locale, setLocale] = useState<Locale>('ar')
   const [manifest, setManifest] = useState<AvatarManifest | null>(null)
   const [tab, setTab] = useState<TabId>('story')
   const boot = useGame((s) => s.boot)
   const settings = useGame((s) => s.settings)
+  const locale = settings.locale
 
   const i18n = useMemo(() => createI18n(locale), [locale])
 
@@ -71,14 +71,8 @@ function App() {
     loadManifest().then(setManifest).catch((e) => console.error('[assets]', e))
   }, [boot])
 
-  // مبدّل لغة مؤقت حتى تُبنى شاشة الإعدادات
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'l') setLocale((l) => (l === 'ar' ? 'en' : 'ar'))
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
+  // مبدّل اللغة بقى في شاشة الإعدادات — كان مربوطًا بمفتاح لوحة مفاتيح
+  // يعني مستحيل الوصول له على الموبايل، وهو المنصّة الوحيدة للمنتج.
 
   return (
     <I18nContext.Provider value={i18n}>

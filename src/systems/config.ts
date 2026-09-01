@@ -39,6 +39,16 @@ export interface GameConfig {
   /** تُقسَّم السلسلة على هذا الرقم عند الانقطاع بدل التصفير (DECISIONS.md#D-008). */
   streakBreakDivisor: number
 
+  // ---- الحساب والامتثال (DECISIONS.md#D-012) ----
+  /**
+   * السن اللي تحته لازم موافقة والدية موثّقة قبل أي جمع بيانات.
+   * 13 حسب COPPA النافذة. لو بقى COPPA 2.0 قانونًا يتغيّر لـ17 من هنا
+   * بلا تعديل كود — وده سبب وجوده في الإعداد عن بُعد أصلًا.
+   */
+  consentAgeMin: number
+  /** أقصى سن يُقبل في بوابة العمر — حارس ضد الإدخال الغلط. */
+  ageMaxPlausible: number
+
   // ---- الإعلانات ----
   /** أقصى عدد إعلانات مكافِئة يوميًا — سقف صارم لحماية التجربة. */
   adsPerDayMax: number
@@ -80,6 +90,9 @@ export const DEFAULT_CONFIG: GameConfig = {
   dailyMissionCount: 3,
   chapterCooldownHours: 0,
   streakBreakDivisor: 2,
+
+  consentAgeMin: 13,
+  ageMaxPlausible: 120,
 
   adsPerDayMax: 6,
   adCooldownSeconds: 60,
