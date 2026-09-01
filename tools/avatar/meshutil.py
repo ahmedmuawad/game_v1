@@ -63,6 +63,33 @@ def build_adjacency(n_verts: int, faces: list) -> list[list[int]]:
     return [sorted(a) for a in adj]
 
 
+def padded_adjacency(n_verts: int, faces: list) -> tuple[np.ndarray, np.ndarray]:
+    """
+    الجوار كمصفوفة مبطّنة (n × أقصى درجة) مع أوزان.
+
+    التنعيم بحلقة Python على 13 ألف رأس × عشرات التكرارات بياخد ثوانٍ
+    لكل شخصية، وبيتضرب في مئات الطبقات عند التصدير. الشكل المبطّن بيخلي
+    التنعيم عملية numpy واحدة.
+    """
+    adj = build_adjacency(n_verts, faces)
+    deg = max((len(a) for a in adj), default=1)
+    idx = np.zeros((n_verts, deg), dtype=np.int32)
+    w = np.zeros((n_verts, deg), dtype=np.float64)
+    for i, nb in enumerate(adj):
+        if nb:
+            idx[i, :len(nb)] = nb
+            w[i, :len(nb)] = 1.0
+        else:
+            idx[i, 0] = i
+            w[i, 0] = 1.0
+    return idx, w / np.maximum(w.sum(axis=1, keepdims=True), 1e-9)
+
+
+def neighbor_average(verts: np.ndarray, idx: np.ndarray, w: np.ndarray) -> np.ndarray:
+    """متوسط الجيران لكل رأس — عملية متجهية واحدة."""
+    return np.einsum('nk,nkd->nd', w, verts[idx])
+
+
 def laplacian_smooth(verts: np.ndarray, faces: list, iterations: int = 6,
                      factor: float = 0.55, boundary_factor: float = 0.0) -> np.ndarray:
     """
@@ -100,13 +127,26 @@ def laplacian_smooth(verts: np.ndarray, faces: list, iterations: int = 6,
 
     per_vertex = np.where(is_boundary, boundary_factor, factor)
 
+    # شكل مبطّن للجوار: الحافة تستخدم جيرانها على الحافة فقط
+    n = len(verts)
+    deg = max(max((len(a) for a in adj), default=1),
+              max((len(a) for a in boundary_adj), default=1), 1)
+    idx = np.zeros((n, deg), dtype=np.int32)
+    wt = np.zeros((n, deg))
+    for i in range(n):
+        nb = boundary_adj[i] if (is_boundary[i] and boundary_adj[i]) else adj[i]
+        if nb:
+            idx[i, :len(nb)] = nb
+            wt[i, :len(nb)] = 1.0
+        else:
+            idx[i, 0] = i
+            wt[i, 0] = 1.0
+    wt /= np.maximum(wt.sum(axis=1, keepdims=True), 1e-9)
+
     v = verts.copy()
+    step = per_vertex[:, None]
     for _ in range(iterations):
-        avg = np.zeros_like(v)
-        for i in range(len(v)):
-            nb = boundary_adj[i] if is_boundary[i] else adj[i]
-            avg[i] = v[nb].mean(axis=0) if nb else v[i]
-        v += (avg - v) * per_vertex[:, None]
+        v += (neighbor_average(v, idx, wt) - v) * step
     return v
 
 

@@ -1,91 +1,374 @@
 {
-  "id": "s1_c5", "seasonId": "s1", "index": 5,
-  "title": { "ar": "الحقيقة", "en": "The Truth" },
-  "teaser": { "ar": "عرفتي مين كتبها. والسؤال دلوقتي إنتِ هتعملي إيه.", "en": "You know who wrote it. Now the question is what you do." },
+  "id": "s1_c5",
+  "seasonId": "s1",
+  "index": 5,
+  "title": {
+    "ar": "الحقيقة",
+    "en": "The Truth"
+  },
+  "teaser": {
+    "ar": "عرفتي مين كتبها. والسؤال دلوقتي إنتِ هتعملي إيه.",
+    "en": "You know who wrote it. Now the question is what you do."
+  },
   "start": "open",
   "nodes": {
-    "open": { "id": "open", "type": "stage", "bg": "art_room", "mood": "night", "cast": ["player", "dina"], "next": "n1" },
-    "n1": { "id": "n1", "type": "narrate", "next": "gate" },
-    "gate": { "id": "gate", "type": "branch",
-      "branches": [{ "when": { "flag": "dina_trusts" }, "to": "d_open" }],
-      "fallback": "d_closed" },
-
-    "d_open": { "id": "d_open", "type": "say", "who": "dina", "emote": "sad", "next": "reveal",
-      "text": { "ar": "إنتِ الوحيدة اللي مضغطتيش عليّ. عشان كده هقولك.",
-                "en": "You're the only one who didn't push me. That's why I'll tell you." } },
-    "d_closed": { "id": "d_closed", "type": "say", "who": "dina", "emote": "neutral", "next": "d_closed2",
-      "text": { "ar": "كل الناس بتسأل. محدش بيسمع.", "en": "Everyone asks. Nobody listens." } },
-    "d_closed2": { "id": "d_closed2", "type": "choice",
+    "open": {
+      "id": "open",
+      "type": "stage",
+      "bg": "art_room",
+      "mood": "night",
+      "cast": [
+        "player",
+        "dina"
+      ],
+      "next": "n1"
+    },
+    "n1": {
+      "id": "n1",
+      "type": "narrate",
+      "next": "gate",
+      "text": {
+        "ar": "غرفة الفن فاضية غير من دينا. قاعدة على الأرض جنب الشباك، والنوتة الصغيرة مقفولة في حضنها.",
+        "en": "The art room is empty except for Dina. She's on the floor by the window, the little notebook shut in her lap."
+      }
+    },
+    "gate": {
+      "id": "gate",
+      "type": "branch",
+      "branches": [
+        {
+          "when": {
+            "flag": "dina_trusts"
+          },
+          "to": "d_open"
+        }
+      ],
+      "fallback": "d_closed"
+    },
+    "d_open": {
+      "id": "d_open",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "reveal",
+      "text": {
+        "ar": "إنتِ الوحيدة اللي مضغطتيش عليّ. عشان كده هقولك.",
+        "en": "You're the only one who didn't push me. That's why I'll tell you."
+      }
+    },
+    "d_closed": {
+      "id": "d_closed",
+      "type": "say",
+      "who": "dina",
+      "emote": "neutral",
+      "next": "d_closed2",
+      "text": {
+        "ar": "كل الناس بتسأل. محدش بيسمع.",
+        "en": "Everyone asks. Nobody listens."
+      }
+    },
+    "d_closed2": {
+      "id": "d_closed2",
+      "type": "choice",
       "options": [
-        { "id": "dc_listen", "to": "reveal",
-          "text": { "ar": "تقعدي جنبها وتستني.", "en": "Sit beside her and wait." },
-          "effects": [{ "trait": "empathy", "delta": 8 }, { "rel": "dina", "delta": 12 }] },
-        { "id": "dc_go", "to": "no_reveal",
-          "text": { "ar": "«خلاص. مش هسأل تاني.»", "en": "\"Fine. I won't ask again.\"" },
-          "effects": [{ "rel": "dina", "delta": -6 }, { "flag": "never_knew", "value": true }] }
-      ] },
-
-    "reveal": { "id": "reveal", "type": "say", "who": "dina", "emote": "sad", "next": "reveal2",
-      "text": { "ar": "أنا اللي كتبتها.", "en": "I wrote it." } },
-    "reveal2": { "id": "reveal2", "type": "say", "who": "dina", "emote": "sad", "next": "reveal3",
-      "text": { "ar": "مكنتش قاصدة حد يشوفها. كنت بكتب في النوتة، وسبتها مفتوحة على المكتب دقيقتين.",
-                "en": "I never meant anyone to see it. I was writing in my notebook, and I left it open on the desk for two minutes." } },
-    "reveal3": { "id": "reveal3", "type": "say", "who": "dina", "emote": "sad", "next": "reveal4",
-      "text": { "ar": "حد صوّرها وكتبها على اللوحة. وأنا قعدت أسبوع كامل ساكتة عشان خايفة.",
-                "en": "Someone photographed it and copied it onto the board. And I stayed silent a whole week because I was scared." } },
-    "reveal4": { "id": "reveal4", "type": "say", "who": "dina", "emote": "sad", "next": "c1",
-      "text": { "ar": "وأصلاً… أنا كتبتها عن نفسي. أنا اللي كنت عايزة أبقى زي نور.",
-                "en": "And anyway… I wrote it about myself. I'm the one who wished I were Nour." } },
-
-    "c1": { "id": "c1", "type": "choice",
-      "prompt": { "ar": "إنتِ هتعملي إيه؟", "en": "What do you do?" },
+        {
+          "id": "dc_listen",
+          "to": "reveal",
+          "text": {
+            "ar": "تقعدي جنبها وتستني.",
+            "en": "Sit beside her and wait."
+          },
+          "effects": [
+            {
+              "trait": "empathy",
+              "delta": 8
+            },
+            {
+              "rel": "dina",
+              "delta": 12
+            }
+          ]
+        },
+        {
+          "id": "dc_go",
+          "to": "no_reveal",
+          "text": {
+            "ar": "«خلاص. مش هسأل تاني.»",
+            "en": "\"Fine. I won't ask again.\""
+          },
+          "effects": [
+            {
+              "rel": "dina",
+              "delta": -6
+            },
+            {
+              "flag": "never_knew",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    "reveal": {
+      "id": "reveal",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "reveal2",
+      "text": {
+        "ar": "أنا اللي كتبتها.",
+        "en": "I wrote it."
+      }
+    },
+    "reveal2": {
+      "id": "reveal2",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "reveal3",
+      "text": {
+        "ar": "مكنتش قاصدة حد يشوفها. كنت بكتب في النوتة، وسبتها مفتوحة على المكتب دقيقتين.",
+        "en": "I never meant anyone to see it. I was writing in my notebook, and I left it open on the desk for two minutes."
+      }
+    },
+    "reveal3": {
+      "id": "reveal3",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "reveal4",
+      "text": {
+        "ar": "حد صوّرها وكتبها على اللوحة. وأنا قعدت أسبوع كامل ساكتة عشان خايفة.",
+        "en": "Someone photographed it and copied it onto the board. And I stayed silent a whole week because I was scared."
+      }
+    },
+    "reveal4": {
+      "id": "reveal4",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "c1",
+      "text": {
+        "ar": "وأصلاً… أنا كتبتها عن نفسي. أنا اللي كنت عايزة أبقى زي نور.",
+        "en": "And anyway… I wrote it about myself. I'm the one who wished I were Nour."
+      }
+    },
+    "c1": {
+      "id": "c1",
+      "type": "choice",
+      "prompt": {
+        "ar": "إنتِ هتعملي إيه؟",
+        "en": "What do you do?"
+      },
       "options": [
-        { "id": "c1_public", "to": "pub1",
-          "text": { "ar": "«لازم تقوليها قدام الكل بكرة.»", "en": "\"You have to say it in front of everyone tomorrow.\"" },
-          "hint": { "ar": "عدل — بس صعب", "en": "Just — but hard" },
-          "effects": [{ "trait": "confidence", "delta": 7 }, { "rel": "dina", "delta": -5 },
-                      { "flag": "path_public", "value": true }] },
-        { "id": "c1_private", "to": "pri1",
-          "text": { "ar": "«قوليها لسلمى إنتِ وهي بس.»", "en": "\"Tell Salma — just the two of you.\"" },
-          "hint": { "ar": "إصلاح بلا فضيحة", "en": "Repair without spectacle" },
-          "effects": [{ "trait": "empathy", "delta": 8 }, { "rel": "dina", "delta": 8 },
-                      { "flag": "path_private", "value": true }] },
-        { "id": "c1_hide", "to": "hid1",
-          "text": { "ar": "«ما تقوليش. أنا هتصرّف.»", "en": "\"Don't say anything. I'll handle it.\"" },
-          "hint": { "ar": "حماية — بس تمن", "en": "Protection — at a cost" },
-          "effects": [{ "rel": "dina", "delta": 10 }, { "rel": "salma", "delta": -6 },
-                      { "flag": "path_hide", "value": true }] },
-        { "id": "c1_together", "to": "tog1",
-          "text": { "ar": "«هنقولها مع بعض. أنا هقف جنبك.»", "en": "\"We'll say it together. I'll stand with you.\"" },
-          "when": { "all": [{ "trait": "empathy", "op": ">=", "value": 28 }, { "rel": "dina", "op": ">=", "value": 62 }] },
-          "lockedHint": { "ar": "محتاجة دينا تثق فيكِ أكتر", "en": "Dina needs to trust you more" },
-          "effects": [{ "trait": "empathy", "delta": 6 }, { "trait": "confidence", "delta": 6 },
-                      { "rel": "dina", "delta": 15 }, { "flag": "path_together", "value": true }] }
-      ] },
-
-    "pub1": { "id": "pub1", "type": "say", "who": "dina", "emote": "surprised", "next": "close",
-      "text": { "ar": "قدام كل الناس؟ … طيب. لو ده اللي لازم.",
-                "en": "In front of everyone? … Okay. If that's what it takes." } },
-    "pri1": { "id": "pri1", "type": "say", "who": "dina", "emote": "neutral", "next": "close",
-      "text": { "ar": "هي هتسامحني؟", "en": "Will she forgive me?" } },
-    "hid1": { "id": "hid1", "type": "say", "who": "dina", "emote": "sad", "next": "close",
-      "text": { "ar": "وده هيخلّيني أحسن ولا أوحش؟", "en": "And does that make me better, or worse?" } },
-    "tog1": { "id": "tog1", "type": "say", "who": "dina", "emote": "smile", "next": "close",
-      "text": { "ar": "أنا مش فاكرة آخر مرة حد قال لي «مع بعض».",
-                "en": "I can't remember the last time anyone said \"together\" to me." } },
-
-    "no_reveal": { "id": "no_reveal", "type": "narrate", "next": "close",
-      "text": { "ar": "مشيتي وسبتيها قاعدة. وفي طريقك للبيت، فضلتي مفكّرة إنك يمكن سألتي غلط.",
-                "en": "You walked away and left her sitting. On the way home you kept thinking maybe you asked wrong." } },
-
-    "close": { "id": "close", "type": "stage", "mood": "night", "cast": ["player"], "next": "cl1" },
-    "cl1": { "id": "cl1", "type": "narrate", "next": "fin",
-      "text": { "ar": "بكرة المهرجان. وكل حاجة قلتيها الأسبوع ده هتكون واقفة معاكِ على المسرح.",
-                "en": "Tomorrow is the festival. Everything you said this week will be standing with you on that stage." } },
-
-    "fin": { "id": "fin", "type": "end",
-      "reward": { "coins": 200, "gems": 3, "xp": 90 },
+        {
+          "id": "c1_public",
+          "to": "pub1",
+          "text": {
+            "ar": "«لازم تقوليها قدام الكل بكرة.»",
+            "en": "\"You have to say it in front of everyone tomorrow.\""
+          },
+          "hint": {
+            "ar": "عدل — بس صعب",
+            "en": "Just — but hard"
+          },
+          "effects": [
+            {
+              "trait": "confidence",
+              "delta": 7
+            },
+            {
+              "rel": "dina",
+              "delta": -5
+            },
+            {
+              "flag": "path_public",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c1_private",
+          "to": "pri1",
+          "text": {
+            "ar": "«قوليها لسلمى إنتِ وهي بس.»",
+            "en": "\"Tell Salma — just the two of you.\""
+          },
+          "hint": {
+            "ar": "إصلاح بلا فضيحة",
+            "en": "Repair without spectacle"
+          },
+          "effects": [
+            {
+              "trait": "empathy",
+              "delta": 8
+            },
+            {
+              "rel": "dina",
+              "delta": 8
+            },
+            {
+              "flag": "path_private",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c1_hide",
+          "to": "hid1",
+          "text": {
+            "ar": "«ما تقوليش. أنا هتصرّف.»",
+            "en": "\"Don't say anything. I'll handle it.\""
+          },
+          "hint": {
+            "ar": "حماية — بس تمن",
+            "en": "Protection — at a cost"
+          },
+          "effects": [
+            {
+              "rel": "dina",
+              "delta": 10
+            },
+            {
+              "rel": "salma",
+              "delta": -6
+            },
+            {
+              "flag": "path_hide",
+              "value": true
+            }
+          ]
+        },
+        {
+          "id": "c1_together",
+          "to": "tog1",
+          "text": {
+            "ar": "«هنقولها مع بعض. أنا هقف جنبك.»",
+            "en": "\"We'll say it together. I'll stand with you.\""
+          },
+          "when": {
+            "all": [
+              {
+                "trait": "empathy",
+                "op": ">=",
+                "value": 28
+              },
+              {
+                "rel": "dina",
+                "op": ">=",
+                "value": 62
+              }
+            ]
+          },
+          "lockedHint": {
+            "ar": "محتاجة دينا تثق فيكِ أكتر",
+            "en": "Dina needs to trust you more"
+          },
+          "effects": [
+            {
+              "trait": "empathy",
+              "delta": 6
+            },
+            {
+              "trait": "confidence",
+              "delta": 6
+            },
+            {
+              "rel": "dina",
+              "delta": 15
+            },
+            {
+              "flag": "path_together",
+              "value": true
+            }
+          ]
+        }
+      ]
+    },
+    "pub1": {
+      "id": "pub1",
+      "type": "say",
+      "who": "dina",
+      "emote": "surprised",
+      "next": "close",
+      "text": {
+        "ar": "قدام كل الناس؟ … طيب. لو ده اللي لازم.",
+        "en": "In front of everyone? … Okay. If that's what it takes."
+      }
+    },
+    "pri1": {
+      "id": "pri1",
+      "type": "say",
+      "who": "dina",
+      "emote": "neutral",
+      "next": "close",
+      "text": {
+        "ar": "هي هتسامحني؟",
+        "en": "Will she forgive me?"
+      }
+    },
+    "hid1": {
+      "id": "hid1",
+      "type": "say",
+      "who": "dina",
+      "emote": "sad",
+      "next": "close",
+      "text": {
+        "ar": "وده هيخلّيني أحسن ولا أوحش؟",
+        "en": "And does that make me better, or worse?"
+      }
+    },
+    "tog1": {
+      "id": "tog1",
+      "type": "say",
+      "who": "dina",
+      "emote": "smile",
+      "next": "close",
+      "text": {
+        "ar": "أنا مش فاكرة آخر مرة حد قال لي «مع بعض».",
+        "en": "I can't remember the last time anyone said \"together\" to me."
+      }
+    },
+    "no_reveal": {
+      "id": "no_reveal",
+      "type": "narrate",
+      "next": "close",
+      "text": {
+        "ar": "مشيتي وسبتيها قاعدة. وفي طريقك للبيت، فضلتي مفكّرة إنك يمكن سألتي غلط.",
+        "en": "You walked away and left her sitting. On the way home you kept thinking maybe you asked wrong."
+      }
+    },
+    "close": {
+      "id": "close",
+      "type": "stage",
+      "mood": "night",
+      "cast": [
+        "player"
+      ],
+      "next": "cl1"
+    },
+    "cl1": {
+      "id": "cl1",
+      "type": "narrate",
+      "next": "fin",
+      "text": {
+        "ar": "بكرة المهرجان. وكل حاجة قلتيها الأسبوع ده هتكون واقفة معاكِ على المسرح.",
+        "en": "Tomorrow is the festival. Everything you said this week will be standing with you on that stage."
+      }
+    },
+    "fin": {
+      "id": "fin",
+      "type": "end",
+      "reward": {
+        "coins": 200,
+        "gems": 3,
+        "xp": 90
+      },
       "nextChapter": "s1_c6",
-      "teaser": { "ar": "الليلة الأخيرة. ومفيش خيار تاني.", "en": "The last night. And no second choice." } }
+      "teaser": {
+        "ar": "الليلة الأخيرة. ومفيش خيار تاني.",
+        "en": "The last night. And no second choice."
+      }
+    }
   }
 }

@@ -286,7 +286,7 @@ def flatten_chest(base: Base, verts: np.ndarray, *, amount: float = 1.0,
     للعمر وغير مُجسَّد (PRODUCT_BLUEPRINT §9 و§14). التسطيح بيتم على
     الجسم نفسه فبيسري على كل قطع الملابس تلقائيًا.
     """
-    from meshutil import build_adjacency
+    from meshutil import padded_adjacency, neighbor_average
 
     faces = base.mesh.group_faces('body')
     used = sorted({i for f in faces for i in f})
@@ -307,12 +307,10 @@ def flatten_chest(base: Base, verts: np.ndarray, *, amount: float = 1.0,
     side = np.clip(1.0 - (np.abs(bv[:, 0]) - 0.070) / 0.045, 0, 1)
     w = np.clip(band * front * side, 0, 1) * amount
 
-    adj = build_adjacency(len(bv), local_faces)
+    idx, wt = padded_adjacency(len(bv), local_faces)
+    step = (w * 0.55)[:, None]
     for _ in range(iterations):
-        avg = np.empty_like(bv)
-        for i, nb in enumerate(adj):
-            avg[i] = bv[nb].mean(axis=0) if nb else bv[i]
-        bv += (avg - bv) * (w * 0.55)[:, None]
+        bv += (neighbor_average(bv, idx, wt) - bv) * step
 
     out = verts.copy()
     out[used] = bv

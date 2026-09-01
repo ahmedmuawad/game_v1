@@ -63,6 +63,10 @@ class Exporter:
         self.quality = quality
         self.base = Base()
         self.manifest: dict = {}
+        # الشخصية واحدة عبر كل الطبقات: بناؤها مع كل تصيير كان بيضاعف
+        # زمن التصدير بلا داعٍ
+        self._cache: dict[tuple, tuple] = {}
+        self._body_rig_cache: dict[tuple, BodyRig] = {}
         (self.out / view).mkdir(parents=True, exist_ok=True)
 
     # ---- إعداد المشهد ----
@@ -95,6 +99,10 @@ class Exporter:
 
     # ---- بناء الشخصية الأساسية (بلا طبقات) ----
     def _character(self, face: FaceShape | None = None, expression: str = 'smile'):
+        key = (id(face), expression)
+        hit = self._cache.get(key)
+        if hit is not None:
+            return hit
         base = self.base
         sv = flatten_chest(base, stylize(base, base.verts))
         rig = FaceRig(base, sv)
@@ -108,6 +116,7 @@ class Exporter:
         if expression != 'neutral':
             sv = apply_expression(rig, sv, expression)
             rig = FaceRig(base, sv)
+        self._cache[key] = (sv, rig)
         return sv, rig
 
     def _grp(self, sv, *names):
@@ -192,7 +201,11 @@ class Exporter:
         for it in items:
             self._fresh_scene()
             sv, rig = self._character()
-            body_rig = BodyRig(self.base, sv)
+            key = (id(sv),)
+            body_rig = self._body_rig_cache.get(key)
+            if body_rig is None:
+                body_rig = BodyRig(self.base, sv)
+                self._body_rig_cache[key] = body_rig
             parts = garment_build(body_rig, it.shape)
             drawn = 0
             for k, (gv, gf) in enumerate(parts):
