@@ -83,7 +83,7 @@ def stylize(base: Base, verts: np.ndarray, *,
             limb_slim: float = 0.94,
             waist: float = 0.955,
             jaw_soften: float = 0.90,
-            chest_neutral: float = 0.78) -> np.ndarray:
+            chest_neutral: float = 0.40) -> np.ndarray:
     """
     يحوّل الشبكة التشريحية المحايدة لشخصية أسلوبية.
 
@@ -121,8 +121,12 @@ def stylize(base: Base, verts: np.ndarray, *,
     v[:, 2] += w * 0.006
 
     # ---- 4. صدر محايد مناسب للعمر ----
+    # قيد منتج، مش خيار جمالي: الجمهور 11–16 والتمثيل لازم يكون
+    # مناسبًا للعمر وغير مُجسَّد. التسطيح بيتم على الجسم نفسه مش على
+    # كل قطعة ملابس على حدة — عشان يسري على الكتالوج كله تلقائيًا.
+    # انظر PRODUCT_BLUEPRINT §9.
     chest_z = (base.j('spine-1')[2] + base.j('l-clavicle')[2]) / 2
-    cm = _band(z, chest_z - 0.055, chest_z + 0.035, 0.045)
+    cm = _band(z, chest_z - 0.070, chest_z + 0.045, 0.055)
     front = np.clip(-v[:, 1] / 0.10, 0, 1)
     v[:, 1] *= (1.0 - (1.0 - chest_neutral) * cm * front)
 
@@ -267,3 +271,49 @@ def eye_radius(base: Base) -> float:
     up = base.j('l-upperlid')
     lo = base.j('l-lowerlid')
     return float(max(np.linalg.norm(up - lo) * 0.86, 0.012))
+
+
+def flatten_chest(base: Base, verts: np.ndarray, *, amount: float = 1.0,
+                  iterations: int = 22) -> np.ndarray:
+    """
+    تسطيح موضعي لمنطقة الصدر بتنعيم لابلاسي.
+
+    التحجيم العام (`chest_neutral` في stylize) بيقرّب الصدر من الجذع لكنه
+    بيحافظ على شكل النتوء نفسه، فالشكل بيفضل باين من تحت الهدوم. التنعيم
+    الموضعي بيذوّب النتوء في مستوى الصدر مع الحفاظ على شكل الجذع العام.
+
+    قيد منتج مش خيار جمالي: الجمهور 11–16، والتمثيل لازم يكون مناسبًا
+    للعمر وغير مُجسَّد (PRODUCT_BLUEPRINT §9 و§14). التسطيح بيتم على
+    الجسم نفسه فبيسري على كل قطع الملابس تلقائيًا.
+    """
+    from meshutil import build_adjacency
+
+    faces = base.mesh.group_faces('body')
+    used = sorted({i for f in faces for i in f})
+    remap = {o: n for n, o in enumerate(used)}
+    local_faces = [tuple(remap[i] for i in f) for f in faces]
+    bv = verts[used].copy()
+
+    J = {}
+    for name, fs in base.mesh.groups.items():
+        if name.startswith('joint-'):
+            idx = sorted({i for f in fs for i in f})
+            J[name[6:]] = verts[idx].mean(0)
+
+    chest_z = float((J['spine-1'][2] + J['l-clavicle'][2]) / 2)
+    z = bv[:, 2]
+    band = _band(z, chest_z - 0.060, chest_z + 0.040, 0.045)
+    front = np.clip((J['spine-1'][1] - bv[:, 1]) / 0.055, 0, 1)
+    side = np.clip(1.0 - (np.abs(bv[:, 0]) - 0.070) / 0.045, 0, 1)
+    w = np.clip(band * front * side, 0, 1) * amount
+
+    adj = build_adjacency(len(bv), local_faces)
+    for _ in range(iterations):
+        avg = np.empty_like(bv)
+        for i, nb in enumerate(adj):
+            avg[i] = bv[nb].mean(axis=0) if nb else bv[i]
+        bv += (avg - bv) * (w * 0.55)[:, None]
+
+    out = verts.copy()
+    out[used] = bv
+    return out

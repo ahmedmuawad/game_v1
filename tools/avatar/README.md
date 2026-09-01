@@ -19,6 +19,9 @@
 | `expression.py` | نظام تعابير الوجه (ابتسامة، دهشة، حزن، تفكير) |
 | `hair_cards.py` | شعر ببطاقات خصل (ribbons) + فروة داكنة |
 | `eyes.py` | كرة العين بملاءمة كرة + قزحية وبؤبؤ وبريق |
+| `garments.py` | توليد الملابس: كتالوج 26 قطعة (علوي/سفلي/جيبات/فساتين/أحذية) |
+| `meshutil.py` | ناظميات، أقنعة الأطراف، بناء القشرات، تنعيم لابلاسي |
+| `assemble.py` | تجميع الشخصية الكاملة من مواصفة `Look` |
 | `meshlib.py` | أدوات نمذجة برمجية بـ numpy |
 | `blender_util.py` | خامات، إضاءة استوديو، كاميرا، تصيير |
 | `face_texture.py` | مولّد خريطة نسيج (بديل لألوان الرؤوس) |
@@ -37,5 +40,30 @@ cd tools/avatar
 LIVI_EXPR=smile LIVI_VIEW=face LIVI_HAIR=none python3 preview_char.py out.png
 ```
 
+```bash
+# شخصية كاملة بملابس
+LIVI_VIEW=full LIVI_TOP=hoodie LIVI_BOT=joggers LIVI_SHOE=sneakers \
+  python3 preview_outfit.py out.png
+
+# فستان
+LIVI_DRESS=sundress LIVI_HAIR=long_curly python3 preview_outfit.py out.png
+```
+
 متغيّرات البيئة: `LIVI_EXPR` (neutral/smile/happy/surprised/sad/thinking) ·
-`LIVI_VIEW` (face/bust/full) · `LIVI_HAIR` (none/long_wavy/bob/…) · `LIVI_POW` (شدة الإضاءة)
+`LIVI_VIEW` (face/bust/full) · `LIVI_HAIR` · `LIVI_FRINGE` (side/blunt/curtain/none) ·
+`LIVI_TOP` · `LIVI_BOT` · `LIVI_DRESS` · `LIVI_SHOE` · `LIVI_POW` (شدة الإضاءة)
+
+## كيف تُضاف قطعة ملابس جديدة
+
+صف واحد في `garments.CATALOG` — بلا نمذجة يدوية:
+
+```python
+'skirt_mini': dict(kind='skirt', hem=0.440, flare=1.55),
+'sweater':    dict(kind='top', hem=0.568, sleeve='long', neck='crew', thickness=0.0125),
+```
+
+القطعة عبارة عن **منطقة من جلد الجسم مُزاحة للخارج** مع تنعيم لابلاسي
+يخليها تنسدل بدل ما تلتصق. النتيجة إنها بتتفصّل على المقاس تلقائيًا مهما
+تغيّرت نسب الشخصية — وده اللي بيخلي وتيرة نزول المحتوى ممكنة اقتصاديًا.
+
+الاستثناء: الجيبات والفساتين المنسدلة تُبنى كسطح مُدار لأنها تبتعد عن الجسم.
