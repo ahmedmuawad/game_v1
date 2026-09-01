@@ -147,7 +147,29 @@
 .sheet__body { overflow-y: auto; padding-inline: var(--s-5); -webkit-overflow-scrolling: touch; }
 
 /* ============ التبويبات ============ */
-.tabs { display: flex; gap: var(--s-2); overflow-x: auto; padding-block: var(--s-1); scrollbar-width: none; }
+.tabs {
+  display: flex; gap: var(--s-2); overflow-x: auto;
+  padding-block: var(--s-1); scrollbar-width: none;
+  /*
+    من غير `scroll-behavior: smooth` عن قصد: التمرير الناعم بيعتمد على
+    إطارات الأنيميشن، واللي مابتتنفّذش لو التبويب في الخلفية — فالتمرير
+    بيتأجّل لحد ما الصفحة تبان. الفوري مضمون في كل الحالات، والفرق
+    البصري في صف من ست شرائح لا يُذكر.
+  */
+  /* تسيب هامشًا حوالين الفئة وقت التمرير التلقائي فما تلزقش في الحافة */
+  scroll-padding-inline: var(--s-5);
+  /*
+    تلاشي على الحافتين: الفئة المقصوصة كانت بتتقري كعطل في التنسيق،
+    والتلاشي بيحوّلها لإشارة مقصودة إن فيه فئات كمان بعد التمرير.
+    التدرّج متماثل حول المنتصف، فبيشتغل في RTL و LTR بلا فرق — وده سبب
+    استخدام `to right` الفيزيائي هنا استثناءً.
+  */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0, #000 var(--s-5),
+    #000 calc(100% - var(--s-5)), transparent 100%
+  );
+}
 .tab {
   flex: none;
   height: 34px; padding-inline: var(--s-4);

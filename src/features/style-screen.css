@@ -33,6 +33,15 @@
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  /*
+    الصفوف `auto` كانت بتتمدّد لتملأ ارتفاع الحاوية الثابت بدل ما تاخد
+    مقاس البلاطة: مسار الصف بقى 62.5px والبلاطة 76px، فكل صف كان بيركب
+    على اللي فوقه بـ6px والتراكب بيتراكم لتحت. وكمان كانت الشبكة بتزنق
+    المحتوى بدل ما تمرّره (scrollHeight == clientHeight).
+    `min-content` بيثبّت الصف على مقاس البلاطة الحقيقي المشتق من
+    `aspect-ratio`، فيرجع التباعد صح ويشتغل التمرير.
+  */
+  grid-auto-rows: min-content;
   gap: var(--s-2);
   padding-bottom: var(--s-5);
   align-content: start;

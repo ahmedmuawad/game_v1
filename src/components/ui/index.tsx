@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import type { ReactNode, ButtonHTMLAttributes } from 'react'
 import type { Rarity } from '@/state/types'
 import { useI18n } from '@/i18n'
@@ -201,8 +202,26 @@ export function Tabs<T extends string>({
   value: T
   onChange: (v: T) => void
 }) {
+  const rowRef = useRef<HTMLDivElement>(null)
+
+  /*
+    الشريط بيفيض أفقيًا على الشاشات الضيّقة: على عرض 360px الفئات الستة
+    بتاخد 421px في حاوية 328px، فكانت «الشعر» مقصوصة و«البشرة» بره
+    الشاشة تمامًا وبلا أي طريقة تكتشفها بيها. تمرير الفئة المختارة
+    لجوّه بيضمن إنها تبان دايمًا مهما كان عرض الشاشة.
+
+    بنسأل الـDOM عن الفئة المختارة بدل ما نمرّر ref مشروط على الزرار
+    نفسه: الـref المشروط بيتنقل بين عناصر القائمة، وقياسًا اتأكد إنه
+    بيفضل `null` وقت تشغيل الأثر فالنداء كان بيتبلع بصمت بسبب `?.`.
+  */
+  useEffect(() => {
+    rowRef.current
+      ?.querySelector<HTMLElement>('[aria-selected="true"]')
+      ?.scrollIntoView({ block: 'nearest', inline: 'nearest' })
+  }, [value])
+
   return (
-    <div className="tabs" role="tablist">
+    <div className="tabs" role="tablist" ref={rowRef}>
       {items.map((it) => (
         <button
           key={it.id}
