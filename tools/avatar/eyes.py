@@ -97,7 +97,7 @@ class Eye:
     @classmethod
     def from_mesh(cls, helper_pts: np.ndarray, upper_lid: np.ndarray,
                   lower_lid: np.ndarray, *, scale: float = 0.90,
-                  seat: float = 0.42) -> 'Eye':
+                  seat: float = 0.30, max_seat: float = 0.55) -> 'Eye':
         """
         يستنتج العين من الهندسة المساعدة ونقطتي الجفن.
 
@@ -116,7 +116,10 @@ class Eye:
             n = 1.0
         gaze = gaze / n
         # ندفع المركز للأمام بحيث تصل القرنية لمستوى فتحة الجفن تقريبًا
-        c = c + gaze * max(n - r, 0.0) * seat
+        # سقف على الدفع بنسبة من نصف القطر: بعد مورفات الملامح ممكن
+        # تكبر المسافة لفتحة الجفن فيندفع المركز أكتر من اللازم
+        push = min(max(n - r, 0.0) * seat, r * max_seat)
+        c = c + gaze * push
         return cls(c, r, gaze)
 
     def sclera(self):

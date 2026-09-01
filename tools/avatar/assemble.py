@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 
 from character import Base, stylize, face_vertex_colors, flatten_chest
 from expression import FaceRig, apply_expression, open_eyes
+from face_shape import FaceShape, apply_face_shape
 from eyes import Eye
 from hair_cards import HeadShape, build as hair_build, build_fringe, build_scalp
 from garments import BodyRig, build as garment_build
@@ -28,6 +29,7 @@ class Look:
     hair: str = 'long_wavy'
     fringe: str = 'side'
     expression: str = 'smile'
+    face: FaceShape = field(default_factory=FaceShape)
     eye_open: float = 0.30
     blush: float = 1.0
     freckles: float = 0.0
@@ -76,6 +78,8 @@ def build_character(look: Look, base: Base | None = None):
     eye_idx = np.array(sorted({i for g in ('helper-l-eye', 'helper-r-eye')
                                for f in base.mesh.group_faces(g) for i in f}), dtype=int)
     sv = open_eyes(rig, sv, look.eye_open, exclude=eye_idx)
+    rig = FaceRig(base, sv)
+    sv = apply_face_shape(rig, sv, look.face, eye_exclude=eye_idx)
     rig = FaceRig(base, sv)
     if look.expression != 'neutral':
         sv = apply_expression(rig, sv, look.expression)
