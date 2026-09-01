@@ -2,18 +2,25 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from character import Base, stylize, face_vertex_colors
-from expression import FaceRig, apply_expression
-from hair_fit import Scalp, length as hair_length, bangs as hair_bangs, STYLES as HAIR_STYLES
+from expression import FaceRig, apply_expression, open_eyes
+from hair_cards import HeadShape, build as hair_build, build_fringe, build_scalp, STYLES as HAIR_STYLES
+from eyes import Eye
 from blender_util import (reset_scene, mesh_from_arrays, simple_material, assign,
                           studio_lighting, ortho_camera, render_png,
                           set_vertex_colors, vcol_skin_material, hair_material)
 
-SKIN = '#C2854F'
-LIP = '#AF5A69'
+SKIN = os.environ.get('LIVI_SKIN', '#C2854F')
+LIP = os.environ.get('LIVI_LIP', '#C4665F')
 
 EXPR = os.environ.get('LIVI_EXPR', 'smile')
 base = Base()
 sv_all = stylize(base, base.verts)
+rig = FaceRig(base, sv_all)
+# مورفة دائمة: فتح العين (الشبكة المحايدة عيونها شبه مغمضة)
+_eye_idx = np.array(sorted({i for g in ('helper-l-eye', 'helper-r-eye')
+                                    for f in base.mesh.group_faces(g) for i in f}), dtype=int)
+sv_all = open_eyes(rig, sv_all, amount=float(os.environ.get('LIVI_EYEOPEN', '0.30')),
+                   exclude=_eye_idx)
 rig = FaceRig(base, sv_all)
 if EXPR != 'neutral':
     sv_all = apply_expression(rig, sv_all, EXPR)
@@ -33,33 +40,19 @@ cols = face_vertex_colors(rig, bv, SKIN, LIP, blush=1.0)
 set_vertex_colors(ob, cols)
 assign(ob, vcol_skin_material('skin'))
 
-# كرات العين من الهندسة المساعدة الأصلية — أدق من التخمين
-for side, g in (('l', 'helper-l-eye'), ('r', 'helper-r-eye')):
-    ev, ef, _ = grp(g)
-    c = ev.mean(0)
-    r = float(np.linalg.norm(ev - c, axis=1).max())
-    assign(mesh_from_arrays(f'eye_{side}', ev, ef, subsurf=2),
-           simple_material(f'scl{side}', (0.90, 0.885, 0.875), rough=0.08, clearcoat=0.9))
-    # قزحية وبؤبؤ كأقراص مقبّبة على سطح الكرة
-    for nm, rad, colr, off in (('iris', r * 0.55, (0.20, 0.11, 0.05), 0.0012),
-                               ('pupil', r * 0.24, (0.015, 0.012, 0.015), 0.0026)):
-        n_seg, n_ring = 36, 6
-        pts = [c + np.array([0, -r - off - 0.0008, 0])]
-        for ring in range(1, n_ring + 1):
-            rr = rad * ring / n_ring
-            d = np.sqrt(max(r * r - rr * rr, 1e-9))
-            for i in range(n_seg):
-                a = i / n_seg * 2 * np.pi
-                pts.append(c + np.array([np.cos(a) * rr, -(d + off), np.sin(a) * rr]))
-        pts = np.array(pts)
-        fs = [(0, 1 + i, 1 + (i + 1) % n_seg) for i in range(n_seg)]
-        for ring in range(n_ring - 1):
-            b0, b1 = 1 + ring * n_seg, 1 + (ring + 1) * n_seg
-            for i in range(n_seg):
-                jj = (i + 1) % n_seg
-                fs.append((b0 + i, b0 + jj, b1 + jj, b1 + i))
-        assign(mesh_from_arrays(f'{nm}_{side}', pts, fs, subsurf=1),
-               simple_material(f'{nm}{side}', colr, rough=0.11, clearcoat=1.0))
+# ---- العيون: ملاءمة كرة + اتجاه نظر محسوب من فتحة الجفن ----
+for side in ('l', 'r'):
+    hv, _, _ = grp(f'helper-{side}-eye')
+    eye = Eye.from_mesh(hv, rig.J[f'{side}-upperlid'], rig.J[f'{side}-lowerlid'])
+    assign(mesh_from_arrays(f'sclera_{side}', *eye.sclera(), subsurf=1),
+           simple_material(f'scl{side}', (0.93, 0.915, 0.905), rough=0.07, clearcoat=1.0))
+    assign(mesh_from_arrays(f'iris_{side}', *eye.iris(), subsurf=1),
+           simple_material(f'ir{side}', (0.175, 0.092, 0.042), rough=0.10, clearcoat=1.0))
+    assign(mesh_from_arrays(f'pupil_{side}', *eye.pupil(), subsurf=1),
+           simple_material(f'pu{side}', (0.012, 0.010, 0.013), rough=0.05, clearcoat=1.0))
+    assign(mesh_from_arrays(f'hl_{side}', *eye.highlight(), subsurf=1),
+           simple_material(f'hl{side}', (1.0, 1.0, 1.0), rough=0.04,
+                           emission=(1.0, 1.0, 1.0), emission_strength=0.55))
 
 # رموش من الهندسة المساعدة
 for side in ('l', 'r'):
@@ -68,18 +61,22 @@ for side in ('l', 'r'):
         assign(mesh_from_arrays(f'lash_{side}', lv, lf, subsurf=1),
                simple_material(f'lam{side}', (0.045, 0.028, 0.020), rough=0.38))
 
-# ---- الشعر ----
+# ---- الشعر: بطاقات خصل ----
 HSTYLE = os.environ.get('LIVI_HAIR', 'long_wavy')
+FRINGE = os.environ.get('LIVI_FRINGE', 'side')
 if HSTYLE != 'none':
-    hcfg = HAIR_STYLES[HSTYLE]
-    scalp = Scalp(bv, bf, rig)
-    HAIR_RGB = (0.075, 0.042, 0.030)
-    hm = hair_material('hair', HAIR_RGB, strand_scale=520.0, strand_depth=0.00025)
-    cv, cf = scalp.cap(volume=hcfg['volume'], bangs=hcfg['bangs'])
-    assign(mesh_from_arrays('hair_cap', cv, cf, subsurf=1), hm)
-    lv, lf = hair_length(scalp, hcfg['length'])
-    assign(mesh_from_arrays('hair_len', lv, lf, subsurf=1), hm)
-    # الغُرّة مدمجة في الفروة (hairline) — مفيش شبكة منفصلة
+    hs = HeadShape(bv, rig)
+    HAIR_RGB = (0.085, 0.048, 0.033)
+    hm = hair_material('hair', HAIR_RGB, strand_scale=180.0, strand_depth=0.0004,
+                       rough=0.28, sheen=0.6)
+    sv_, sf_ = build_scalp(hs)
+    assign(mesh_from_arrays('scalp', sv_, sf_, subsurf=1),
+           simple_material('scalpm', tuple(c * 0.55 for c in HAIR_RGB), rough=0.60))
+    hv, hf = hair_build(hs, HSTYLE)
+    assign(mesh_from_arrays('hair_cards', hv, hf, subsurf=1), hm)
+    fv, ff = build_fringe(hs, FRINGE)
+    if len(fv):
+        assign(mesh_from_arrays('hair_fringe', fv, ff, subsurf=1), hm)
 
 mode = os.environ.get('LIVI_VIEW', 'bust')
 if mode == 'bust':

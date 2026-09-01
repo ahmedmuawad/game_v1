@@ -163,7 +163,7 @@ def _hex(c: str) -> np.ndarray:
 
 
 def face_vertex_colors(rig, verts: np.ndarray, skin_hex: str, lip_hex: str,
-                       *, blush: float = 1.0, brow_hex: str = '#2A1810',
+                       *, blush: float = 1.0, brow_hex: str = '#231107',
                        lash_line: float = 1.0, freckles: float = 0.0,
                        seed: int = 7) -> np.ndarray:
     """
@@ -181,8 +181,8 @@ def face_vertex_colors(rig, verts: np.ndarray, skin_hex: str, lip_hex: str,
     lip = _hex(lip_hex)
     brow = _hex(brow_hex)
     warm = np.clip(skin * [1.06, 0.94, 0.90], 0, 1)
-    shade = np.clip(skin * 0.82, 0, 1)
-    deep = np.clip(skin * 0.68, 0, 1)
+    shade = np.clip(skin * np.array([0.86, 0.80, 0.78]), 0, 1)
+    deep = np.clip(skin * np.array([0.74, 0.66, 0.63]), 0, 1)
 
     col = np.repeat(skin[None, :], len(verts), axis=0)
     # قناع الواجهة الأمامية — يمنع تسرّب اللون لمؤخرة الرأس
@@ -214,7 +214,7 @@ def face_vertex_colors(rig, verts: np.ndarray, skin_hex: str, lip_hex: str,
             e = rig.eye_l if side > 0 else rig.eye_r
             line = e + np.array([side * u * 0.05, -u * 0.34, u * 0.135])
             blend(np.clip(brow * 0.85, 0, 1),
-                  soft(line, [0.44, 0.24, 0.048], 0.85) * 0.62 * lash_line * front)
+                  soft(line, [0.44, 0.24, 0.048], 0.85) * 0.55 * lash_line * front)
 
     # ---- الحاجب ----
     for side in (1, -1):
@@ -222,7 +222,7 @@ def face_vertex_colors(rig, verts: np.ndarray, skin_hex: str, lip_hex: str,
         w = soft(b, [0.62, 0.26, 0.115], 0.9) * front
         # ترقيق الطرف الخارجي
         taper = 1.0 - 0.45 * np.clip((np.abs(verts[:, 0]) - abs(b[0])) / (u * 0.5), 0, 1)
-        blend(brow, w * 0.90 * taper)
+        blend(brow, w * 0.94 * taper)
 
     # ---- احمرار الخدين ----
     if blush > 0:
@@ -233,20 +233,20 @@ def face_vertex_colors(rig, verts: np.ndarray, skin_hex: str, lip_hex: str,
 
     # ---- الشفاه ----
     lc = rig.lip_center
-    upper = soft(lc + np.array([0, u * 0.06, u * 0.105]), [0.64, 0.46, 0.155], 0.85)
-    lower = soft(lc + np.array([0, u * 0.06, -u * 0.115]), [0.60, 0.46, 0.170], 0.85)
+    upper = soft(lc + np.array([0, u * 0.05, u * 0.100]), [0.60, 0.34, 0.140], 0.85)
+    lower = soft(lc + np.array([0, u * 0.05, -u * 0.125]), [0.56, 0.34, 0.160], 0.85)
     lips = np.clip(np.maximum(upper, lower), 0, 1) * front
-    blend(lip, lips * 0.95)
+    blend(lip, np.clip(lips * 1.15, 0, 1))
     blend(np.clip(lip * 1.24, 0, 1), lower * front * 0.30)     # ضوء على الشفة السفلى
     blend(np.clip(lip * 0.62, 0, 1), upper * front * 0.36)     # الشفة العليا في الظل
     blend(np.clip(lip * 0.34, 0, 1),
-          soft(lc + np.array([0, u * 0.05, 0]), [0.62, 0.40, 0.045], 0.8) * front * 0.85)   # خط الفم
+          soft(lc + np.array([0, u * 0.04, 0]), [0.58, 0.30, 0.048], 0.8) * front * 0.90)   # خط الفم
 
     # ---- دفء الأنف وظل تحت الفك ----
     nose = rig.eye_mid + np.array([0, -u * 0.50, -u * 0.28])
     blend(warm, soft(nose, [0.34, 0.34, 0.34]) * 0.22 * front)
     blend(shade, soft(rig.J['jaw'] + np.array([0, u * 0.20, -u * 0.20]),
-                      [1.5, 1.1, 0.55]) * 0.18)
+                      [1.15, 0.85, 0.40]) * 0.12)
 
     # ---- نمش اختياري ----
     if freckles > 0:

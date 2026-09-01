@@ -33,12 +33,27 @@ class FaceRig:
         bv = verts[body_idx]
         self.body_idx = body_idx
 
-        # سطح الشفاه: أكثر النقاط بروزًا في نطاق ارتفاع الفم
-        mouth_z = J['mouth'][2]
-        band = bv[(np.abs(bv[:, 2] - mouth_z) < self.inter * 0.24) & (np.abs(bv[:, 0]) < self.inter * 0.9)]
-        self.lip_front_y = float(band[:, 1].min()) if len(band) else J['mouth'][1]
-        self.lip_z = mouth_z
-        self.mouth_half_w = self.inter * 0.78
+        # ---- خط الفم من هندسة الأسنان ----
+        # مفصل `joint-mouth` هو محور دوران الفك، مش خط الشفاه — الفرق
+        # بينهم ثلث وحدة عين، وده كفاية إن لون الشفايف ينزف على الأنف
+        # والابتسامة تتطبّق فوق مكانها. الأسنان بتحدد الخط تشريحيًا.
+        def _grp(name):
+            faces = base.mesh.group_faces(name)
+            idx = sorted({i for f in faces for i in f})
+            return verts[idx] if idx else None
+
+        ut, lt = _grp('helper-upper-teeth'), _grp('helper-lower-teeth')
+        if ut is not None and lt is not None:
+            self.lip_z = float((ut[:, 2].min() + lt[:, 2].max()) / 2)
+            self.mouth_half_w = float(max(np.abs(ut[:, 0]).max(),
+                                          np.abs(lt[:, 0]).max())) * 1.32
+        else:
+            self.lip_z = float(J['mouth'][2] - self.inter * 0.32)
+            self.mouth_half_w = self.inter * 0.62
+
+        band = bv[(np.abs(bv[:, 2] - self.lip_z) < self.inter * 0.22)
+                  & (np.abs(bv[:, 0]) < self.inter * 0.55)]
+        self.lip_front_y = float(band[:, 1].min()) if len(band) else float(J['mouth'][1])
         self.lip_center = np.array([0.0, self.lip_front_y, self.lip_z])
 
     # ---- أدوات الإزاحة ----
@@ -150,5 +165,47 @@ def apply_expression(rig: FaceRig, verts: np.ndarray, kind: str = 'smile',
         v = rig.mirror(v, rig.mouth_corner(1), u * 0.40, (0.2, 0.4, 0.6), u * 0.030 * s)
         v = rig.push(v, rig.brow(1), u * 0.52, (0, -0.1, 1.0), u * 0.055 * s, power=1.2)
         v = rig.push(v, rig.brow(-1), u * 0.52, (0, 0, -1), u * 0.022 * s, power=1.2)
+
+    return v
+
+
+def open_eyes(rig: FaceRig, verts: np.ndarray, amount: float = 1.0,
+              exclude: np.ndarray | None = None) -> np.ndarray:
+    """
+    فتح فتحة الجفن.
+
+    الشبكة التشريحية المحايدة عيونها شبه مغمضة — صحيح تشريحيًا لكنه
+    بيتقري «نعسان» في لعبة.
+
+    الطريقة: تمديد رأسي حول مركز العين بدل دفع جلد الجفن. الدفع الموضعي
+    بيحرّك الجلد بس، فالفتحة بتفضل بنفس الارتفاع تقريبًا؛ أما التمديد
+    فبيفتح الفتحة فعليًا مع الجلد المحيط، وده اللي بيقرا طبيعي.
+
+    `exclude` = مؤشرات رؤوس كرة العين — لازم تُستثنى وإلا الكرة تتشوّه.
+    مورفة دائمة (سمة شخصية)، مش تعبيرًا مؤقتًا.
+    """
+    v = verts.copy()
+    u = rig.inter
+    stretch = 1.0 + 0.30 * amount
+    widen = 1.0 + 0.09 * amount
+
+    mask_out = np.zeros(len(v), dtype=bool)
+    if exclude is not None:
+        mask_out[exclude] = True
+
+    for eye in (rig.eye_l, rig.eye_r):
+        d = np.linalg.norm((v - eye) / np.array([u * 1.05, u * 1.30, u * 0.85]), axis=1)
+        w = np.clip(1.0 - d, 0, 1)
+        w = w * w * (3 - 2 * w)
+        w[mask_out] = 0.0
+        # تمديد رأسي حول مركز العين
+        v[:, 2] += (v[:, 2] - eye[2]) * (stretch - 1.0) * w
+        # توسيع أفقي خفيف
+        v[:, 0] += (v[:, 0] - eye[0]) * (widen - 1.0) * w
+
+    # ترقيق حافة الجفن العلوي: يمنع الجفن من التسمّك بعد التمديد
+    for side in (1, -1):
+        up = rig.J['l-upperlid' if side > 0 else 'r-upperlid']
+        v = rig.push(v, up, u * 0.30, (0, 0.35, 0.55), u * 0.030 * amount, power=1.2)
 
     return v
