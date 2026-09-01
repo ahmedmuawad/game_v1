@@ -1,0 +1,376 @@
+{
+  "views": {
+    "full": {
+      "size": [
+        384,
+        768
+      ],
+      "body": {
+        "honey_brown": {
+          "src": "full/body/honey_brown.webp",
+          "skin": "honey",
+          "eyes": "brown",
+          "name": {
+            "ar": "حنطي",
+            "en": "Honey"
+          }
+        },
+        "espresso_brown": {
+          "src": "full/body/espresso_brown.webp",
+          "skin": "espresso",
+          "eyes": "brown",
+          "name": {
+            "ar": "داكن",
+            "en": "Espresso"
+          }
+        }
+      },
+      "hair": {
+        "long_wavy_espresso": {
+          "back": "full/hair_back/long_wavy_espresso.webp",
+          "style": "long_wavy",
+          "color": "espresso",
+          "name": {
+            "ar": "شعر طويل موّج · بني غامق",
+            "en": "Long Wavy · Espresso"
+          },
+          "front": "full/hair_front/long_wavy_espresso.webp"
+        },
+        "long_wavy_honey": {
+          "back": "full/hair_back/long_wavy_honey.webp",
+          "style": "long_wavy",
+          "color": "honey",
+          "name": {
+            "ar": "شعر طويل موّج · عسلي",
+            "en": "Long Wavy · Honey Blonde"
+          },
+          "front": "full/hair_front/long_wavy_honey.webp"
+        },
+        "bob_espresso": {
+          "back": "full/hair_back/bob_espresso.webp",
+          "style": "bob",
+          "color": "espresso",
+          "name": {
+            "ar": "بوب · بني غامق",
+            "en": "Bob · Espresso"
+          },
+          "front": "full/hair_front/bob_espresso.webp"
+        },
+        "bob_honey": {
+          "back": "full/hair_back/bob_honey.webp",
+          "style": "bob",
+          "color": "honey",
+          "name": {
+            "ar": "بوب · عسلي",
+            "en": "Bob · Honey Blonde"
+          },
+          "front": "full/hair_front/bob_honey.webp"
+        }
+      },
+      "garments": {
+        "top_tee_cream": {
+          "src": "full/top/top_tee_cream.webp",
+          "category": "top",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "soft"
+          ],
+          "starter": true,
+          "level": null,
+          "price": null,
+          "name": {
+            "ar": "تيشيرت كريمي",
+            "en": "Cream Tee"
+          }
+        },
+        "top_hoodie_lilac": {
+          "src": "full/top/top_hoodie_lilac.webp",
+          "category": "top",
+          "rarity": "rare",
+          "tags": [
+            "cozy",
+            "dreamy"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "هودي ليلكي",
+            "en": "Lilac Hoodie"
+          }
+        },
+        "bot_jeans_classic": {
+          "src": "full/bottom/bot_jeans_classic.webp",
+          "category": "bottom",
+          "rarity": "common",
+          "tags": [
+            "casual"
+          ],
+          "starter": true,
+          "level": null,
+          "price": null,
+          "name": {
+            "ar": "جينز كلاسيك",
+            "en": "Classic Jeans"
+          }
+        },
+        "bot_skirt_navy": {
+          "src": "full/bottom/bot_skirt_navy.webp",
+          "category": "bottom",
+          "rarity": "rare",
+          "tags": [
+            "formal"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 480
+          },
+          "name": {
+            "ar": "جيبة كحلي",
+            "en": "Navy Pleats"
+          }
+        },
+        "dr_sun_butter": {
+          "src": "full/dress/dr_sun_butter.webp",
+          "category": "dress",
+          "rarity": "common",
+          "tags": [
+            "soft",
+            "casual"
+          ],
+          "starter": false,
+          "level": null,
+          "price": {
+            "currency": "coins",
+            "amount": 160
+          },
+          "name": {
+            "ar": "فستان صيفي",
+            "en": "Butter Sundress"
+          }
+        },
+        "sh_sneak_white": {
+          "src": "full/shoes/sh_sneak_white.webp",
+          "category": "shoes",
+          "rarity": "common",
+          "tags": [
+            "casual",
+            "sporty"
+          ],
+          "starter": true,
+          "level": null,
+          "price": null,
+          "name": {
+            "ar": "سنيكرز أبيض",
+            "en": "White Sneakers"
+          }
+        }
+      }
+    }
+  },
+  "layerOrder": {
+    "hair_back": 0,
+    "body": 10,
+    "bottom": 20,
+    "top": 30,
+    "dress": 30,
+    "shoes": 40,
+    "accessory": 50,
+    "hair_front": 60
+  },
+  "skinTones": {
+    "porcelain": {
+      "name": {
+        "ar": "فاتح",
+        "en": "Porcelain"
+      }
+    },
+    "sand": {
+      "name": {
+        "ar": "فاتح دافي",
+        "en": "Sand"
+      }
+    },
+    "honey": {
+      "name": {
+        "ar": "حنطي",
+        "en": "Honey"
+      }
+    },
+    "golden": {
+      "name": {
+        "ar": "قمحي",
+        "en": "Golden"
+      }
+    },
+    "olive": {
+      "name": {
+        "ar": "زيتي",
+        "en": "Olive"
+      }
+    },
+    "bronze": {
+      "name": {
+        "ar": "برونزي",
+        "en": "Bronze"
+      }
+    },
+    "cocoa": {
+      "name": {
+        "ar": "بني",
+        "en": "Cocoa"
+      }
+    },
+    "espresso": {
+      "name": {
+        "ar": "داكن",
+        "en": "Espresso"
+      }
+    }
+  },
+  "eyeColors": {
+    "brown": {
+      "name": {
+        "ar": "بني",
+        "en": "Brown"
+      }
+    },
+    "amber": {
+      "name": {
+        "ar": "عسلي",
+        "en": "Amber"
+      }
+    },
+    "green": {
+      "name": {
+        "ar": "أخضر",
+        "en": "Green"
+      }
+    },
+    "blue": {
+      "name": {
+        "ar": "أزرق",
+        "en": "Blue"
+      }
+    },
+    "grey": {
+      "name": {
+        "ar": "رمادي",
+        "en": "Grey"
+      }
+    },
+    "hazel": {
+      "name": {
+        "ar": "ندي",
+        "en": "Hazel"
+      }
+    }
+  },
+  "hairStyles": {
+    "long_wavy": {
+      "name": {
+        "ar": "شعر طويل موّج",
+        "en": "Long Wavy"
+      }
+    },
+    "long_straight": {
+      "name": {
+        "ar": "شعر طويل ناعم",
+        "en": "Long Straight"
+      }
+    },
+    "long_curly": {
+      "name": {
+        "ar": "شعر كيرلي",
+        "en": "Long Curly"
+      }
+    },
+    "shoulder": {
+      "name": {
+        "ar": "لطول الكتف",
+        "en": "Shoulder Length"
+      }
+    },
+    "bob": {
+      "name": {
+        "ar": "بوب",
+        "en": "Bob"
+      }
+    },
+    "pixie": {
+      "name": {
+        "ar": "بيكسي",
+        "en": "Pixie"
+      }
+    }
+  },
+  "hairColors": {
+    "black": {
+      "name": {
+        "ar": "أسود",
+        "en": "Black"
+      }
+    },
+    "espresso": {
+      "name": {
+        "ar": "بني غامق",
+        "en": "Espresso"
+      }
+    },
+    "chestnut": {
+      "name": {
+        "ar": "كستنائي",
+        "en": "Chestnut"
+      }
+    },
+    "caramel": {
+      "name": {
+        "ar": "كراميل",
+        "en": "Caramel"
+      }
+    },
+    "honey": {
+      "name": {
+        "ar": "عسلي",
+        "en": "Honey Blonde"
+      }
+    },
+    "platinum": {
+      "name": {
+        "ar": "بلاتيني",
+        "en": "Platinum"
+      }
+    },
+    "auburn": {
+      "name": {
+        "ar": "نحاسي",
+        "en": "Auburn"
+      }
+    },
+    "rose": {
+      "name": {
+        "ar": "وردي",
+        "en": "Rose"
+      }
+    },
+    "lilac": {
+      "name": {
+        "ar": "ليلكي",
+        "en": "Lilac"
+      }
+    },
+    "mint": {
+      "name": {
+        "ar": "نعناعي",
+        "en": "Mint"
+      }
+    }
+  },
+  "generatedAt": 1788258963
+}

@@ -14,3 +14,6 @@ ios
 
 # أصول 3D كبيرة تُنزَّل بالسكربت
 tools/avatar/assets/*.obj
+
+# مخرجات معاينة أدوات الأفاتار
+tools/avatar/*.png

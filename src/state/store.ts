@@ -5,7 +5,7 @@ import type {
   RoomMood, RoomSlot, TraitId, WearCategory,
 } from './types'
 import { SCHEMA_VERSION, createInitialState, todayKey } from './defaults'
-import { getItem } from '@/content/items'
+import { getManifest, viewOf } from '@/content/manifest'
 import { energyMaxForLevel, getConfig } from '@/systems/config'
 import { regenEnergy } from '@/systems/energy'
 import { advanceMissions, dailyGiftAmount, rollDay } from '@/systems/daily'
@@ -154,9 +154,11 @@ export const useGame = create<GameStore>()(
 
       buyItem: (itemId) => {
         const s = get()
-        const item = getItem(itemId)
+        const m = getManifest()
+        const v = m ? viewOf(m) : null
+        const item = v?.garments[itemId]
         if (!item || !item.price || s.owned.includes(itemId)) return false
-        if (item.unlockLevel && s.level < item.unlockLevel) return false
+        if (item.level && s.level < item.level) return false
         if (!get().spend(item.price.currency, item.price.amount, `buy:${itemId}`)) return false
 
         set({

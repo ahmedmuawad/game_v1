@@ -1,8 +1,14 @@
-import { STARTER_ITEM_IDS } from '@/content/items'
 import { getConfig } from '@/systems/config'
 import type { PlayerState } from './types'
 
-export const SCHEMA_VERSION = 1
+export const SCHEMA_VERSION = 2
+
+/**
+ * العناصر الممنوحة عند بدء اللعب.
+ * ثابتة هنا (لا تُقرأ من الـmanifest) لأن الحالة الابتدائية تُبنى
+ * بشكل متزامن قبل تحميل الأصول. تطابق `starter=True` في `tools/avatar/wardrobe.py`.
+ */
+export const STARTER_ITEM_IDS = ['top_tee_cream', 'bot_jeans_classic', 'sh_sneak_white']
 
 export function todayKey(d: Date = new Date()): string {
   const y = d.getFullYear()
@@ -44,12 +50,10 @@ export function createInitialState(): PlayerState {
 
     owned: [...STARTER_ITEM_IDS],
     avatar: {
-      skinTone: 'skin3',
+      skin: 'honey',
+      eyes: 'brown',
       hairStyle: 'long_wavy',
-      hairColor: 'h_espresso',
-      eyeShape: 'almond',
-      eyeColor: 'e_brown',
-      lipColor: 'l_rose',
+      hairColor: 'espresso',
       worn: {
         top: 'top_tee_cream',
         bottom: 'bot_jeans_classic',

@@ -135,7 +135,7 @@ def build_character(look: Look, base: Base | None = None):
         sc_v, sc_f = build_scalp(hs)
         assign(mesh_from_arrays('scalp', sc_v, sc_f, subsurf=1),
                simple_material('scalpm', tuple(c * 0.55 for c in look.hair_color), rough=0.60))
-        hv2, hf2 = hair_build(hs, look.hair)
+        hv2, hf2, _ = hair_build(hs, look.hair)
         assign(mesh_from_arrays('hair', hv2, hf2, subsurf=1), hm)
         fv, ff = build_fringe(hs, look.fringe)
         if len(fv):

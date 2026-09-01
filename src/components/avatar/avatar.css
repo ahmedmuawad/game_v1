@@ -1,0 +1,43 @@
+.avatar {
+  position: relative;
+  overflow: hidden;
+  flex: none;
+}
+
+.avatar__stage {
+  position: absolute;
+}
+
+.avatar__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+  pointer-events: none;
+  /* الطبقات بتظهر مع بعض عشان ما نشوفش الجسم عريان لحظة تحميل الهدوم */
+  animation: avatar-in var(--d-base) var(--ease-out) both;
+}
+
+.avatar--still .avatar__layer { animation: none; }
+
+@keyframes avatar-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.avatar--loading {
+  border-radius: var(--r-lg);
+  background: linear-gradient(100deg,
+    rgba(255,255,255,.03) 30%,
+    rgba(255,255,255,.07) 50%,
+    rgba(255,255,255,.03) 70%);
+  background-size: 220% 100%;
+  animation: avatar-shimmer 1.4s linear infinite;
+}
+
+@keyframes avatar-shimmer {
+  from { background-position: 120% 0; }
+  to   { background-position: -120% 0; }
+}

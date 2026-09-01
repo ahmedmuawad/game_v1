@@ -72,7 +72,7 @@ hm = hair_material('hair', cfg['hair_rgb'], strand_scale=180.0, strand_depth=0.0
 scv, scf = build_scalp(hs)
 assign(mesh_from_arrays('scalp', scv, scf, subsurf=1),
        simple_material('scm', tuple(c * 0.55 for c in cfg['hair_rgb']), rough=0.6))
-hv2, hf2 = hair_build(hs, cfg['hair'])
+hv2, hf2, _ = hair_build(hs, cfg['hair'])
 assign(mesh_from_arrays('hair', hv2, hf2, subsurf=1), hm)
 fv, ff = build_fringe(hs, cfg['fringe'])
 if len(fv):

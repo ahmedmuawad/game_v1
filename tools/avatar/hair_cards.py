@@ -194,6 +194,7 @@ def build(head: HeadShape, style: str = 'long_wavy', seed: int = 11):
 
     all_v: list[np.ndarray] = []
     all_f: list[tuple] = []
+    all_theta: list[np.ndarray] = []
     offset = 0
 
     n_cards = cfg['cards']
@@ -224,10 +225,32 @@ def build(head: HeadShape, style: str = 'long_wavy', seed: int = 11):
                            curl=cfg['curl'], n_pts=26, rng=rng, swell=swell)
         v, f = ribbon(path, w0, w1, u * 0.035, theta)
         all_v.append(v)
+        all_theta.append(np.full(len(v), theta))
         all_f.extend([tuple(x + offset for x in face) for face in f])
         offset += len(v)
 
-    return np.concatenate(all_v, axis=0), all_f
+    return np.concatenate(all_v, axis=0), all_f, np.concatenate(all_theta)
+
+
+def split_by_depth(verts: np.ndarray, faces: list, theta: np.ndarray,
+                   back_span: float = 1.15):
+    """
+    يقسم بطاقات الشعر لطبقة خلفية وأمامية.
+
+    ضروري للتركيب في اللعبة: الخصل اللي ورا الرأس لازم تُرسم **تحت** الجسم،
+    واللي على الكتفين فوقه. بدون التقسيم، الشعر الخلفي بيظهر فوق الأكتاف.
+    """
+    is_back = np.abs(((theta - np.pi / 2 + np.pi) % TAU) - np.pi) < back_span
+
+    def take(mask):
+        sel = [f for f in faces if all(mask[i] for i in f)]
+        if not sel:
+            return np.zeros((0, 3)), []
+        used = sorted({i for f in sel for i in f})
+        remap = {o: n for n, o in enumerate(used)}
+        return verts[used], [tuple(remap[i] for i in f) for f in sel]
+
+    return take(is_back), take(~is_back)
 
 
 def build_fringe(head: HeadShape, kind: str = 'side', seed: int = 23):

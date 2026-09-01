@@ -1,0 +1,104 @@
+.style__stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: var(--s-1);
+  min-height: 300px;
+  flex: none;
+}
+
+.style__glow {
+  position: absolute;
+  inset: 8% 6% 2%;
+  border-radius: var(--r-2xl);
+  background:
+    radial-gradient(ellipse at 50% 72%, rgba(255, 92, 138, .20), transparent 62%),
+    linear-gradient(170deg, #2A1B3D 0%, #150F1D 100%);
+  border: var(--b-hairline);
+}
+
+.style__picker {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4) 0;
+}
+
+.style__grid {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-2);
+  padding-bottom: var(--s-5);
+  align-content: start;
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  border: 1px solid rgba(255, 255, 255, .07);
+  overflow: hidden;
+  transition: border-color var(--d-fast) var(--ease-out),
+              box-shadow var(--d-fast) var(--ease-out);
+}
+.tile--on {
+  border-color: rgba(255, 92, 138, .6);
+  box-shadow: 0 0 0 1px rgba(255, 92, 138, .35), var(--e-glow-primary);
+}
+.tile--locked { opacity: .5; }
+
+/*
+  الأصول كلها مصيَّرة للجسم الكامل بنسبة 1:2، فالمصغّرة بتتعمل بالتكبير
+  والإزاحة بدل تصيير صور مصغّرة منفصلة — بيوفّر نص عدد ملفات التصدير.
+  المعادلة: لعرض المدى الرأسي [y0,y1] من الصورة داخل مربع:
+    width = 100 / (2·(y1−y0))   ·   top = −y0 · 2 · width
+*/
+.tile__thumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: contain;
+  pointer-events: none;
+  /* الافتراضي: الجذع */
+  width: 179%;
+  top: -50%;
+}
+
+.tile__thumb--bottom { width: 89%;  top: -64%; }
+.tile__thumb--dress  { width: 89%;  top: -21%; }
+.tile__thumb--shoes  { width: 312%; top: -525%; }
+.tile__thumb--head   { width: 312%; top: -6%; }
+
+.tile__check {
+  position: absolute;
+  top: 4px; inset-inline-end: 4px;
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: #fff;
+}
+
+.tile__rarity { position: absolute; top: 4px; inset-inline-start: 4px; }
+
+.tile__price,
+.tile__lock {
+  position: absolute;
+  bottom: 4px; inset-inline-start: 4px;
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 2px 6px;
+  border-radius: var(--r-pill);
+  background: rgba(10, 7, 14, .72);
+  backdrop-filter: blur(6px);
+  font-size: 10.5px;
+  font-weight: var(--fw-bold);
+}
+.tile__price { color: var(--c-accent); }
+.tile__lock { color: var(--c-text-subtle); }

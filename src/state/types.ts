@@ -1,4 +1,3 @@
-import type { LocalizedText } from '@/i18n/types'
 
 // ============================================================
 // الاقتصاد
@@ -29,18 +28,29 @@ export type FlagValue = boolean | number | string
 // الأفاتار
 // ============================================================
 
-export type WearCategory = 'hair' | 'top' | 'bottom' | 'dress' | 'shoes' | 'accessory'
+export type WearCategory = 'top' | 'bottom' | 'dress' | 'shoes' | 'accessory'
 
+/**
+ * تكوين الأفاتار.
+ *
+ * الهوية (البشرة، العيون، الشعر) مفاتيح نصية تُطابق طبقات مُصدَّرة من
+ * خط الإنتاج ثلاثي الأبعاد؛ وكلها **مجانية دائمًا** (DECISIONS.md#D-011).
+ * `worn` بتحمل معرّفات عناصر مملوكة — دي وحدها اللي بيبيعها الاقتصاد.
+ */
 export interface AvatarConfig {
-  skinTone: string
+  skin: string
+  eyes: string
   hairStyle: string
   hairColor: string
-  eyeShape: string
-  eyeColor: string
-  lipColor: string
-  /** العناصر المرتداة حاليًا، حسب الفئة. */
   worn: Partial<Record<WearCategory, string>>
 }
+
+/**
+ * وسم الأسلوب — الجسر بين التخصيص والقصة (DECISIONS.md#D-003).
+ * عقد القصة تستعلم عن هذه الأوسمة لتعليق الشخصيات على إطلالتك.
+ */
+export type StyleTag =
+  | 'casual' | 'formal' | 'sporty' | 'cozy' | 'bold' | 'soft' | 'dreamy' | 'seasonal'
 
 // ============================================================
 // الغرفة
@@ -58,44 +68,6 @@ export interface RoomConfig {
   floor: string
   mood: RoomMood
   slots: Partial<Record<RoomSlot, string>>
-}
-
-// ============================================================
-// العناصر (محتوى)
-// ============================================================
-
-export type ItemKind = 'wear' | 'room' | 'surface'
-
-/**
- * وسم الأسلوب — الجسر بين التخصيص والقصة (انظر DECISIONS.md#D-003).
- * عقد القصة تستطيع الاستعلام عن هذه الأوسمة لتعليق الشخصيات على إطلالتك.
- */
-export type StyleTag = 'casual' | 'formal' | 'sporty' | 'cozy' | 'bold' | 'soft' | 'dreamy' | 'seasonal'
-
-export interface GameItem {
-  id: string
-  kind: ItemKind
-  /** WearCategory للملابس، RoomSlot للأثاث، 'wall'|'floor' للأسطح. */
-  category: string
-  name: LocalizedText
-  rarity: Rarity
-  tags: StyleTag[]
-  price?: Price
-  /** المستوى المطلوب لظهوره في المتجر. */
-  unlockLevel?: number
-  /** يمنح مجانًا عند بداية اللعب. */
-  starter?: boolean
-  /** معرّف الموسم لو كان عنصرًا موسميًا. */
-  season?: string
-  /** بيانات الرسم — تُفسَّر بواسطة طبقة العرض. */
-  render: ItemRender
-}
-
-export interface ItemRender {
-  /** معرّف الشكل في مكتبة الأشكال (SVG). */
-  shape: string
-  /** الألوان الأساسية للقطعة. */
-  colors: string[]
 }
 
 // ============================================================

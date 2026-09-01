@@ -72,7 +72,7 @@ if HSTYLE != 'none':
     sv_, sf_ = build_scalp(hs)
     assign(mesh_from_arrays('scalp', sv_, sf_, subsurf=1),
            simple_material('scalpm', tuple(c * 0.55 for c in HAIR_RGB), rough=0.60))
-    hv, hf = hair_build(hs, HSTYLE)
+    hv, hf, _ = hair_build(hs, HSTYLE)
     assign(mesh_from_arrays('hair_cards', hv, hf, subsurf=1), hm)
     fv, ff = build_fringe(hs, FRINGE)
     if len(fv):
