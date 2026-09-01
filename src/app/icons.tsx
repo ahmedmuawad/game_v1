@@ -94,3 +94,27 @@ export function IconCheck({ size = 16 }: { size?: number }) {
     </svg>
   )
 }
+
+/** لهب السلسلة اليومية. */
+export function IconFlame({ size = 18 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M13 2.2c.4 3-1 4.6-2.5 6C8.8 9.8 7 11.5 7 14.4a5.5 5.5 0 0 0 11 0c0-2-.8-3.6-1.9-5-.3 .9-1 1.6-1.9 1.8.6-2.6-.2-5.6-2.2-9z"
+      />
+      <path fill="var(--c-bg)" opacity=".45" d="M12.5 13c1 1.1 1.6 2 1.6 3a2.1 2.1 0 0 1-4.2 0c0-1.3.9-2.1 2.6-3z" />
+    </svg>
+  )
+}
+
+/** هدية اليوم. */
+export function IconGift({ size = 20 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true">
+      <rect {...P} x="3.4" y="10.6" width="17.2" height="9.4" rx="1.8" />
+      <path {...P} d="M2.6 7.4h18.8v3.2H2.6zM12 7.4V20" />
+      <path {...P} d="M12 7.4S11 3.4 8.6 3.4a2 2 0 0 0 0 4zM12 7.4s1-4 3.4-4a2 2 0 0 1 0 4z" />
+    </svg>
+  )
+}

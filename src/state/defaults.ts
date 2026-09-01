@@ -77,7 +77,12 @@ export function createInitialState(): PlayerState {
 
     daily: {
       day: todayKey(),
-      streak: 0,
+      /*
+        أول يوم لعب هو سلسلة من يوم واحد، مش صفر. مع `day: todayKey()`
+        بيرجّع `rollDay` الحالة زي ما هي في نفس اليوم، فلو بدأنا من صفر
+        كانت اللاعبة تفضل شايفة «0 يوم» طول أول يوم كامل.
+      */
+      streak: 1,
       freezeUsedWeek: null,
       giftClaimed: false,
       missions: [],

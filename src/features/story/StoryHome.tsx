@@ -10,6 +10,7 @@ import { loadChapter, loadSeason, prefetchChapter, type Chapter, type SeasonMeta
 import { Button, CurrencyPill, ProgressBar, EmptyState } from '@/components/ui'
 import { IconLock, IconCheck, IconSpark } from '@/app/icons'
 import { levelProgress } from '@/systems/progression'
+import { DailyCard } from '@/features/daily/DailyCard'
 import { StoryReader } from './StoryReader'
 import './story-home.css'
 
@@ -98,8 +99,9 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
         <header className="home__hero">
           <div className="home__hero-text">
             <h1 className="h1">{store.name ? t('onb.welcome.title') : t('app.name')}</h1>
+            {/* السلسلة اتشالت من هنا — بقت معروضة بوضوح في كارت اليوم تحت */}
             <div className="caption muted">
-              {t('common.level')} {store.level} · {t('daily.streak')} {store.daily.streak}
+              {t('common.level')} {store.level}
             </div>
             <div style={{ marginTop: 8 }}>
               <ProgressBar value={levelProgress(store.level, store.xp)} />
@@ -107,6 +109,8 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
           </div>
           <AvatarView config={store.avatar} manifest={manifest} height={84} crop="head" still className="home__face" />
         </header>
+
+        <DailyCard />
 
         {season && nextChapter && (
           <motion.section

@@ -154,6 +154,20 @@ export const strings = {
   'daily.allDone':     { ar: 'خلّصتي كل حاجة النهاردة!', en: 'All done for today!' },
   'daily.comeBack':    { ar: 'تعالي بكرة', en: 'Come back tomorrow' },
   'daily.moment':      { ar: 'لحظة اليوم', en: 'Moment of the day' },
+  'daily.days':        { ar: 'يوم', en: 'days' },
+  'daily.claim':       { ar: 'استلمي', en: 'Claim' },
+  'daily.claimed':     { ar: 'اتستلمت', en: 'Claimed' },
+  'daily.giftReady':   { ar: 'هديتك مستنياكي', en: 'Your gift is waiting' },
+  'daily.giftGot':     { ar: 'أخدتي {coins} عملة!', en: 'You got {coins} coins!' },
+  'daily.missionGot':  { ar: 'مهمة خلصت! +{coins} عملة', en: 'Mission done! +{coins} coins' },
+  'daily.streakGrow':  { ar: 'ارجعي بكرة والسلسلة تكبر', en: 'Come back tomorrow to grow it' },
+
+  // أسماء المهام — {n} هو الهدف المطلوب
+  'daily.m.read_chapter':    { ar: 'اقري {n} فصل من القصة', en: 'Read {n} story chapter(s)' },
+  'daily.m.change_outfit':   { ar: 'غيّري إطلالتك {n} مرة', en: 'Change your outfit {n} time(s)' },
+  'daily.m.earn_coins':      { ar: 'اكسبي {n} عملة', en: 'Earn {n} coins' },
+  'daily.m.play_minigame':   { ar: 'العبي {n} لعبة', en: 'Play {n} minigame(s)' },
+  'daily.m.place_room_item': { ar: 'حطّي {n} حاجة في غرفتك', en: 'Place {n} item(s) in your room' },
 
   // ===== المتجر =====
   'shop.title':        { ar: 'المتجر', en: 'Shop' },

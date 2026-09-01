@@ -1,6 +1,9 @@
-import { describe, expect, it } from 'vitest'
-import { advanceMissions, dailyGiftAmount, freezeAvailable, generateMissions, rollDay } from '../daily'
-import { getConfig } from '../config'
+import { afterEach, describe, expect, it } from 'vitest'
+import {
+  advanceMissions, availableMissionTemplates, dailyGiftAmount,
+  freezeAvailable, generateMissions, rollDay,
+} from '../daily'
+import { getConfig, hydrateConfig, resetConfig } from '../config'
 import { todayKey, weekKey } from '@/state/defaults'
 import type { DailyState } from '@/state/types'
 
@@ -86,5 +89,61 @@ describe('الحلقة اليومية', () => {
     const now = new Date('2026-09-03T09:00:00')
     expect(freezeAvailable(state({ freezeUsedWeek: null }), now)).toBe(true)
     expect(freezeAvailable(state({ freezeUsedWeek: weekKey(now) }), now)).toBe(false)
+  })
+})
+
+// ============================================================
+// فلترة المهام حسب الميزات المتاحة — DECISIONS.md#D-011
+// ============================================================
+
+describe('المهام تتبع الميزات الشغّالة', () => {
+  afterEach(() => { resetConfig() })
+
+  /** أنواع المهام اللي محتاجة شاشات لسه فاضية. */
+  const GATED = ['play_minigame', 'place_room_item'] as const
+
+  it('بالإعداد الافتراضي مفيش مهمة محتاجة شاشة فاضية', () => {
+    // عيّنة على مدار شهر عشان نغطّي بذور مختلفة لا يوم واحد
+    for (let d = 1; d <= 30; d++) {
+      const day = `2026-09-${String(d).padStart(2, '0')}`
+      for (const m of generateMissions(day)) {
+        expect(GATED).not.toContain(m.kind)
+      }
+    }
+  })
+
+  it('كل مهمة مولَّدة قابلة للإنجاز فعلًا', () => {
+    const kinds = new Set(availableMissionTemplates().map((m) => m.kind))
+    expect(kinds).toEqual(new Set(['read_chapter', 'change_outfit', 'earn_coins']))
+  })
+
+  it('عدد المهام يفضل مطابقًا للإعداد بعد الفلترة', () => {
+    const want = getConfig().dailyMissionCount
+    expect(generateMissions('2026-09-07')).toHaveLength(want)
+  })
+
+  it('مفيش نوعين متكررين في نفس اليوم', () => {
+    for (let d = 1; d <= 30; d++) {
+      const day = `2026-09-${String(d).padStart(2, '0')}`
+      const kinds = generateMissions(day).map((m) => m.kind)
+      expect(new Set(kinds).size).toBe(kinds.length)
+    }
+  })
+
+  it('لسه فيه تنويع بين الأيام بعد الفلترة', () => {
+    const sets = new Set<string>()
+    for (let d = 1; d <= 30; d++) {
+      const day = `2026-09-${String(d).padStart(2, '0')}`
+      sets.add(generateMissions(day).map((m) => m.id).sort().join(','))
+    }
+    // لو الفلترة سابت قوالب بالعدد المطلوب بالظبط، هتطلع نفس المهام كل يوم
+    expect(sets.size).toBeGreaterThan(1)
+  })
+
+  it('تفعيل الميزة بيرجّع مهامها', () => {
+    hydrateConfig({ features: { ...getConfig().features, minigames: true, room: true } })
+    const kinds = new Set(availableMissionTemplates().map((m) => m.kind))
+    expect(kinds).toContain('play_minigame')
+    expect(kinds).toContain('place_room_item')
   })
 })

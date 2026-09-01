@@ -1,16 +1,46 @@
 import type { DailyMission, DailyState } from '@/state/types'
 import { todayKey, weekKey } from '@/state/defaults'
-import { getConfig } from './config'
+import { getConfig, type GameConfig } from './config'
 
 /** قوالب المهام اليومية — تُختار عشوائيًا بلا تكرار كل يوم. */
 const MISSION_POOL: Omit<DailyMission, 'progress' | 'claimed'>[] = [
   { id: 'm_play2',    kind: 'play_minigame',   target: 2, reward: { coins: 60, xp: 15 } },
   { id: 'm_play4',    kind: 'play_minigame',   target: 4, reward: { coins: 110, xp: 25 } },
   { id: 'm_read1',    kind: 'read_chapter',    target: 1, reward: { coins: 80, xp: 20 } },
+  { id: 'm_read2',    kind: 'read_chapter',    target: 2, reward: { coins: 150, xp: 35 } },
   { id: 'm_outfit',   kind: 'change_outfit',   target: 1, reward: { coins: 45, xp: 10 } },
+  { id: 'm_outfit3',  kind: 'change_outfit',   target: 3, reward: { coins: 100, xp: 20 } },
   { id: 'm_room',     kind: 'place_room_item', target: 1, reward: { coins: 45, xp: 10 } },
+  { id: 'm_earn80',   kind: 'earn_coins',      target: 80,  reward: { gems: 1, xp: 12 } },
   { id: 'm_earn150',  kind: 'earn_coins',      target: 150, reward: { gems: 2, xp: 20 } },
 ]
+
+/**
+ * الميزة اللي لازم تكون شغّالة عشان المهمة تبقى قابلة للإنجاز أصلًا.
+ * `null` يعني إن المهمة معتمدة على شاشات أساسية موجودة دايمًا.
+ *
+ * من غير الفلترة دي كانت اللاعبة ممكن تصحى تلاقي مهمتين من تلاتة
+ * مستحيلتين (الألعاب والغرفة شاشات فاضية)، فتفضل سلسلتها ناقصة بلا
+ * أي ذنب — وده يضرب بالظبط الحلقة اللي المهام موجودة عشانها.
+ * التفاصيل في DECISIONS.md#D-011.
+ */
+const MISSION_REQUIRES: Record<DailyMission['kind'], keyof GameConfig['features'] | null> = {
+  play_minigame:   'minigames',
+  place_room_item: 'room',
+  read_chapter:    null,
+  change_outfit:   null,
+  earn_coins:      null,
+}
+
+/** قوالب المهام القابلة للإنجاز بالميزات الشغّالة حاليًا. */
+export function availableMissionTemplates(
+  cfg: GameConfig = getConfig(),
+): Omit<DailyMission, 'progress' | 'claimed'>[] {
+  return MISSION_POOL.filter((m) => {
+    const req = MISSION_REQUIRES[m.kind]
+    return req === null || cfg.features[req]
+  })
+}
 
 /** مولّد عشوائي حتمي مربوط باليوم — نفس المهام لنفس اليوم على نفس الجهاز. */
 function seededPick<T>(list: T[], count: number, seed: string): T[] {
@@ -31,11 +61,24 @@ function seededPick<T>(list: T[], count: number, seed: string): T[] {
 
 export function generateMissions(day: string): DailyMission[] {
   const cfg = getConfig()
-  return seededPick(MISSION_POOL, cfg.dailyMissionCount, day).map((m) => ({
-    ...m,
-    progress: 0,
-    claimed: false,
-  }))
+
+  /*
+    نوع واحد بالكتير في اليوم: مهمتين من نفس النوع بيتقروا كتكرار،
+    وكمان بيتحلّوا مع بعض (تغيير 3 إطلالات بيخلّص مهمة الـ1 كمان)
+    فبتضيع مهمة من التلاتة عمليًا. بنختار الأنواع الأول، وبعدين
+    نسخة واحدة جوّه كل نوع — فيفضل في تنويع في الأهداف بين الأيام.
+  */
+  const byKind = new Map<DailyMission['kind'], Omit<DailyMission, 'progress' | 'claimed'>[]>()
+  for (const m of availableMissionTemplates(cfg)) {
+    const list = byKind.get(m.kind)
+    if (list) list.push(m)
+    else byKind.set(m.kind, [m])
+  }
+
+  return seededPick([...byKind.keys()], cfg.dailyMissionCount, day).map((kind) => {
+    const [pick] = seededPick(byKind.get(kind)!, 1, `${day}:${kind}`)
+    return { ...pick, progress: 0, claimed: false }
+  })
 }
 
 /**

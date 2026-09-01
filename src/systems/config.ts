@@ -50,6 +50,8 @@ export interface GameConfig {
   // ---- أعلام الميزات ----
   features: {
     minigames: boolean
+    /** شاشة الغرفة — تفرّق عن `roomSnapshot` اللي هو مشاركة لقطة الغرفة. */
+    room: boolean
     shop: boolean
     styleChallenge: boolean
     roomSnapshot: boolean
@@ -84,11 +86,18 @@ export const DEFAULT_CONFIG: GameConfig = {
   adRewardEnergy: 1,
   adRewardCoinMultiplier: 2,
 
+  /*
+    الأعلام دي بتوصف الشاشات الموجودة فعلًا، مش الخطة. كانت
+    `minigames` و`shop` و`roomSnapshot` مضبوطة على `true` بينما
+    الشاشات التلاتة فاضية — وده كان بيخلّي الحلقة اليومية تولّد مهامًا
+    يستحيل إنجازها (DECISIONS.md#D-011).
+  */
   features: {
-    minigames: true,
-    shop: true,
+    minigames: false, // الشاشة فاضية لسه
+    room: false, // الشاشة فاضية لسه
+    shop: false, // الشاشة فاضية لسه
     styleChallenge: false, // يحتاج قاعدة لاعبين — DECISIONS.md#D-010
-    roomSnapshot: true,
+    roomSnapshot: false, // يحتاج شاشة الغرفة الأول
     ads: true,
     subscription: false, // يُفعّل عند ربط متجر التطبيقات
   },
