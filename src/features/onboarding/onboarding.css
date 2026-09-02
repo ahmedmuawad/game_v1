@@ -1,0 +1,234 @@
+.onb {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 90);
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(80% 50% at 50% 0%, rgba(167, 139, 232, .18), transparent 70%),
+    var(--c-bg);
+  padding-block-start: var(--safe-top);
+  padding-block-end: var(--safe-bottom);
+}
+
+.onb__bar {
+  padding: var(--s-3) var(--s-4) 0;
+  flex: none;
+}
+
+/*
+  الخطوة بتمرّر لوحدها لا الشاشة كلها: زرار «التالي» لازم يفضل في متناول
+  الإبهام مهما طال المحتوى، وقياس على 360×736 وقّع الزرار بره الشاشة في
+  خطوة الأفاتار لما المحتوى كله كان في تدفّق واحد.
+*/
+.onb__step {
+  flex: 1;
+  min-block-size: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  text-align: center;
+}
+
+.onb__step > .btn {
+  /* الزرار آخر عنصر ودايمًا في الأسفل مهما كان المحتوى قصير */
+  margin-block-start: auto;
+}
+
+.onb__mark {
+  display: grid;
+  place-items: center;
+  inline-size: 68px;
+  block-size: 68px;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+}
+
+.onb__body { color: var(--c-text-subtle); }
+
+/* ===== اللغة ===== */
+
+.onb__langRow {
+  display: flex;
+  gap: var(--s-2);
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, .28);
+}
+
+.onb__lang {
+  flex: 1;
+  padding-block: 10px;
+  border-radius: var(--r-pill);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-med);
+}
+.onb__lang--on { background: var(--g-primary); color: #fff; font-weight: var(--fw-bold); }
+
+/* ===== الفايب ===== */
+
+.onb__roomPreview {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.onb__roomPreview--big { position: relative; }
+
+.onb__roomAvatar {
+  position: absolute;
+  /*
+    فيزيائي لا منطقي — مشهد SVG بإحداثيات ثابتة مابينعكسش مع اتجاه
+    اللغة (نفس سبب rm__avatar في شاشة الغرفة).
+  */
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .45));
+}
+
+.onb__vibes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.onb__vibe {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-lg);
+  background: var(--c-surface-2);
+  border: 2px solid transparent;
+  text-align: start;
+  transition: border-color var(--d-fast) var(--ease-out);
+}
+.onb__vibe--on { border-color: var(--c-primary); }
+.onb__vibeDesc { color: var(--c-text-subtle); }
+
+.onb__vibeTick {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: var(--s-4);
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  inline-size: 22px;
+  block-size: 22px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: #fff;
+}
+
+/* ===== الأفاتار ===== */
+
+.onb__avatar {
+  display: grid;
+  place-items: center;
+  padding-block: var(--s-2);
+  border-radius: var(--r-lg);
+  background: radial-gradient(60% 70% at 50% 30%, var(--c-accent-tint), transparent 70%);
+}
+
+.onb__picks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.onb__swatchRow {
+  display: flex;
+  gap: var(--s-2);
+  overflow-x: auto;
+  padding-block: 2px;
+  scrollbar-width: none;
+}
+.onb__swatchRow::-webkit-scrollbar { display: none; }
+.onb__swatchRow--colors { flex-wrap: wrap; overflow: visible; justify-content: center; }
+
+.onb__face,
+.onb__hair {
+  position: relative;
+  flex: 0 0 54px;
+  block-size: 54px;
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  border: 2px solid transparent;
+  overflow: hidden;
+  transition: border-color var(--d-fast) var(--ease-out);
+}
+.onb__face--on, .onb__hair--on { border-color: var(--c-primary); }
+
+/* الأصول مصيَّرة للجسم الكامل — القصّ بيوصل للرأس */
+.onb__faceImg,
+.onb__hairImg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: none;
+  width: 320%;
+  top: -6%;
+  pointer-events: none;
+}
+
+.onb__dot {
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color var(--d-fast) var(--ease-out),
+              transform var(--d-fast) var(--ease-out);
+}
+.onb__dot--on { border-color: #fff; transform: scale(1.12); }
+
+/* ===== الاسم ===== */
+
+.onb__input {
+  inline-size: 100%;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-lg);
+  background: var(--c-surface-2);
+  border: 2px solid rgba(255, 255, 255, .1);
+  color: var(--c-text);
+  font-family: inherit;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
+  text-align: center;
+}
+.onb__input:focus { outline: none; border-color: var(--c-primary); }
+.onb__input::placeholder { color: var(--c-text-subtle); font-weight: var(--fw-reg); }
+
+/* ===== الهدية ===== */
+
+.onb__gift {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+}
+
+/* ===== الرجوع ===== */
+
+.onb__back {
+  flex: none;
+  padding: var(--s-3);
+  color: var(--c-text-subtle);
+}
+
+/* حاوية الخطوات — بتاخد الارتفاع المتبقّي عشان الخطوة تمرّر جوّاها */
+.onb__steps {
+  flex: 1;
+  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
+}

@@ -12,6 +12,7 @@ import { StyleScreen } from '@/features/StyleScreen'
 import { ShopScreen } from '@/features/shop/ShopScreen'
 import { RoomScreen } from '@/features/room/RoomScreen'
 import { PlayScreen } from '@/features/play/PlayScreen'
+import { Onboarding } from '@/features/onboarding/Onboarding'
 import { IconStory, IconRoom, IconStyle, IconPlay, IconShop } from '@/app/icons'
 import '@/design/global.css'
 import '@/app/nav.css'
@@ -50,6 +51,7 @@ function App() {
   const [manifest, setManifest] = useState<AvatarManifest | null>(null)
   const [tab, setTab] = useState<TabId>('story')
   const boot = useGame((s) => s.boot)
+  const onboarded = useGame((s) => s.onboarded)
   const settings = useGame((s) => s.settings)
   const locale = settings.locale
 
@@ -66,6 +68,21 @@ function App() {
 
   // مبدّل اللغة بقى في شاشة الإعدادات — كان مربوطًا بمفتاح لوحة مفاتيح
   // يعني مستحيل الوصول له على الموبايل، وهو المنصّة الوحيدة للمنتج.
+
+  /*
+    الأونبوردنج بيتعرض بدل التطبيق لا فوقه: شريط التنقل والشاشات
+    ماينفعش يبقوا موجودين في الشجرة وهو شغّال — أول لحظة في اللعبة
+    لازم تبقى قرار واحد على الشاشة بلا مهارب.
+  */
+  if (!onboarded) {
+    return (
+      <I18nContext.Provider value={i18n}>
+        <ToastProvider>
+          <Onboarding manifest={manifest} />
+        </ToastProvider>
+      </I18nContext.Provider>
+    )
+  }
 
   return (
     <I18nContext.Provider value={i18n}>
