@@ -72,6 +72,26 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
     store.completeChapter(chapterId, next)
     if (next && season) prefetchChapter(season.id, next)
     setActive(null)
+
+    /*
+      نهاية الموسم مش نهاية اللعبة.
+      `next === null` معناها إن الفصل ده آخر فصل، وقبل كده كانت اللاعبة
+      بتقف عند شاشة كل فصولها مكتملة بلا أي طريق قدّام. الانتقال بيتقرا
+      من بيانات الموسم (`nextSeason`) عشان موسم جديد يوصل بلا تحديث
+      في المتجر (قاعدة #4).
+    */
+    if (next === null && season?.nextSeason) {
+      const target = season.nextSeason
+      loadSeason(target)
+        .then((meta) => {
+          const first = meta.chapters[0]?.id
+          if (first) store.startSeason(target, first)
+        })
+        .catch((e) => {
+          console.error('[story] فشل تحميل الموسم التالي', e)
+          toast(t('common.empty'), 'bad')
+        })
+    }
   }
 
   if (active && season) {

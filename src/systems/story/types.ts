@@ -166,6 +166,14 @@ export interface SeasonMeta {
   id: string
   title: LocalizedText
   teaser: LocalizedText
+  /**
+   * الموسم اللي بعده، أو null لو ده الآخر.
+   *
+   * من غير الحقل ده اللاعبة بتخلّص آخر فصل وتقف: `nextChapter: null`
+   * بيقول «الموسم خلص» ومفيش حاجة بتقول «وبعدين إيه». المحتوى الجاي
+   * لازم يوصل بلا تحديث في المتجر (قاعدة #4)، فالربط بيانات لا كود.
+   */
+  nextSeason?: string | null
   characters: Record<string, CharacterDef>
   chapters: { id: string; title: LocalizedText; teaser: LocalizedText }[]
 }

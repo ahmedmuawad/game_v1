@@ -1,0 +1,183 @@
+{
+  "id": "s2_c3",
+  "seasonId": "s2",
+  "index": 3,
+  "title": { "ar": "الغيبة", "en": "The Absence" },
+  "teaser": {
+    "ar": "سلمى وقفت ترد. وإنتِ مش عارفة تلحقيها ولا تسيبيها.",
+    "en": "Salma stopped replying. You cannot tell whether to chase her or let her be."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "home", "mood": "night", "cast": ["player"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "أسبوع. صورة واحدة من إسكندرية — بحر ونص وش — وبعدين ولا حاجة.",
+      "en": "A week. One picture from Alexandria — sea and half a face — and then nothing."
+    }},
+
+    "n2": { "id": "n2", "type": "narrate", "next": "n3", "text": {
+      "ar": "بعتّيلها تلات مرات. الرسايل واصلة ومتقروش.",
+      "en": "You wrote three times. The messages arrive and stay unread."
+    }},
+
+    "n3": { "id": "n3", "type": "say", "who": "player", "emote": "thinking", "next": "c1", "text": {
+      "ar": "«هي زعلانة مني؟ ولا أنا بكبّر الموضوع؟»",
+      "en": "\"Is she upset with me? Or am I making this bigger than it is?\""
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "الساعة حداشر بالليل.", "en": "It is eleven at night."
+    }, "options": [
+      { "id": "c1_call", "to": "ca1",
+        "text": { "ar": "تتصلي بيها. لو مش هترد يبقى مش هترد.", "en": "Call her. If she doesn't pick up, she doesn't pick up." },
+        "hint": { "ar": "مواجهة", "en": "Directness" },
+        "effects": [ { "trait": "confidence", "delta": 8 }, { "flag": "called_salma", "value": true } ] },
+      { "id": "c1_wait", "to": "wa1",
+        "text": { "ar": "تسيبيها. اللي عايز يتكلّم بيتكلّم.", "en": "Let it be. Whoever wants to talk will talk." },
+        "hint": { "ar": "صبر", "en": "Restraint" },
+        "effects": [ { "trait": "wits", "delta": 7 }, { "flag": "waited_salma", "value": true } ] },
+      { "id": "c1_teta", "to": "te1",
+        "text": { "ar": "تنزلي لتيتة نادية. هي بتعرف كل حاجة عن حفيدتها.", "en": "Go down to Teta Nadia. She knows everything about her granddaughter." },
+        "hint": { "ar": "طريق تاني", "en": "Another way" },
+        "effects": [ { "trait": "wits", "delta": 5 }, { "rel": "nadia", "delta": 10 }, { "flag": "asked_teta", "value": true } ] }
+    ]},
+
+    "ca1": { "id": "ca1", "type": "narrate", "next": "ca2", "text": {
+      "ar": "رنّ خمس مرات. وبعدين اتقفل من الناحية التانية.",
+      "en": "It rang five times. Then it was cut from the other side."
+    }},
+
+    "ca2": { "id": "ca2", "type": "narrate", "next": "shop", "text": {
+      "ar": "مش مشغول. مقفول. الفرق ده كان أوضح من أي كلام.",
+      "en": "Not busy. Declined. That difference said more than any message."
+    }},
+
+    "wa1": { "id": "wa1", "type": "narrate", "next": "wa2", "text": {
+      "ar": "حطّيتي التليفون بعيد وحاولتي تنامي. ماعرفتيش.",
+      "en": "You put the phone away and tried to sleep. You couldn't."
+    }},
+
+    "wa2": { "id": "wa2", "type": "narrate", "next": "shop", "text": {
+      "ar": "الصبر مش دايماً هدوء. أحياناً بيبقى نفس القلق وإنتِ ساكتة.",
+      "en": "Restraint is not always calm. Sometimes it is the same worry with your mouth closed."
+    }},
+
+    "te1": { "id": "te1", "type": "stage", "bg": "corridor", "mood": "warm", "cast": ["player", "nadia"], "next": "te2" },
+
+    "te2": { "id": "te2", "type": "say", "who": "nadia", "emote": "neutral", "next": "te3", "text": {
+      "ar": "«سلمى؟ رجعت من إسكندرية من تلات أيام يا حبيبتي.»",
+      "en": "\"Salma? She's been back from Alexandria for three days, sweetheart.\""
+    }},
+
+    "te3": { "id": "te3", "type": "narrate", "next": "shop", "text": {
+      "ar": "تلات أيام. وهي في نفس الشارع.",
+      "en": "Three days. And she is on the same street."
+    }},
+
+    "shop": { "id": "shop", "type": "stage", "bg": "yard", "mood": "day", "cast": ["player", "salma"], "next": "s1" },
+
+    "s1": { "id": "s1", "type": "narrate", "next": "s2", "text": {
+      "ar": "لقيتيها الصبح قاعدة على البنش اللي في آخر الحديقة. لوحدها، ومعاها كيس مقرمشات مفتوح مش بتاكل منه.",
+      "en": "You found her in the morning on the bench at the far end of the garden. Alone, with an open packet of crisps she isn't eating."
+    }},
+
+    "s2": { "id": "s2", "type": "say", "who": "salma", "emote": "surprised", "next": "s3", "text": {
+      "ar": "«…أهلاً.»",
+      "en": "\"…Hey.\""
+    }},
+
+    "s3": { "id": "s3", "type": "say", "who": "salma", "emote": "sad", "next": "c2", "text": {
+      "ar": "«أنا عارفة. مردتش. أنا… مش عارفة أقولك إيه.»",
+      "en": "\"I know. I didn't reply. I just… didn't know what to say.\""
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "أسبوع كامل من القلق واقف قدامك دلوقتي.", "en": "A whole week of worry is standing in front of you."
+    }, "options": [
+      { "id": "c2_angry", "to": "an1",
+        "text": { "ar": "«أسبوع يا سلمى. كنت فاكرة إن فيه حاجة حصلتلك.»", "en": "\"A week, Salma. I thought something had happened to you.\"" },
+        "hint": { "ar": "صراحة", "en": "Frankness" },
+        "effects": [ { "trait": "confidence", "delta": 7 }, { "rel": "salma", "delta": -2 }, { "flag": "said_it", "value": true } ] },
+      { "id": "c2_sit", "to": "si1",
+        "text": { "ar": "تقعدي جنبها وتاخدي من الكيس من غير كلام.", "en": "Sit beside her and take a crisp without a word." },
+        "hint": { "ar": "وجود", "en": "Presence" },
+        "effects": [ { "trait": "empathy", "delta": 10 }, { "rel": "salma", "delta": 12 } ] },
+      { "id": "c2_ask", "to": "as1",
+        "text": { "ar": "«حصل إيه؟»", "en": "\"What happened?\"" },
+        "hint": { "ar": "سؤال", "en": "A question" },
+        "effects": [ { "trait": "empathy", "delta": 6 }, { "rel": "salma", "delta": 6 } ] }
+    ]},
+
+    "an1": { "id": "an1", "type": "say", "who": "salma", "emote": "sad", "next": "truth", "text": {
+      "ar": "«أنا عارفة. وأنا آسفة. بس لو كنت ردّيت كنتي هتسأليني، وأنا مكنتش قادرة أجاوب.»",
+      "en": "\"I know. And I'm sorry. But if I'd replied you would have asked, and I couldn't answer.\""
+    }},
+
+    "si1": { "id": "si1", "type": "narrate", "next": "truth", "text": {
+      "ar": "قعدتوا كده عشر دقايق. ومحدش قال حاجة. وبعد العشر دقايق هي اللي اتكلّمت.",
+      "en": "You sat like that for ten minutes. Nobody said anything. And after ten minutes, she was the one who spoke."
+    }},
+
+    "as1": { "id": "as1", "type": "say", "who": "salma", "emote": "thinking", "next": "truth", "text": {
+      "ar": "«ماحصلش حاجة. دي المشكلة.»",
+      "en": "\"Nothing happened. That's the problem.\""
+    }},
+
+    "truth": { "id": "truth", "type": "say", "who": "salma", "emote": "sad", "next": "t2", "text": {
+      "ar": "«بابا اتنقل شغله. إحنا هنسيب الحتة في سبتمبر.»",
+      "en": "\"Dad's been transferred. We're leaving the neighbourhood in September.\""
+    }},
+
+    "t2": { "id": "t2", "type": "narrate", "next": "t3", "text": {
+      "ar": "سبتمبر. اللي هو بعد ستة أسابيع بالظبط. اللي هو آخر يوم في المركز.",
+      "en": "September. Which is exactly six weeks away. Which is the last day at the centre."
+    }},
+
+    "t3": { "id": "t3", "type": "say", "who": "salma", "emote": "sad", "next": "c3", "text": {
+      "ar": "«عشان كده مردتش. كل ما أفتح الرسالة أفتكر إني لازم أقول.»",
+      "en": "\"That's why I didn't reply. Every time I opened your message I remembered I'd have to say it.\""
+    }},
+
+    "c3": { "id": "c3", "type": "choice", "prompt": {
+      "ar": "ستة أسابيع.", "en": "Six weeks."
+    }, "options": [
+      { "id": "c3_plan", "to": "pl1",
+        "text": { "ar": "«يبقى عندنا ستة أسابيع. مش هنضيّعهم في زعل.»", "en": "\"Then we have six weeks. We're not spending them sulking.\"" },
+        "hint": { "ar": "قرار", "en": "Resolve" },
+        "effects": [ { "trait": "confidence", "delta": 9 }, { "rel": "salma", "delta": 12 }, { "flag": "six_weeks_pact", "value": true } ] },
+      { "id": "c3_sad", "to": "sa1",
+        "text": { "ar": "«أنا مش عارفة أقول حاجة تصلّح ده.»", "en": "\"I don't know what to say that fixes this.\"" },
+        "hint": { "ar": "صدق", "en": "Honesty" },
+        "effects": [ { "trait": "empathy", "delta": 9 }, { "rel": "salma", "delta": 9 } ] },
+      { "id": "c3_center", "to": "ce1",
+        "text": { "ar": "«تعالي المركز معايا. لو هتمشي، امشي وإحنا عاملين حاجة سوا.»", "en": "\"Come to the centre with me. If you're leaving, leave having made something with us.\"" },
+        "hint": { "ar": "دعوة", "en": "An invitation" },
+        "effects": [ { "trait": "creativity", "delta": 8 }, { "rel": "salma", "delta": 14 }, { "flag": "salma_joins", "value": true } ] }
+    ]},
+
+    "pl1": { "id": "pl1", "type": "say", "who": "salma", "emote": "smile", "next": "fin", "text": {
+      "ar": "«إنتِ دايماً بتعملي كده. بتحوّلي أي حاجة لخطة.»",
+      "en": "\"You always do this. You turn everything into a plan.\""
+    }},
+
+    "sa1": { "id": "sa1", "type": "say", "who": "salma", "emote": "smile", "next": "fin", "text": {
+      "ar": "«مش لازم تصلّحيه. أنا بس كنت عايزة حد يعرف.»",
+      "en": "\"You don't have to fix it. I just wanted someone to know.\""
+    }},
+
+    "ce1": { "id": "ce1", "type": "say", "who": "salma", "emote": "surprised", "next": "fin", "text": {
+      "ar": "«…ينفع؟ يعني الناس هناك هيقبلوا واحدة داخلة في النص؟»",
+      "en": "\"…Can I? Would they take someone joining halfway?\""
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 170, "xp": 70 },
+      "nextChapter": "s2_c4",
+      "teaser": {
+        "ar": "كابتن ريم عندها خبر. والخبر فيه مكان واحد بس.",
+        "en": "Coach Reem has news. And the news has room for only one."
+      }
+    }
+  }
+}

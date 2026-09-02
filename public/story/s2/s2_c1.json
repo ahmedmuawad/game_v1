@@ -1,0 +1,193 @@
+{
+  "id": "s2_c1",
+  "seasonId": "s2",
+  "index": 1,
+  "title": { "ar": "أول يوم صيف", "en": "First Day of Summer" },
+  "teaser": {
+    "ar": "المدرسة قفلت، وفجأة اليوم بقى طويل ومفيهوش حاجة مكتوبة.",
+    "en": "School is out, and suddenly the day is long with nothing written on it."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "home", "mood": "warm", "cast": ["player"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "تسع الصبح، ومحدش صحّاكِ. أول يوم من غير جرس، والسقف فوقك مليان ضوء بيتحرّك.",
+      "en": "Nine in the morning and nobody woke you. The first day without a bell, and the ceiling above you is full of moving light."
+    }},
+
+    "n2": { "id": "n2", "type": "narrate", "next": "ph1", "text": {
+      "ar": "التليفون جنبك فيه تلات رسايل من إمبارح. ولا واحدة منهم اتردّ عليها.",
+      "en": "Your phone has three messages from yesterday. Not one of them was answered."
+    }},
+
+    "ph1": { "id": "ph1", "type": "say", "who": "salma", "emote": "happy", "next": "ph2", "text": {
+      "ar": "«إحنا مسافرين إسكندرية أسبوعين! هبعتلك صور.»",
+      "en": "\"We're off to Alexandria for two weeks! I'll send pictures.\""
+    }},
+
+    "ph2": { "id": "ph2", "type": "say", "who": "dina", "emote": "neutral", "next": "ph3", "text": {
+      "ar": "«أنا عند خالتي طول الصيف. الشبكة هنا زي الزفت.»",
+      "en": "\"I'm at my aunt's all summer. The signal here is rubbish.\""
+    }},
+
+    "ph3": { "id": "ph3", "type": "say", "who": "nour", "emote": "thinking", "next": "n3", "text": {
+      "ar": "«فيه مركز صيفي في النادي. فنون وموسيقى وحاجات. إنتِ جاية؟»",
+      "en": "\"There's a summer program at the club. Art, music, things. Are you coming?\""
+    }},
+
+    "n3": { "id": "n3", "type": "narrate", "next": "c1", "text": {
+      "ar": "التلات رسايل قدامك. والصيف كله لسه في أوله.",
+      "en": "Three messages in front of you. And the whole summer still ahead."
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "الصيف ده هيبقى شكله إيه؟", "en": "What shape will this summer take?"
+    }, "options": [
+      { "id": "c1_join", "to": "j1",
+        "text": { "ar": "«أنا جاية. ابعتيلي المكان.»", "en": "\"I'm in. Send me the address.\"" },
+        "hint": { "ar": "إقدام", "en": "Initiative" },
+        "effects": [ { "trait": "confidence", "delta": 8 }, { "rel": "nour", "delta": 8 }, { "flag": "joined_center", "value": true } ] },
+      { "id": "c1_wait", "to": "w1",
+        "text": { "ar": "تقعدي تفكري الأول. مش لازم كل حاجة تتقرّر النهاردة.", "en": "Sit with it first. Not everything has to be decided today." },
+        "hint": { "ar": "تروّي", "en": "Patience" },
+        "effects": [ { "trait": "wits", "delta": 6 }, { "flag": "hesitated", "value": true } ] },
+      { "id": "c1_salma", "to": "s1",
+        "text": { "ar": "تردّي على سلمى الأول — هي اللي بعتت من إمبارح.", "en": "Answer Salma first — she wrote yesterday." },
+        "hint": { "ar": "وفاء", "en": "Loyalty" },
+        "effects": [ { "trait": "empathy", "delta": 7 }, { "rel": "salma", "delta": 10 } ] }
+    ]},
+
+    "j1": { "id": "j1", "type": "say", "who": "nour", "emote": "happy", "next": "meet", "text": {
+      "ar": "«عارفة إنك هتقولي كده. الساعة عشرة، وماتتأخريش، كابتن ريم بتقفل الباب.»",
+      "en": "\"I knew you'd say that. Ten o'clock, and don't be late — Coach Reem locks the door.\""
+    }},
+
+    "w1": { "id": "w1", "type": "narrate", "next": "w2", "text": {
+      "ar": "قعدتي ساعة. الساعة عدّت والسقف ماتغيّرش، والفكرة اللي كنتي بتستنيها ماجتش.",
+      "en": "You sat for an hour. The hour passed, the ceiling did not change, and the thought you were waiting for never came."
+    }},
+
+    "w2": { "id": "w2", "type": "say", "who": "player", "emote": "thinking", "next": "meet", "text": {
+      "ar": "«طب وماله. أروح أشوف.»",
+      "en": "\"Fine. I'll go see.\""
+    }},
+
+    "s1": { "id": "s1", "type": "say", "who": "player", "emote": "smile", "next": "s2", "text": {
+      "ar": "«ابعتيلي كل الصور. وماتنسيش تقوليلي البحر كان عامل إزاي.»",
+      "en": "\"Send me every picture. And tell me what the sea looked like.\""
+    }},
+
+    "s2": { "id": "s2", "type": "say", "who": "salma", "emote": "smile", "next": "s3", "text": {
+      "ar": "«إنتِ الوحيدة اللي بتسأل عن البحر مش عن الفندق.»",
+      "en": "\"You're the only one who asks about the sea instead of the hotel.\""
+    }},
+
+    "s3": { "id": "s3", "type": "say", "who": "salma", "emote": "neutral", "next": "meet", "text": {
+      "ar": "«روحي المركز يا بنتي. مش هتقعدي أسبوعين تستنيني.»",
+      "en": "\"Go to the centre, please. You're not going to sit two weeks waiting for me.\""
+    }},
+
+    "meet": { "id": "meet", "type": "stage", "bg": "art_room", "mood": "day", "cast": ["player", "nour"], "next": "m1" },
+
+    "m1": { "id": "m1", "type": "narrate", "next": "m2", "text": {
+      "ar": "قاعة واسعة ريحتها ألوان وخشب. طرابيزات طويلة، وشباك كبير الضوء داخل منه زي عمود.",
+      "en": "A wide hall that smells of paint and wood. Long tables, and a big window with light coming through like a column."
+    }},
+
+    "m2": { "id": "m2", "type": "say", "who": "reem", "emote": "neutral", "next": "m3", "text": {
+      "ar": "«أهلاً. الصيف هنا ستة أسابيع، وفي آخرهم عرض. مش امتحان — عرض. الفرق إنكم إنتوا اللي بتختاروا تعرضوا إيه.»",
+      "en": "\"Welcome. Summer here is six weeks, and at the end there's a showcase. Not an exam — a showcase. The difference is that you choose what to show.\""
+    }},
+
+    "m3": { "id": "m3", "type": "say", "who": "nour", "emote": "smile", "next": "m4", "text": {
+      "ar": "«قالت كده السنة اللي فاتت كمان. وكل الناس اترعبت بردو.»",
+      "en": "\"She said that last year too. Everyone panicked anyway.\""
+    }},
+
+    "m4": { "id": "m4", "type": "stage", "cast": ["player", "nour", "layla"], "next": "m5" },
+
+    "m5": { "id": "m5", "type": "narrate", "next": "m6", "text": {
+      "ar": "في آخر الطرابيزة بنت قاعدة لوحدها. قدامها ورقة فاضية، وإيدها على الجيتار من غير ما تلمسه.",
+      "en": "At the end of the table a girl sits alone. A blank sheet in front of her, her hand resting on a guitar without touching it."
+    }},
+
+    "m6": { "id": "m6", "type": "say", "who": "reem", "emote": "neutral", "next": "c2", "text": {
+      "ar": "«دي ليلى. جديدة على الحتة. اللي جنبها يعرّفها بنفسه.»",
+      "en": "\"That's Layla. New to the area. Whoever's beside her can introduce themselves.\""
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "إنتِ اللي جنبها.", "en": "You are the one beside her."
+    }, "options": [
+      { "id": "c2_hi", "to": "h1",
+        "text": { "ar": "«أنا كمان أول يوم ليا. تقعدي جنبي؟»", "en": "\"It's my first day too. Sit with me?\"" },
+        "hint": { "ar": "دفا", "en": "Warmth" },
+        "effects": [ { "trait": "empathy", "delta": 8 }, { "rel": "layla", "delta": 12 } ] },
+      { "id": "c2_guitar", "to": "g1",
+        "text": { "ar": "«بتعزفي؟ أنا نفسي أتعلّم.»", "en": "\"Do you play? I've always wanted to learn.\"" },
+        "hint": { "ar": "فضول", "en": "Curiosity" },
+        "effects": [ { "trait": "creativity", "delta": 8 }, { "rel": "layla", "delta": 7 }, { "flag": "asked_guitar", "value": true } ] },
+      { "id": "c2_space", "to": "sp1",
+        "text": { "ar": "تسيبيها في حالها. مش كل حد عايز يتكلّم أول يوم.", "en": "Leave her be. Not everyone wants to talk on day one." },
+        "hint": { "ar": "احترام", "en": "Respect" },
+        "effects": [ { "trait": "wits", "delta": 6 }, { "rel": "layla", "delta": 3 }, { "flag": "gave_space", "value": true } ] }
+    ]},
+
+    "h1": { "id": "h1", "type": "say", "who": "layla", "emote": "surprised", "next": "h2", "text": {
+      "ar": "«…تمام.»",
+      "en": "\"…Okay.\""
+    }},
+
+    "h2": { "id": "h2", "type": "narrate", "next": "conv", "text": {
+      "ar": "قعدت. مقالتش حاجة تانية طول نص ساعة. بس ماقامتش.",
+      "en": "She sat. She said nothing else for half an hour. But she did not get up."
+    }},
+
+    "g1": { "id": "g1", "type": "say", "who": "layla", "emote": "neutral", "next": "g2", "text": {
+      "ar": "«شوية.»",
+      "en": "\"A bit.\""
+    }},
+
+    "g2": { "id": "g2", "type": "narrate", "next": "conv", "text": {
+      "ar": "«شوية» دي كانت أطول إجابة قالتها النهاردة كله، ونور بصّتلك كأنك كسبتي حاجة.",
+      "en": "That \"a bit\" was the longest answer she gave all day, and Nour looked at you as if you had won something."
+    }},
+
+    "sp1": { "id": "sp1", "type": "narrate", "next": "sp2", "text": {
+      "ar": "سبتيها. وطول الحصة كانت بتبصّ ناحيتك كل شوية وترجّع عينها بسرعة.",
+      "en": "You left her alone. All through the session she glanced your way and looked back down quickly."
+    }},
+
+    "sp2": { "id": "sp2", "type": "say", "who": "nour", "emote": "thinking", "next": "conv", "text": {
+      "ar": "«إنتِ مسبتيهاش عشان محترمة ولا عشان مكسوفة؟»",
+      "en": "\"Did you leave her alone out of respect, or out of nerves?\""
+    }},
+
+    "conv": { "id": "conv", "type": "stage", "bg": "yard", "mood": "sunset", "cast": ["player", "nour"], "next": "e1" },
+
+    "e1": { "id": "e1", "type": "narrate", "next": "e2", "text": {
+      "ar": "برّه، الشمس نازلة على السور والجو اتغيّر لونه. نور ماشية جنبك ساكتة شوية.",
+      "en": "Outside, the sun is falling across the wall and the air has changed colour. Nour walks beside you, quiet for a moment."
+    }},
+
+    "e2": { "id": "e2", "type": "say", "who": "nour", "emote": "smile", "next": "e3", "text": {
+      "ar": "«شفتي؟ اليوم عدّى. وكان أحسن من إنك تقعدي في البيت تعدّي في السقف.»",
+      "en": "\"See? The day passed. And it was better than counting cracks in your ceiling.\""
+    }},
+
+    "e3": { "id": "e3", "type": "say", "who": "player", "emote": "smile", "next": "fin", "text": {
+      "ar": "«ماتزوّديهاش.»",
+      "en": "\"Don't push it.\""
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 140, "xp": 55 },
+      "nextChapter": "s2_c2",
+      "teaser": {
+        "ar": "بكرة نفس القاعة. ونفس البنت اللي بتردّ بنص كلمة.",
+        "en": "Tomorrow, the same hall. And the same girl who answers in half words."
+      }
+    }
+  }
+}

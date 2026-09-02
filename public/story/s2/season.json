@@ -1,0 +1,157 @@
+{
+  "id": "s2",
+  "title": {
+    "ar": "الصيف الطويل",
+    "en": "The Long Summer"
+  },
+  "teaser": {
+    "ar": "المدرسة قفلت، والصحاب اتفرّقوا، والصيف طلع أطول من اللي كنتي متخيلاه.",
+    "en": "School is out, your friends have scattered, and summer turns out longer than you imagined."
+  },
+  "nextSeason": null,
+  "characters": {
+    "player": {
+      "id": "player",
+      "name": {
+        "ar": "إنتِ",
+        "en": "You"
+      },
+      "color": "#FF87A8"
+    },
+    "salma": {
+      "id": "salma",
+      "name": {
+        "ar": "سلمى",
+        "en": "Salma"
+      },
+      "color": "#FF9BC4",
+      "portrait": "salma",
+      "startRel": 72
+    },
+    "nour": {
+      "id": "nour",
+      "name": {
+        "ar": "نور",
+        "en": "Nour"
+      },
+      "color": "#B9AEFF",
+      "portrait": "nour",
+      "startRel": 58
+    },
+    "dina": {
+      "id": "dina",
+      "name": {
+        "ar": "دينا",
+        "en": "Dina"
+      },
+      "color": "#7FE7FF",
+      "portrait": "dina",
+      "startRel": 55
+    },
+    "yara": {
+      "id": "yara",
+      "name": {
+        "ar": "يارا",
+        "en": "Yara"
+      },
+      "color": "#F5C97A",
+      "portrait": "yara",
+      "startRel": 50
+    },
+    "layla": {
+      "id": "layla",
+      "name": {
+        "ar": "ليلى",
+        "en": "Layla"
+      },
+      "color": "#9FE6C4",
+      "startRel": 30
+    },
+    "reem": {
+      "id": "reem",
+      "name": {
+        "ar": "كابتن ريم",
+        "en": "Coach Reem"
+      },
+      "color": "#57D6A6",
+      "startRel": 50
+    },
+    "nadia": {
+      "id": "nadia",
+      "name": {
+        "ar": "تيتة نادية",
+        "en": "Teta Nadia"
+      },
+      "color": "#E8C46A",
+      "startRel": 60
+    }
+  },
+  "chapters": [
+    {
+      "id": "s2_c1",
+      "title": {
+        "ar": "أول يوم صيف",
+        "en": "First Day of Summer"
+      },
+      "teaser": {
+        "ar": "المدرسة قفلت، وفجأة اليوم بقى طويل ومفيهوش حاجة مكتوبة.",
+        "en": "School is out, and suddenly the day is long with nothing written on it."
+      }
+    },
+    {
+      "id": "s2_c2",
+      "title": {
+        "ar": "البنت اللي مش بتردّ",
+        "en": "The Girl Who Doesn't Answer"
+      },
+      "teaser": {
+        "ar": "في المركز بنت جديدة بتردّ على كل سؤال بنص كلمة.",
+        "en": "There is a new girl at the centre who answers every question with half a word."
+      }
+    },
+    {
+      "id": "s2_c3",
+      "title": {
+        "ar": "الغيبة",
+        "en": "The Absence"
+      },
+      "teaser": {
+        "ar": "سلمى وقفت ترد. وإنتِ مش عارفة تلحقيها ولا تسيبيها.",
+        "en": "Salma stopped replying. You cannot tell whether to chase her or let her be."
+      }
+    },
+    {
+      "id": "s2_c4",
+      "title": {
+        "ar": "مكان واحد",
+        "en": "One Spot"
+      },
+      "teaser": {
+        "ar": "فيه مكان واحد في العرض، وإنتوا اتنين.",
+        "en": "There is one spot in the showcase, and there are two of you."
+      }
+    },
+    {
+      "id": "s2_c5",
+      "title": {
+        "ar": "اللي اتقال في السكة",
+        "en": "What Was Said on the Way"
+      },
+      "teaser": {
+        "ar": "ليلى بتتكلم أخيراً، والسبب مش اللي كنتي فاكراه.",
+        "en": "Layla finally talks, and the reason is not what you assumed."
+      }
+    },
+    {
+      "id": "s2_c6",
+      "title": {
+        "ar": "آخر ليلة",
+        "en": "The Last Night"
+      },
+      "teaser": {
+        "ar": "الصيف بيخلص النهاردة، وكل اللي اخترتيه واقف معاكِ.",
+        "en": "Summer ends tonight, and everything you chose is standing with you."
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "id": "s2_c2",
+  "seasonId": "s2",
+  "index": 2,
+  "title": { "ar": "البنت اللي مش بتردّ", "en": "The Girl Who Doesn't Answer" },
+  "teaser": {
+    "ar": "في المركز بنت جديدة بتردّ على كل سؤال بنص كلمة.",
+    "en": "There is a new girl at the centre who answers every question with half a word."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "art_room", "mood": "day", "cast": ["player", "nour", "layla"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "تالت يوم. ليلى بقت بتيجي بدري وتقعد في نفس الكرسي، وتحطّ الجيتار على الطرابيزة وماتفتحوش.",
+      "en": "Third day. Layla now comes early and takes the same chair, puts the guitar on the table and never opens it."
+    }},
+
+    "n2": { "id": "n2", "type": "say", "who": "reem", "emote": "neutral", "next": "n3", "text": {
+      "ar": "«النهاردة هنشتغل اتنين اتنين. كل واحدة تعمل حاجة عن التانية — رسمة، أغنية، أي حاجة. المهم إنها تكون عنها هي.»",
+      "en": "\"Today we work in pairs. Each of you makes something about the other — a drawing, a song, anything. What matters is that it's about her.\""
+    }},
+
+    "n3": { "id": "n3", "type": "say", "who": "nour", "emote": "smile", "next": "n4", "text": {
+      "ar": "«أنا معاكِ طبعاً.»",
+      "en": "\"With you, obviously.\""
+    }},
+
+    "n4": { "id": "n4", "type": "narrate", "next": "c1", "text": {
+      "ar": "ليلى ماقالتش حاجة. بصّت على الطرابيزة وهي عارفة إن مفيش حد هيختارها.",
+      "en": "Layla said nothing. She looked at the table, knowing nobody would pick her."
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "نور مستنيّاكِ.", "en": "Nour is waiting for you."
+    }, "options": [
+      { "id": "c1_layla", "to": "l1",
+        "text": { "ar": "«نور، إنتِ تعرفيني كويس أوي. خليني مع ليلى.»", "en": "\"Nour, you already know me too well. Let me work with Layla.\"" },
+        "hint": { "ar": "مخاطرة", "en": "A risk" },
+        "effects": [ { "trait": "empathy", "delta": 9 }, { "rel": "layla", "delta": 14 }, { "rel": "nour", "delta": -4 }, { "flag": "chose_layla", "value": true } ] },
+      { "id": "c1_nour", "to": "nr1",
+        "text": { "ar": "تقفي مع نور. هي اللي فضلت معاكِ من الأول.", "en": "Stay with Nour. She's the one who stayed." },
+        "hint": { "ar": "وفاء", "en": "Loyalty" },
+        "effects": [ { "trait": "confidence", "delta": 5 }, { "rel": "nour", "delta": 10 }, { "flag": "chose_nour", "value": true } ] },
+      { "id": "c1_three", "to": "th1",
+        "text": { "ar": "«كابتن، ينفع نبقى تلاتة؟»", "en": "\"Coach, can we be three?\"" },
+        "hint": { "ar": "حل تالت", "en": "A third way" },
+        "effects": [ { "trait": "wits", "delta": 9 }, { "rel": "layla", "delta": 7 }, { "rel": "nour", "delta": 4 }, { "flag": "made_trio", "value": true } ] }
+    ]},
+
+    "l1": { "id": "l1", "type": "say", "who": "nour", "emote": "surprised", "next": "l2", "text": {
+      "ar": "«…طب. ماشي.»",
+      "en": "\"…Fine. Okay.\""
+    }},
+
+    "l2": { "id": "l2", "type": "narrate", "next": "work", "text": {
+      "ar": "نور راحت للطرابيزة التانية وقعدت وضهرها ليكِ. وليلى بصّتلك أول بصّة كاملة من يوم ما جت.",
+      "en": "Nour moved to the next table and sat with her back to you. And Layla gave you the first full look since she arrived."
+    }},
+
+    "nr1": { "id": "nr1", "type": "narrate", "next": "nr2", "text": {
+      "ar": "اشتغلتوا سوا، وكان اليوم لطيف. وكل ما ترفعي عينك تلاقي ليلى بتشتغل لوحدها مع كابتن ريم.",
+      "en": "You worked together and the day was pleasant. And every time you looked up, Layla was working alone with Coach Reem."
+    }},
+
+    "nr2": { "id": "nr2", "type": "say", "who": "nour", "emote": "thinking", "next": "work", "text": {
+      "ar": "«بصّيتي عليها تلات مرات في عشر دقايق. أنا بعدّ.»",
+      "en": "\"You've looked over there three times in ten minutes. I've been counting.\""
+    }},
+
+    "th1": { "id": "th1", "type": "say", "who": "reem", "emote": "smile", "next": "th2", "text": {
+      "ar": "«العدد مش المهم. المهم إن كل واحدة تطلع بحاجة عن حد غيرها.»",
+      "en": "\"The number isn't the point. The point is that each of you makes something about someone else.\""
+    }},
+
+    "th2": { "id": "th2", "type": "narrate", "next": "work", "text": {
+      "ar": "قعدتوا تلاتة. ليلى ماتكلمتش كتير، بس ماقامتش ولا مرة.",
+      "en": "The three of you sat together. Layla did not talk much, but she never got up."
+    }},
+
+    "work": { "id": "work", "type": "stage", "mood": "warm", "next": "w1" },
+
+    "w1": { "id": "w1", "type": "narrate", "next": "w2", "text": {
+      "ar": "ساعتين ورق وألوان. اللي حواليكِ بيضحكوا، والقاعة اتملت صوت.",
+      "en": "Two hours of paper and colour. Everyone around you is laughing, and the hall fills with noise."
+    }},
+
+    "w2": { "id": "w2", "type": "say", "who": "layla", "emote": "neutral", "next": "w3", "text": {
+      "ar": "«إنتِ عملتي إيه عني؟ إنتِ متعرفنيش أصلاً.»",
+      "en": "\"What did you make about me? You don't even know me.\""
+    }},
+
+    "w3": { "id": "w3", "type": "narrate", "next": "c2", "text": {
+      "ar": "مش سؤال هجوم. سؤال حقيقي، وهي مستنيّة إجابة.",
+      "en": "It is not an attack. It is a real question, and she is waiting for an answer."
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "تقولي إيه؟", "en": "What do you say?"
+    }, "options": [
+      { "id": "c2_honest", "to": "ho1",
+        "text": { "ar": "«معرفكيش. عشان كده رسمت إيدك على الجيتار وهي مش بتعزف.»", "en": "\"I don't. That's why I drew your hand on the guitar, not playing.\"" },
+        "hint": { "ar": "صدق", "en": "Honesty" },
+        "effects": [ { "trait": "creativity", "delta": 9 }, { "rel": "layla", "delta": 12 }, { "flag": "drew_the_hand", "value": true } ] },
+      { "id": "c2_kind", "to": "ki1",
+        "text": { "ar": "«رسمتك وسط ناس. حاسّة إن ده اللي ناقصك.»", "en": "\"I drew you in a crowd. I think that's what's missing.\"" },
+        "hint": { "ar": "طيبة", "en": "Kindness" },
+        "effects": [ { "trait": "empathy", "delta": 7 }, { "rel": "layla", "delta": 5 } ] },
+      { "id": "c2_deflect", "to": "de1",
+        "text": { "ar": "«حاجة وحشة. ماتبصّيش.»", "en": "\"Something bad. Don't look.\"" },
+        "hint": { "ar": "تهرّب", "en": "Deflection" },
+        "effects": [ { "trait": "wits", "delta": 3 }, { "rel": "layla", "delta": -3 } ] }
+    ]},
+
+    "ho1": { "id": "ho1", "type": "say", "who": "layla", "emote": "surprised", "next": "ho2", "text": {
+      "ar": "«…»",
+      "en": "\"…\""
+    }},
+
+    "ho2": { "id": "ho2", "type": "narrate", "next": "end1", "text": {
+      "ar": "أخدت الورقة وبصّتلها كتير. وبعدين طوّتها وحطّتها في جيبها بدل ما تسيبها على الطرابيزة زي الباقيين.",
+      "en": "She took the paper and looked at it for a long time. Then she folded it into her pocket instead of leaving it on the table like everyone else."
+    }},
+
+    "ki1": { "id": "ki1", "type": "say", "who": "layla", "emote": "sad", "next": "ki2", "text": {
+      "ar": "«اللي ناقصني إنتِ مش عارفاه.»",
+      "en": "\"What's missing isn't something you know about.\""
+    }},
+
+    "ki2": { "id": "ki2", "type": "narrate", "next": "end1", "text": {
+      "ar": "قالتها من غير زعل. زي واحدة بتصحّح معلومة غلط.",
+      "en": "She said it without anger. Like someone correcting a small fact."
+    }},
+
+    "de1": { "id": "de1", "type": "say", "who": "layla", "emote": "neutral", "next": "de2", "text": {
+      "ar": "«تمام.»",
+      "en": "\"Sure.\""
+    }},
+
+    "de2": { "id": "de2", "type": "narrate", "next": "end1", "text": {
+      "ar": "ورجعت تبصّ على الطرابيزة زي أول يوم بالظبط.",
+      "en": "And she went back to looking at the table, exactly like the first day."
+    }},
+
+    "end1": { "id": "end1", "type": "stage", "bg": "yard", "mood": "sunset", "cast": ["player", "layla"], "next": "e1" },
+
+    "e1": { "id": "e1", "type": "narrate", "next": "e2", "text": {
+      "ar": "برّه، ليلى ماشية جنبك لحد البوابة من غير ما حد يطلب منها.",
+      "en": "Outside, Layla walks beside you to the gate without anyone asking her to."
+    }},
+
+    "e2": { "id": "e2", "type": "say", "who": "layla", "emote": "neutral", "next": "e3", "text": {
+      "ar": "«أنا مش بكرهكم. أنا بس مش بعرف أبدأ.»",
+      "en": "\"I don't dislike you. I just don't know how to start.\""
+    }},
+
+    "e3": { "id": "e3", "type": "say", "who": "player", "emote": "smile", "next": "fin", "text": {
+      "ar": "«طب ماإنتِ بدأتي دلوقتي.»",
+      "en": "\"You just did.\""
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 150, "xp": 60 },
+      "nextChapter": "s2_c3",
+      "teaser": {
+        "ar": "سلمى بعتت صورة واحدة من إسكندرية. وبعدين وقفت خالص.",
+        "en": "Salma sent one picture from Alexandria. And then stopped completely."
+      }
+    }
+  }
+}

@@ -52,6 +52,7 @@ interface Actions {
   // ---- القصة ----
   setStoryNode: (nodeId: string | null) => void
   completeChapter: (chapterId: string, nextChapterId: string | null) => void
+  startSeason: (seasonId: string, firstChapterId: string) => void
   adjustTrait: (trait: TraitId, delta: number) => void
   adjustRelationship: (characterId: string, delta: number) => void
   setFlag: (key: string, value: FlagValue) => void
@@ -283,6 +284,25 @@ export const useGame = create<GameStore>()(
         track('chapter_complete', { chapterId, total: s.stats.chaptersCompleted + 1 })
       },
 
+      startSeason: (seasonId, firstChapterId) => {
+        const s = get()
+        if (s.story.seasonId === seasonId) return
+        /*
+          الفصول المكتملة بتفضل زي ما هي: هي سجل اللي اتلعب مش سجل
+          الموسم الحالي، والحلقة اليومية والإحصاءات بتقرا منها.
+        */
+        set({
+          story: {
+            ...s.story,
+            seasonId,
+            chapterId: firstChapterId,
+            nodeId: null,
+            nextUnlockAt: null,
+          },
+        })
+        track('season_start', { seasonId })
+      },
+
       adjustTrait: (trait, delta) => {
         const s = get()
         set({ traits: { ...s.traits, [trait]: clampTrait(s.traits[trait] + delta) } })
@@ -373,7 +393,7 @@ export const useGame = create<GameStore>()(
         const { boot: _b, completeOnboarding: _c, resetAll: _r, grant: _g, spend: _s,
           buyItem: _bi, consumeEnergy: _ce, addEnergy: _ae, wear: _w, setAvatarPart: _sa,
           setRoomSurface: _srs, setRoomSlot: _srl, setRoomMood: _srm, setStoryNode: _ssn,
-          completeChapter: _cc, adjustTrait: _at, adjustRelationship: _ar, setFlag: _sf,
+          completeChapter: _cc, startSeason: _ss2, adjustTrait: _at, adjustRelationship: _ar, setFlag: _sf,
           claimDailyGift: _cd, progressMission: _pm, claimMission: _cm, markMomentSeen: _mm,
           recordAdWatched: _ra, recordMinigame: _rm, updateSettings: _us, ...data } = s
         return data as PlayerState

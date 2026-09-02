@@ -1,0 +1,223 @@
+{
+  "id": "s2_c6",
+  "seasonId": "s2",
+  "index": 6,
+  "title": { "ar": "آخر ليلة", "en": "The Last Night" },
+  "teaser": {
+    "ar": "الصيف بيخلص النهاردة، وكل اللي اخترتيه واقف معاكِ.",
+    "en": "Summer ends tonight, and everything you chose is standing with you."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "hall", "mood": "warm", "cast": ["player", "salma"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "القاعة مليانة. أهالي وكراسي زيادة على الجناب وناس واقفة في الآخر.",
+      "en": "The hall is full. Families, extra chairs along the sides, people standing at the back."
+    }},
+
+    "n2": { "id": "n2", "type": "say", "who": "salma", "emote": "thinking", "next": "b_salma", "text": {
+      "ar": "«إنتِ متوتّرة؟ إيدك سقعة.»",
+      "en": "\"Are you nervous? Your hand is cold.\""
+    }},
+
+    "b_salma": { "id": "b_salma", "type": "branch",
+      "branches": [ { "when": { "flag": "salma_shows" }, "to": "sal_yes" } ],
+      "fallback": "sal_no" },
+
+    "sal_yes": { "id": "sal_yes", "type": "say", "who": "salma", "emote": "smile", "next": "n3", "text": {
+      "ar": "«أنا حاطّة ورقتين على الحيطة اللي هناك. صغيّرين. بس حاطّاهم.»",
+      "en": "\"I put two little sheets on that wall over there. Small ones. But I put them up.\""
+    }},
+
+    "sal_no": { "id": "sal_no", "type": "say", "who": "salma", "emote": "smile", "next": "n3", "text": {
+      "ar": "«أنا قاعدة في الصف التاني. ده كل اللي هعمله وأنا مبسوطة بيه.»",
+      "en": "\"I'm sitting in the second row. That's all I'm doing tonight and I'm happy with it.\""
+    }},
+
+    "n3": { "id": "n3", "type": "stage", "cast": ["player", "layla", "nour"], "mood": "cool", "next": "n4" },
+
+    "n4": { "id": "n4", "type": "say", "who": "nour", "emote": "surprised", "next": "n5", "text": {
+      "ar": "«ليلى مش لاقياها. الدور بتاعها بعد اتنين.»",
+      "en": "\"I can't find Layla. She's on in two.\""
+    }},
+
+    "n5": { "id": "n5", "type": "narrate", "next": "n6", "text": {
+      "ar": "لقيتيها في الممر ورا الكواليس، قاعدة على الأرض وضهرها على الحيطة والجيتار في حضنها.",
+      "en": "You found her in the corridor behind the stage, sitting on the floor with her back to the wall, the guitar in her lap."
+    }},
+
+    "n6": { "id": "n6", "type": "say", "who": "layla", "emote": "sad", "next": "b_promise", "text": {
+      "ar": "«مش قادرة. أنا آسفة. مش قادرة.»",
+      "en": "\"I can't. I'm sorry. I can't.\""
+    }},
+
+    "b_promise": { "id": "b_promise", "type": "branch",
+      "branches": [
+        { "when": { "flag": "promised_stage" }, "to": "pr_yes" },
+        { "when": { "flag": "played_for_you" }, "to": "pr_small" }
+      ],
+      "fallback": "pr_none" },
+
+    "pr_yes": { "id": "pr_yes", "type": "say", "who": "player", "emote": "neutral", "next": "c1", "text": {
+      "ar": "«أنا وعدتك إني هقف جنبك. الوعد لسه واقف.»",
+      "en": "\"I promised I'd stand with you. That promise still stands.\""
+    }},
+
+    "pr_small": { "id": "pr_small", "type": "say", "who": "player", "emote": "neutral", "next": "c1", "text": {
+      "ar": "«إنتِ عزفتي قدامي في الشارع. دول ناس زيّي بالظبط، بس أكتر.»",
+      "en": "\"You played for me on a street. These are people just like me, only more of them.\""
+    }},
+
+    "pr_none": { "id": "pr_none", "type": "say", "who": "player", "emote": "thinking", "next": "c1", "text": {
+      "ar": "«مفيش حد هيزعل لو نزلتي. بس أنا حاسّة إنك هتزعلي من نفسك.»",
+      "en": "\"Nobody will be upset if you step down. But I think you'll be upset with yourself.\""
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "دورها بعد دقيقتين.", "en": "She is on in two minutes."
+    }, "options": [
+      { "id": "c1_with", "to": "wi1",
+        "text": { "ar": "«اطلعي وأنا واقفة وراكِ على المسرح. مش هتشوفيني بس هتعرفي إني هناك.»", "en": "\"Go up. I'll stand behind you. You won't see me, but you'll know I'm there.\"" },
+        "hint": { "ar": "سند", "en": "Support" },
+        "effects": [ { "trait": "empathy", "delta": 12 }, { "rel": "layla", "delta": 16 }, { "flag": "stood_behind", "value": true } ] },
+      { "id": "c1_swap", "to": "sw1",
+        "text": { "ar": "«خلاص. أنا هاخد دورك وإنتِ اقعدي. مش لازم.»", "en": "\"Fine. I'll take your slot and you sit. You don't have to.\"" },
+        "hint": { "ar": "حماية", "en": "Shielding" },
+        "effects": [ { "trait": "confidence", "delta": 8 }, { "rel": "layla", "delta": 6 }, { "flag": "took_slot", "value": true } ] },
+      { "id": "c1_wait", "to": "wt1",
+        "text": { "ar": "تقعدي جنبها على الأرض وتستنّي معاها الدقيقتين.", "en": "Sit beside her on the floor and wait out the two minutes with her." },
+        "hint": { "ar": "وجود", "en": "Presence" },
+        "effects": [ { "trait": "empathy", "delta": 14 }, { "rel": "layla", "delta": 12 }, { "flag": "sat_with_her", "value": true } ] }
+    ]},
+
+    "wi1": { "id": "wi1", "type": "narrate", "next": "stage_on", "text": {
+      "ar": "قامت. مسحت إيدها في البنطلون مرتين. ومشيت قدامك للنور.",
+      "en": "She stood. Wiped her hands on her jeans twice. And walked ahead of you into the light."
+    }},
+
+    "sw1": { "id": "sw1", "type": "say", "who": "layla", "emote": "thinking", "next": "sw2", "text": {
+      "ar": "«لأ.»",
+      "en": "\"No.\""
+    }},
+
+    "sw2": { "id": "sw2", "type": "say", "who": "layla", "emote": "neutral", "next": "stage_on", "text": {
+      "ar": "«لو سيبتك تاخديه دلوقتي، هفضل طول عمري أسيب حد ياخده.»",
+      "en": "\"If I let you take it now, I'll spend my life letting someone take it.\""
+    }},
+
+    "wt1": { "id": "wt1", "type": "narrate", "next": "wt2", "text": {
+      "ar": "قعدتوا على الأرض. الصوت جاي من ورا الحيطة، تصفيق وضحك.",
+      "en": "You sat on the floor. The sound came through the wall — applause, laughter."
+    }},
+
+    "wt2": { "id": "wt2", "type": "say", "who": "layla", "emote": "neutral", "next": "stage_on", "text": {
+      "ar": "«…طب يلا. قبل ما أغيّر رأيي.»",
+      "en": "\"…Okay. Before I change my mind.\""
+    }},
+
+    "stage_on": { "id": "stage_on", "type": "stage", "bg": "hall", "mood": "night", "cast": ["player", "layla"], "next": "so1" },
+
+    "so1": { "id": "so1", "type": "narrate", "next": "so2", "text": {
+      "ar": "النور نزل عليها. القاعة سكتت. وأول نغمة طلعت مرتعشة.",
+      "en": "The light fell on her. The hall went quiet. The first note came out shaking."
+    }},
+
+    "so2": { "id": "so2", "type": "narrate", "next": "so3", "text": {
+      "ar": "والتانية كانت أثبت. والتالتة محدش فيهم كان فاكر إنها كانت خايفة.",
+      "en": "The second was steadier. By the third, nobody in the room remembered she had been afraid."
+    }},
+
+    "so3": { "id": "so3", "type": "stage", "cast": ["player", "layla", "salma", "nour"], "mood": "warm", "next": "so4" },
+
+    "so4": { "id": "so4", "type": "say", "who": "reem", "emote": "smile", "next": "b_nom", "text": {
+      "ar": "«الترشيح للمؤسسة… راح لليلى.»",
+      "en": "\"The foundation nomination… goes to Layla.\""
+    }},
+
+    "b_nom": { "id": "b_nom", "type": "branch",
+      "branches": [
+        { "when": { "flag": "worked_together" }, "to": "nom_together" },
+        { "when": { "flag": "questioned_rule" }, "to": "nom_rule" }
+      ],
+      "fallback": "nom_plain" },
+
+    "nom_together": { "id": "nom_together", "type": "say", "who": "reem", "emote": "neutral", "next": "after", "text": {
+      "ar": "«والحاجة اللي اتعرضت اتعملت باتنين. أنا كتبت الاسمين في التقرير، وقلتلهم إن ده اللي حصل فعلاً.»",
+      "en": "\"And the piece we saw was made by two. I wrote both names in the report and told them that's simply what happened.\""
+    }},
+
+    "nom_rule": { "id": "nom_rule", "type": "say", "who": "reem", "emote": "neutral", "next": "after", "text": {
+      "ar": "«وفيه حد هنا سألني قبل كده ليه واحدة بس. أنا بعتّ السؤال ده للمؤسسة. مردّوش لسه — بس السؤال اتسأل.»",
+      "en": "\"And someone here asked me why only one. I sent that question on. They haven't answered yet — but it was asked.\""
+    }},
+
+    "nom_plain": { "id": "nom_plain", "type": "narrate", "next": "after", "text": {
+      "ar": "التصفيق ملا القاعة. وليلى بصّت ناحيتك قبل ما تبصّ لأي حد تاني.",
+      "en": "Applause filled the hall. And Layla looked toward you before she looked at anyone else."
+    }},
+
+    "after": { "id": "after", "type": "stage", "bg": "yard", "mood": "night", "cast": ["player", "salma"], "next": "af1" },
+
+    "af1": { "id": "af1", "type": "narrate", "next": "af2", "text": {
+      "ar": "برّه، الحديقة فاضية والقاعة لسه مضوّية وراكم. سلمى واقفة جنبك.",
+      "en": "Outside, the garden is empty and the hall is still lit behind you. Salma stands beside you."
+    }},
+
+    "af2": { "id": "af2", "type": "say", "who": "salma", "emote": "sad", "next": "af3", "text": {
+      "ar": "«أنا بسافر بعد بكرة.»",
+      "en": "\"I leave the day after tomorrow.\""
+    }},
+
+    "af3": { "id": "af3", "type": "narrate", "next": "c2", "text": {
+      "ar": "ستة أسابيع عدّوا. واللي كان قدامك كله بقى ورا ضهرك.",
+      "en": "Six weeks passed. Everything that was ahead of you is now behind you."
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "آخر جملة في الصيف.", "en": "The last sentence of the summer."
+    }, "options": [
+      { "id": "c2_keep", "to": "k1",
+        "text": { "ar": "«الحتة دي مش هتبقى نفسها من غيرك. وأنا هفضل أبعتلك كل حاجة.»", "en": "\"This place won't be the same without you. And I'll keep sending you everything.\"" },
+        "hint": { "ar": "وعد", "en": "A promise" },
+        "effects": [ { "trait": "empathy", "delta": 10 }, { "rel": "salma", "delta": 15 } ] },
+      { "id": "c2_thanks", "to": "k2",
+        "text": { "ar": "«شكراً إنك جيتي المركز. كنتي ممكن تقضّي الصيف زعلانة في البيت.»", "en": "\"Thank you for coming to the centre. You could have spent the summer sad at home.\"" },
+        "hint": { "ar": "امتنان", "en": "Gratitude" },
+        "effects": [ { "trait": "wits", "delta": 8 }, { "rel": "salma", "delta": 12 } ] },
+      { "id": "c2_silent", "to": "k3",
+        "text": { "ar": "ماتقوليش حاجة. تمسكي إيدها وتبصّوا للقاعة سوا.", "en": "Say nothing. Take her hand and look at the hall together." },
+        "hint": { "ar": "سكوت", "en": "Silence" },
+        "effects": [ { "trait": "empathy", "delta": 13 }, { "rel": "salma", "delta": 14 } ] }
+    ]},
+
+    "k1": { "id": "k1", "type": "say", "who": "salma", "emote": "smile", "next": "last", "text": {
+      "ar": "«وأنا هرد. حتى لو بعد أسبوع.»",
+      "en": "\"And I'll reply. Even if it takes a week.\""
+    }},
+
+    "k2": { "id": "k2", "type": "say", "who": "salma", "emote": "smile", "next": "last", "text": {
+      "ar": "«ما هو إنتِ اللي جبتيني.»",
+      "en": "\"You're the one who brought me.\""
+    }},
+
+    "k3": { "id": "k3", "type": "narrate", "next": "last", "text": {
+      "ar": "وقفتوا كده لحد ما النور جوّه اتقفل.",
+      "en": "You stood like that until the lights inside went out."
+    }},
+
+    "last": { "id": "last", "type": "narrate", "next": "fin", "text": {
+      "ar": "الصيف اللي بدأ فاضي في سقف أوضتك، خلص وإنتِ واقفة في حديقة مع ناس ماكنتيش تعرفيهم في يونيو.",
+      "en": "The summer that began as an empty ceiling above your bed ended with you standing in a garden beside people you did not know in June."
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 300, "xp": 140, "gems": 6 },
+      "nextChapter": null,
+      "teaser": {
+        "ar": "المدرسة بتفتح الأسبوع الجاي. وفيه كرسي فاضي في الصف.",
+        "en": "School opens next week. And there is an empty chair in the classroom."
+      }
+    }
+  }
+}

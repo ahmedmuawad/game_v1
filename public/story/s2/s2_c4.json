@@ -1,0 +1,150 @@
+{
+  "id": "s2_c4",
+  "seasonId": "s2",
+  "index": 4,
+  "title": { "ar": "مكان واحد", "en": "One Spot" },
+  "teaser": {
+    "ar": "فيه مكان واحد في العرض، وإنتوا اتنين.",
+    "en": "There is one spot in the showcase, and there are two of you."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "hall", "mood": "cool", "cast": ["player", "nour", "layla"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "قاعة العرض من جوّه أكبر من اللي كنتي فاكراها. الكراسي متصفّة، والمسرح فاضي ومضوّي.",
+      "en": "The hall is bigger from inside than you imagined. The chairs are in rows, and the stage is empty and lit."
+    }},
+
+    "n2": { "id": "n2", "type": "say", "who": "reem", "emote": "neutral", "next": "n3", "text": {
+      "ar": "«خبر. مؤسسة الفنون بتاخد طالبة واحدة من كل مركز لبرنامج السنة الجاية. مصاريف مدفوعة، وأدوات، وأستاذ.»",
+      "en": "\"News. The arts foundation takes one student from each centre for next year's program. Fees covered, materials, a teacher.\""
+    }},
+
+    "n3": { "id": "n3", "type": "say", "who": "reem", "emote": "neutral", "next": "n4", "text": {
+      "ar": "«واحدة. مش اتنين. وأنا هرشّح على أساس اللي هشوفه في العرض.»",
+      "en": "\"One. Not two. And I'll nominate based on what I see at the showcase.\""
+    }},
+
+    "n4": { "id": "n4", "type": "narrate", "next": "n5", "text": {
+      "ar": "القاعة سكتت. وكل واحدة بصّت على اللي جنبها من غير ما تقصد.",
+      "en": "The hall went quiet. And everyone glanced at the person beside them without meaning to."
+    }},
+
+    "n5": { "id": "n5", "type": "say", "who": "nour", "emote": "thinking", "next": "n6", "text": {
+      "ar": "«إنتِ وليلى. دول أحسن اتنين هنا وكلنا عارفين.»",
+      "en": "\"You and Layla. You're the best two here and everyone knows it.\""
+    }},
+
+    "n6": { "id": "n6", "type": "narrate", "next": "c1", "text": {
+      "ar": "ليلى ماقالتش حاجة. بس إيدها لأول مرة كانت على الجيتار مقفولة عليه.",
+      "en": "Layla said nothing. But for the first time her hand was on the guitar, closed around it."
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "الأسابيع الجاية هتشتغلي إزاي؟", "en": "How will you work the coming weeks?"
+    }, "options": [
+      { "id": "c1_alone", "to": "al1",
+        "text": { "ar": "تشتغلي لوحدك. الفرصة دي مش بتتكرّر.", "en": "Work alone. A chance like this doesn't repeat." },
+        "hint": { "ar": "طموح", "en": "Ambition" },
+        "effects": [ { "trait": "confidence", "delta": 10 }, { "rel": "layla", "delta": -6 }, { "flag": "worked_alone", "value": true } ] },
+      { "id": "c1_together", "to": "tg1",
+        "text": { "ar": "«ليلى، نشتغل سوا؟ ريم قالت عرض مش مسابقة.»", "en": "\"Layla, want to work together? Reem said showcase, not contest.\"" },
+        "hint": { "ar": "رهان", "en": "A gamble" },
+        "effects": [ { "trait": "empathy", "delta": 10 }, { "rel": "layla", "delta": 15 }, { "flag": "worked_together", "value": true } ] },
+      { "id": "c1_ask", "to": "ak1",
+        "text": { "ar": "«كابتن، ينفع الترشيح يبقى لحاجة اتعملت باتنين؟»", "en": "\"Coach, can the nomination go to something two people made?\"" },
+        "hint": { "ar": "سؤال صعب", "en": "A hard question" },
+        "effects": [ { "trait": "wits", "delta": 11 }, { "rel": "reem", "delta": 8 }, { "flag": "questioned_rule", "value": true } ] }
+    ]},
+
+    "al1": { "id": "al1", "type": "narrate", "next": "al2", "text": {
+      "ar": "اشتغلتي أسبوعين لوحدك. وكل يوم كنتي بتقعدي بعيد شوية عن الطرابيزة الكبيرة.",
+      "en": "You worked alone for two weeks. Every day you sat a little further from the big table."
+    }},
+
+    "al2": { "id": "al2", "type": "say", "who": "layla", "emote": "neutral", "next": "mid", "text": {
+      "ar": "«شغلك حلو. بجد.»",
+      "en": "\"Your work is good. Really.\""
+    }},
+
+    "tg1": { "id": "tg1", "type": "say", "who": "layla", "emote": "surprised", "next": "tg2", "text": {
+      "ar": "«إنتِ فاهمة إن ده معناه إن واحدة فينا بس هتاخدها؟»",
+      "en": "\"You understand that only one of us can still get it?\""
+    }},
+
+    "tg2": { "id": "tg2", "type": "say", "who": "player", "emote": "neutral", "next": "tg3", "text": {
+      "ar": "«فاهمة. وبردو.»",
+      "en": "\"I understand. And still.\""
+    }},
+
+    "tg3": { "id": "tg3", "type": "narrate", "next": "mid", "text": {
+      "ar": "فتحت الجيتار لأول مرة قدام حد. وعزفت تلات نغمات وبعدين وقفت. بس تلاتة كانوا كفاية عشان تعرفي إنها مش «شوية».",
+      "en": "She opened the guitar in front of someone for the first time. Three notes, then she stopped. Three were enough to know it was not \"a bit\"."
+    }},
+
+    "ak1": { "id": "ak1", "type": "say", "who": "reem", "emote": "thinking", "next": "ak2", "text": {
+      "ar": "«لأ. المؤسسة بتاخد واحدة.»",
+      "en": "\"No. The foundation takes one.\""
+    }},
+
+    "ak2": { "id": "ak2", "type": "say", "who": "reem", "emote": "neutral", "next": "ak3", "text": {
+      "ar": "«بس السؤال كويس. وأنا هبلّغهم إنه اتسأل.»",
+      "en": "\"But it's a good question. And I'll tell them it was asked.\""
+    }},
+
+    "ak3": { "id": "ak3", "type": "narrate", "next": "mid", "text": {
+      "ar": "ليلى بصّتلك. مش شكر — حاجة أقرب لدهشة.",
+      "en": "Layla looked at you. Not thanks — something closer to surprise."
+    }},
+
+    "mid": { "id": "mid", "type": "stage", "bg": "art_room", "mood": "warm", "cast": ["player", "salma", "layla"], "next": "m1" },
+
+    "m1": { "id": "m1", "type": "narrate", "next": "m2", "text": {
+      "ar": "الأسبوع اللي بعده، سلمى بقت بتيجي. بتقعد في الآخر وترسم حاجات صغيرة ومتقولش إنها بترسم.",
+      "en": "The week after, Salma started coming. She sits at the end drawing small things and refuses to call it drawing."
+    }},
+
+    "m2": { "id": "m2", "type": "say", "who": "salma", "emote": "smile", "next": "m3", "text": {
+      "ar": "«أنا مش هعرض حاجة. أنا جاية عشان الأوضة دي مريحة.»",
+      "en": "\"I'm not showing anything. I come because this room is calm.\""
+    }},
+
+    "m3": { "id": "m3", "type": "say", "who": "layla", "emote": "neutral", "next": "c2", "text": {
+      "ar": "«اللي بترسميه ده أحسن من نص اللي معلّق على الحيطة.»",
+      "en": "\"What you're drawing is better than half of what's on that wall.\""
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "سلمى هتمشي بعد أربع أسابيع.", "en": "Salma leaves in four weeks."
+    }, "options": [
+      { "id": "c2_push", "to": "pu1",
+        "text": { "ar": "«اعرضي حاجة. عايزة حاجة منك تفضل هنا بعد ما تمشي.»", "en": "\"Show something. I want something of yours to stay here after you go.\"" },
+        "hint": { "ar": "دفع", "en": "A push" },
+        "effects": [ { "trait": "confidence", "delta": 7 }, { "rel": "salma", "delta": 10 }, { "flag": "salma_shows", "value": true } ] },
+      { "id": "c2_let", "to": "le1",
+        "text": { "ar": "«ماتعرضيش. اقعدي بس. ده كفاية.»", "en": "\"Don't show anything. Just be here. That's enough.\"" },
+        "hint": { "ar": "راحة", "en": "Ease" },
+        "effects": [ { "trait": "empathy", "delta": 9 }, { "rel": "salma", "delta": 8 } ] }
+    ]},
+
+    "pu1": { "id": "pu1", "type": "say", "who": "salma", "emote": "sad", "next": "fin", "text": {
+      "ar": "«…طب سيبيني أفكّر.»",
+      "en": "\"…Let me think about it.\""
+    }},
+
+    "le1": { "id": "le1", "type": "say", "who": "salma", "emote": "smile", "next": "fin", "text": {
+      "ar": "«شكراً. مش كل الناس بتفهم إن ده كفاية.»",
+      "en": "\"Thank you. Not everyone understands that it's enough.\""
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 190, "xp": 80 },
+      "nextChapter": "s2_c5",
+      "teaser": {
+        "ar": "ليلى طلبت تمشي معاكِ لحد البيت. ومشيت السكة كلها ساكتة لحد آخر شارع.",
+        "en": "Layla asked to walk you home. She stayed silent the whole way until the last street."
+      }
+    }
+  }
+}

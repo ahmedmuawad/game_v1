@@ -18,7 +18,8 @@
     "cap:sync": "vite build && cap sync",
     "cap:android": "vite build && cap sync android && cap open android",
     "cap:ios": "vite build && cap sync ios && cap open ios",
-    "android:apk": "vite build && cap sync android && cd android && ./gradlew assembleDebug"
+    "android:apk": "vite build && cap sync android && cd android && ./gradlew assembleDebug",
+    "story:validate": "node tools/qa/story-validate.mjs"
   },
   "dependencies": {
     "@capacitor-firebase/authentication": "^8.5.0",

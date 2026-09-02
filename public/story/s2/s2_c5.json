@@ -1,0 +1,139 @@
+{
+  "id": "s2_c5",
+  "seasonId": "s2",
+  "index": 5,
+  "title": { "ar": "اللي اتقال في السكة", "en": "What Was Said on the Way" },
+  "teaser": {
+    "ar": "ليلى بتتكلم أخيراً، والسبب مش اللي كنتي فاكراه.",
+    "en": "Layla finally talks, and the reason is not what you assumed."
+  },
+  "start": "open",
+  "nodes": {
+    "open": { "id": "open", "type": "stage", "bg": "corridor", "mood": "sunset", "cast": ["player", "layla"], "next": "n1" },
+
+    "n1": { "id": "n1", "type": "narrate", "next": "n2", "text": {
+      "ar": "الشارع طويل والضوّ بقى برتقاني. ليلى ماشية جنبك من ربع ساعة ومقالتش غير «تعالي».",
+      "en": "The street is long and the light has turned orange. Layla has been walking beside you for fifteen minutes and has said only \"come\"."
+    }},
+
+    "n2": { "id": "n2", "type": "say", "who": "layla", "emote": "neutral", "next": "n3", "text": {
+      "ar": "«إنتوا كلكم فاكرين إني بستكبر.»",
+      "en": "\"All of you think I'm stuck up.\""
+    }},
+
+    "n3": { "id": "n3", "type": "say", "who": "layla", "emote": "sad", "next": "n4", "text": {
+      "ar": "«أنا كنت في مدرسة تانية. وكان فيه بنات… خلاص. مش مهم إيه اللي حصل.»",
+      "en": "\"I was at another school. There were girls… anyway. It doesn't matter what happened.\""
+    }},
+
+    "n4": { "id": "n4", "type": "say", "who": "layla", "emote": "sad", "next": "c1", "text": {
+      "ar": "«المهم إني اتعلّمت إن أول ما أتكلّم عن حاجة بحبها، حد بيلاقي طريقة يخلّيني أكرهها.»",
+      "en": "\"What matters is I learned that the moment I talk about something I love, someone finds a way to make me hate it.\""
+    }},
+
+    "c1": { "id": "c1", "type": "choice", "prompt": {
+      "ar": "دي أول مرة تتكلّم فيها عن نفسها.", "en": "This is the first time she has spoken about herself."
+    }, "options": [
+      { "id": "c1_listen", "to": "li1",
+        "text": { "ar": "تسكتي وتمشي جنبها. لو عايزة تكمّل هتكمّل.", "en": "Stay quiet and keep walking. If she wants to go on, she will." },
+        "hint": { "ar": "إنصات", "en": "Listening" },
+        "effects": [ { "trait": "empathy", "delta": 11 }, { "rel": "layla", "delta": 13 } ] },
+      { "id": "c1_share", "to": "sh1",
+        "text": { "ar": "«أنا كمان كان فيه سنة مكنتش بقول فيها إني برسم.»", "en": "\"There was a year I didn't tell anyone I draw either.\"" },
+        "hint": { "ar": "مقابلة", "en": "Meeting her" },
+        "effects": [ { "trait": "confidence", "delta": 7 }, { "rel": "layla", "delta": 11 }, { "flag": "shared_own", "value": true } ] },
+      { "id": "c1_defend", "to": "df1",
+        "text": { "ar": "«مين البنات دول؟ اللي عملوه ده مش عادي.»", "en": "\"Who were they? What they did isn't normal.\"" },
+        "hint": { "ar": "غضب", "en": "Anger" },
+        "effects": [ { "trait": "confidence", "delta": 8 }, { "rel": "layla", "delta": 4 } ] }
+    ]},
+
+    "li1": { "id": "li1", "type": "narrate", "next": "core", "text": {
+      "ar": "مشيتوا شارعين تانيين من غير كلام. وفي آخر الشارع التاني كمّلت هي.",
+      "en": "You walked two more streets in silence. At the end of the second one, she went on."
+    }},
+
+    "sh1": { "id": "sh1", "type": "say", "who": "layla", "emote": "surprised", "next": "core", "text": {
+      "ar": "«وليه بطّلتي تخبّي؟»",
+      "en": "\"And why did you stop hiding it?\""
+    }},
+
+    "df1": { "id": "df1", "type": "say", "who": "layla", "emote": "neutral", "next": "core", "text": {
+      "ar": "«مش عايزة حد يزعل عشاني. عايزة حد يفهم بس.»",
+      "en": "\"I don't need anyone angry for me. I need someone to understand.\""
+    }},
+
+    "core": { "id": "core", "type": "say", "who": "layla", "emote": "thinking", "next": "co2", "text": {
+      "ar": "«أنا مش خايفة أخسر المكان في المؤسسة. أنا خايفة أكسبه.»",
+      "en": "\"I'm not afraid of losing the foundation spot. I'm afraid of getting it.\""
+    }},
+
+    "co2": { "id": "co2", "type": "say", "who": "layla", "emote": "sad", "next": "co3", "text": {
+      "ar": "«لو كسبته يبقى لازم أقف قدام ناس وأعزف. وأنا آخر مرة عملت كده…»",
+      "en": "\"If I get it, I'll have to stand in front of people and play. And the last time I did that…\""
+    }},
+
+    "co3": { "id": "co3", "type": "narrate", "next": "c2", "text": {
+      "ar": "ماكمّلتش الجملة. وماكانش لازم.",
+      "en": "She did not finish the sentence. She did not need to."
+    }},
+
+    "c2": { "id": "c2", "type": "choice", "prompt": {
+      "ar": "العرض بعد أسبوعين.", "en": "The showcase is in two weeks."
+    }, "options": [
+      { "id": "c2_stage", "to": "st1",
+        "text": { "ar": "«اعزفي وأنا واقفة على المسرح جنبك. مش هتكوني لوحدك.»", "en": "\"Play, and I'll stand on the stage with you. You won't be alone.\"" },
+        "hint": { "ar": "عهد", "en": "A promise" },
+        "effects": [ { "trait": "empathy", "delta": 10 }, { "rel": "layla", "delta": 16 }, { "flag": "promised_stage", "value": true } ] },
+      { "id": "c2_choice", "to": "ch1",
+        "text": { "ar": "«ماتعزفيش. اعرضي حاجة تانية. الاختيار اختيارك.»", "en": "\"Then don't play. Show something else. It's your choice.\"" },
+        "hint": { "ar": "تحرير", "en": "Release" },
+        "effects": [ { "trait": "wits", "delta": 9 }, { "rel": "layla", "delta": 9 }, { "flag": "offered_out", "value": true } ] },
+      { "id": "c2_small", "to": "sm1",
+        "text": { "ar": "«اعزفيلي أنا بس دلوقتي. من غير مسرح ولا حد.»", "en": "\"Play for me right now. No stage, no one else.\"" },
+        "hint": { "ar": "خطوة صغيرة", "en": "A small step" },
+        "effects": [ { "trait": "creativity", "delta": 10 }, { "rel": "layla", "delta": 14 }, { "flag": "played_for_you", "value": true } ] }
+    ]},
+
+    "st1": { "id": "st1", "type": "say", "who": "layla", "emote": "surprised", "next": "close", "text": {
+      "ar": "«إنتِ هتقفي معايا وإنتِ عارفة إن ده ممكن يخلّيها تاخد المكان بدالك؟»",
+      "en": "\"You'd stand with me knowing it might hand her the spot instead of you?\""
+    }},
+
+    "ch1": { "id": "ch1", "type": "say", "who": "layla", "emote": "thinking", "next": "close", "text": {
+      "ar": "«أول مرة حد يقولي إن ليا اختيار في الموضوع.»",
+      "en": "\"That's the first time anyone told me I had a choice in it.\""
+    }},
+
+    "sm1": { "id": "sm1", "type": "narrate", "next": "sm2", "text": {
+      "ar": "قعدت على الرصيف. فتحت الشنطة. وعزفت.",
+      "en": "She sat on the kerb. Opened the case. And played."
+    }},
+
+    "sm2": { "id": "sm2", "type": "narrate", "next": "close", "text": {
+      "ar": "دقيقتين. شارع فاضي وبنت واحدة سامعة. وخلصت وإيدها بترجف — بس هي مبتسمة.",
+      "en": "Two minutes. An empty street and one listener. She finished with her hands shaking — and she was smiling."
+    }},
+
+    "close": { "id": "close", "type": "stage", "mood": "night", "next": "cl1" },
+
+    "cl1": { "id": "cl1", "type": "say", "who": "layla", "emote": "smile", "next": "cl2", "text": {
+      "ar": "«شكراً إنك مسألتنيش ليه من أول يوم.»",
+      "en": "\"Thank you for not asking me why on the first day.\""
+    }},
+
+    "cl2": { "id": "cl2", "type": "narrate", "next": "fin", "text": {
+      "ar": "ومشيت. وأول مرة من أول الصيف تبصّ ورا وتوّدع بإيدها.",
+      "en": "And she walked off. And for the first time all summer she looked back and waved."
+    }},
+
+    "fin": { "id": "fin", "type": "end",
+      "reward": { "coins": 210, "xp": 90 },
+      "nextChapter": "s2_c6",
+      "teaser": {
+        "ar": "بكرة العرض. وسلمى بتسافر بعده بيومين.",
+        "en": "Tomorrow is the showcase. And Salma leaves two days after."
+      }
+    }
+  }
+}
