@@ -11,6 +11,7 @@ import {
 } from '@/systems/story'
 import { Button } from '@/components/ui'
 import { IconBack } from '@/app/icons'
+import { SceneBackdrop } from './SceneBackdrop'
 import './story.css'
 
 interface Props {
@@ -107,6 +108,13 @@ export function StoryReader({ chapter, season, manifest, onExit, onComplete }: P
 
   return (
     <div className="story" style={{ background: bg }}>
+      {/*
+        المكان بيترسم كطبقة تحت كل حاجة. حقل `bg` كان متجاهَل تمامًا في
+        القارئ رغم إنه محدَّد في كل عقدة مشهد — الكاتب بيوصّف بوابة
+        مدرسة والشاشة بتعرض تدرّجًا مجرّدًا.
+      */}
+      <SceneBackdrop bg={stage.bg} mood={stage.mood} />
+
       <div className="story__top">
         <button className="story__back" onClick={onExit} aria-label={t('common.back')}>
           <IconBack />

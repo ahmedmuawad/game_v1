@@ -59,22 +59,34 @@
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, .45));
   pointer-events: none;
   transition: filter var(--d-base) var(--ease-out);
-  /* إطار التصيير بيقطع الكتف بحدّ حاد — التلاشي بيذوّب الحافة في المشهد */
+  /*
+    البورتريه مقصوص من تصيير ثلاثي الأبعاد، فحوافه الأربعة حادة —
+    والنتيجة مستطيل باين حوالين الشخصية بدل ما تكون واقفة في المشهد.
+    القناع بيذوّب الأسفل والجانبين مع بعض عن طريق تقاطع تدرّجين.
+  */
   -webkit-mask-image:
-    linear-gradient(to bottom, #000 72%, transparent 99%),
-    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+    linear-gradient(to bottom, #000 68%, transparent 97%),
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to bottom, #000 72%, transparent 99%),
-    linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+    linear-gradient(to bottom, #000 68%, transparent 97%),
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%);
   mask-composite: intersect;
 }
+
 .story__char--active { filter: drop-shadow(0 14px 32px rgba(0, 0, 0, .52)); }
 
 /* اللاعبة دائمًا على الجانب المقابل عشان المواجهة تتقري صح */
 .story__char--player {
-  -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 99%);
-  mask-image: linear-gradient(to bottom, #000 74%, transparent 99%);
+  /* نفس تذويب الحواف بتاع باقي الطاقم — القاعدة دي كانت بتدهسه */
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 74%, transparent 99%),
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 74%, transparent 99%),
+    linear-gradient(to right, transparent 0%, #000 26%, #000 74%, transparent 100%);
+  mask-composite: intersect;
   inset-inline-start: auto !important;
   inset-inline-end: 2%;
   height: auto;
@@ -177,3 +189,33 @@
   font-weight: var(--fw-semi);
   color: var(--c-accent);
 }
+
+/*
+  خلفية المكان: طبقة تحت المحتوى كله.
+
+  النسبة مقفولة على نسبة إطار المشهد (390×260) و`meet` بدل `slice`:
+  الشاشات الطويلة كانت بتكبّر الرسمة لدرجة إن قضبان سور المدرسة تطلع
+  أعرض من الشخصية نفسها. المكان خلفية لا بطل.
+*/
+.story__backdrop {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 390 / 260;
+  z-index: 0;
+  pointer-events: none;
+  /*
+    الطبقة كلها بتتلاشى لتحت فتذوب في خلفية الصفحة مهما كان لونها —
+    بديل عن تعتيم مرسوم جوّه الـSVG، اللي كان بيوقف عند حافة الإطار
+    ويسيب خطًا أفقيًا حادًا وسط المشهد.
+  */
+  -webkit-mask-image: linear-gradient(to bottom, #000 48%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 48%, transparent 96%);
+}
+
+/* المحتوى فوق الخلفية */
+.story__top,
+.story__stage,
+.story__box { position: relative; z-index: 1; }
