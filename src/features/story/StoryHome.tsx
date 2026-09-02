@@ -4,6 +4,7 @@ import { useI18n } from '@/i18n'
 import { useGame, selectEnergyMax } from '@/state/store'
 import { useToast } from '@/app/toast'
 import { haptic } from '@/app/haptics'
+import { celebrate } from '@/components/ui/Celebration'
 import { AvatarView } from '@/components/avatar/AvatarView'
 import type { AvatarManifest } from '@/content/manifest'
 import { loadChapter, loadSeason, prefetchChapter, type Chapter, type SeasonMeta } from '@/systems/story'
@@ -68,7 +69,10 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
 
   function complete(chapterId: string, next: string | null,
                     reward?: { coins?: number; gems?: number; xp?: number; items?: string[] }) {
-    if (reward) store.grant(reward, `chapter:${chapterId}`)
+    if (reward) {
+      const g = store.grant(reward, `chapter:${chapterId}`)
+      celebrate({ coins: g.coins, gems: g.gems, levels: g.levelsGained, title: tx(active?.title) })
+    }
     store.completeChapter(chapterId, next)
     if (next && season) prefetchChapter(season.id, next)
     setActive(null)
@@ -134,7 +138,15 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
       <div className="screen__scroll">
         <header className="home__hero">
           <div className="home__hero-text">
-            <h1 className="h1">{store.name ? t('onb.welcome.title') : t('app.name')}</h1>
+            {/*
+              الاسم اللي كتبته اللاعبة يظهر هنا. الشرط كان بيتأكد إن فيه
+              اسم وبعدين يعرض نص الترحيب العام بدله — بقايا من وقت ما
+              الأونبوردنج مكانش موجود، فاللاعبة كانت بتكتب اسمها
+              وماتشوفوش في أي مكان في اللعبة.
+            */}
+            <h1 className="h1">
+              {store.name ? t('home.greeting', { name: store.name }) : t('app.name')}
+            </h1>
             {/* السلسلة اتشالت من هنا — بقت معروضة بوضوح في كارت اليوم تحت */}
             <div className="caption muted">
               {t('common.level')} {store.level}

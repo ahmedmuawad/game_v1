@@ -2,7 +2,9 @@ import { StrictMode, useEffect, useMemo, useState, type ReactElement } from 'rea
 import { createRoot } from 'react-dom/client'
 import { I18nContext, applyLocaleToDocument, createI18n, useI18n } from '@/i18n'
 import { ToastProvider } from '@/app/toast'
+import { CelebrationHost } from '@/components/ui/Celebration'
 import { setHapticsEnabled, haptic } from '@/app/haptics'
+import { setSfxEnabled } from '@/app/sound'
 import { useGame } from '@/state/store'
 import { initAds } from '@/systems/ads'
 import { initNative } from '@/app/native'
@@ -59,6 +61,7 @@ function App() {
 
   useEffect(() => { applyLocaleToDocument(locale) }, [locale])
   useEffect(() => { setHapticsEnabled(settings.haptics) }, [settings.haptics])
+  useEffect(() => { setSfxEnabled(settings.sfx) }, [settings.sfx])
   useEffect(() => {
     boot()
     void initNative()
@@ -79,6 +82,7 @@ function App() {
       <I18nContext.Provider value={i18n}>
         <ToastProvider>
           <Onboarding manifest={manifest} />
+          <CelebrationHost />
         </ToastProvider>
       </I18nContext.Provider>
     )
@@ -94,6 +98,7 @@ function App() {
           {tab === 'play' && <PlayScreen manifest={manifest} />}
           {tab === 'shop' && <ShopScreen manifest={manifest} />}
           <NavBar tab={tab} onChange={setTab} />
+          <CelebrationHost />
         </div>
       </ToastProvider>
     </I18nContext.Provider>

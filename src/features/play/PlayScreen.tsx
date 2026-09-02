@@ -4,6 +4,7 @@ import { useI18n } from '@/i18n'
 import { useGame } from '@/state/store'
 import { useToast } from '@/app/toast'
 import { haptic } from '@/app/haptics'
+import { celebrate } from '@/components/ui/Celebration'
 import { Button, CoinIcon, CurrencyPill } from '@/components/ui'
 import { IconPlay, IconSpark } from '@/app/icons'
 import type { AvatarManifest } from '@/content/manifest'
@@ -44,10 +45,13 @@ export function PlayScreen({ manifest }: { manifest: AvatarManifest | null }) {
   function finish(id: GameId, res: GameResult) {
     const earned = coinsForResult(res)
     const isBest = recordMinigame(id, res.score)
-    grant({ coins: earned, xp: xpForResult(res) }, `minigame:${id}`)
+    const g = grant({ coins: earned, xp: xpForResult(res) }, `minigame:${id}`)
     setResult({ res, coins: earned, best: isBest })
     haptic(isBest ? 'success' : 'select')
     if (isBest) toast(t('play.newBest'), 'good')
+    /* الاحتفال بس لما يبقى فيه مستوى جديد — شاشة النتيجة نفسها
+       بتعرض المكسب، فاحتفال فوقها بيبقى تكرار */
+    if (g.levelsGained > 0) celebrate({ gems: g.gems, levels: g.levelsGained })
   }
 
   function close() {

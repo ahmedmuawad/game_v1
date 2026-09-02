@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useI18n } from '@/i18n'
 import { useGame } from '@/state/store'
-import { useToast } from '@/app/toast'
 import { haptic } from '@/app/haptics'
+import { celebrate } from '@/components/ui/Celebration'
 import { dailyGiftAmount, freezeAvailable } from '@/systems/daily'
 import { Button, CoinIcon, ProgressBar } from '@/components/ui'
 import { IconCheck, IconFlame, IconGift } from '@/app/icons'
@@ -19,7 +19,6 @@ import './daily.css'
  */
 export function DailyCard() {
   const { t, n } = useI18n()
-  const { show: toast } = useToast()
 
   // محدّدات دقيقة بدل `useGame()` كامل عشان ما نعيدش الرسم بلا داعٍ
   const daily = useGame((s) => s.daily)
@@ -38,18 +37,26 @@ export function DailyCard() {
     ? t('daily.streakSafe')
     : t('daily.streakGrow')
 
+  /*
+    الاحتفال بدل الـtoast: لحظة الكسب كانت بتعدّي كشريط رمادي في ركن
+    الشاشة — نفس شكل رسالة «الفلوس مش كافية» بالظبط. الفرق بين الكسب
+    والخسارة كان لونًا صغيرًا.
+  */
   function onClaimGift() {
     const amount = claimDailyGift()
     if (amount <= 0) return
     haptic('success')
-    toast(t('daily.giftGot', { coins: n(amount) }), 'good')
+    celebrate({ coins: amount, title: t('daily.reward') })
   }
 
   function onClaimMission(m: DailyMission) {
     const res = claimMission(m.id)
     if (!res) return
     haptic('success')
-    toast(t('daily.missionGot', { coins: n(res.coins) }), 'good')
+    celebrate({
+      coins: res.coins, gems: res.gems, levels: res.levelsGained,
+      title: t('daily.missions'),
+    })
   }
 
   return (

@@ -1,0 +1,84 @@
+.celeb {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-toast, 100);
+  display: grid;
+  place-items: center;
+  background: rgba(8, 5, 12, .55);
+  backdrop-filter: blur(3px);
+  /*
+    زرار يملا الشاشة عشان أي لمسة تقفل الاحتفال. الاحتفال اللي محتاج
+    تصويب على زرار «تمام» بيتحوّل لخطوة زيادة بعد كل مكافأة — وهنا
+    المكافآت كتيرة (كل مهمة، كل لعبة، كل فصل).
+  */
+  border: 0;
+  padding: 0;
+}
+
+.celeb__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-5) var(--s-5) var(--s-4);
+  min-inline-size: 216px;
+  border-radius: var(--r-2xl);
+  background: var(--c-bg-elevated);
+  border: 1px solid var(--c-accent-tint);
+  box-shadow: var(--e-4), 0 0 48px rgba(255, 92, 138, .22);
+}
+
+.celeb__spark {
+  display: grid;
+  place-items: center;
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: 50%;
+  background: var(--c-accent-tint);
+  color: var(--c-accent);
+}
+
+.celeb__title { color: var(--c-text); }
+
+.celeb__row {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.celeb__amt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
+  color: var(--c-accent);
+}
+
+/* ===== القصاصات ===== */
+
+/*
+  المركز عند الأيقونة لا وسط البطاقة: القصاصات بتنفجر من نقطة، ولو
+  النقطة على النص بتغطّي المكسوب في أول نص ثانية — وهو بالظبط اللي
+  اللاعبة بتبص عليه.
+*/
+.celeb__confetti {
+  position: absolute;
+  inset-block-start: 24%;
+  inset-inline-start: 50%;
+  inline-size: 0;
+  block-size: 0;
+  pointer-events: none;
+}
+
+.celeb__bit {
+  position: absolute;
+  inline-size: 8px;
+  block-size: 12px;
+  border-radius: 2px;
+}
+.celeb__bit--0 { background: var(--c-primary); }
+.celeb__bit--1 { background: var(--c-accent); }
+.celeb__bit--2 { background: var(--c-secondary, #A78BE8); }
+.celeb__bit--3 { background: var(--c-success); }

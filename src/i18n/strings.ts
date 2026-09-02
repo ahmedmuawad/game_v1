@@ -8,6 +8,7 @@ export const strings = {
   // ===== عام =====
   'app.name':            { ar: 'ليڤي', en: 'LIVI' },
   'app.tagline':         { ar: 'حياتك. ستايلك. اختياراتك.', en: 'Your Life. Your Style. Your Choices.' },
+  'home.greeting':       { ar: 'أهلاً يا {name}', en: 'Hey {name}' },
   'common.continue':     { ar: 'يلا نكمّل', en: 'Continue' },
   'common.next':         { ar: 'التالي', en: 'Next' },
   'common.back':         { ar: 'رجوع', en: 'Back' },
