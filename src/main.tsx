@@ -11,6 +11,7 @@ import { StoryHome } from '@/features/story/StoryHome'
 import { StyleScreen } from '@/features/StyleScreen'
 import { ShopScreen } from '@/features/shop/ShopScreen'
 import { RoomScreen } from '@/features/room/RoomScreen'
+import { PlayScreen } from '@/features/play/PlayScreen'
 import { IconStory, IconRoom, IconStyle, IconPlay, IconShop } from '@/app/icons'
 import '@/design/global.css'
 import '@/app/nav.css'
@@ -45,16 +46,6 @@ function NavBar({ tab, onChange }: { tab: TabId; onChange: (t: TabId) => void })
   )
 }
 
-function Placeholder({ titleKey }: { titleKey: string }) {
-  const { t } = useI18n()
-  return (
-    <div className="screen">
-      <div className="topbar"><h1 className="h3">{t(titleKey as 'nav.room')}</h1></div>
-      <div className="empty body-sm">{t('common.soon')}</div>
-    </div>
-  )
-}
-
 function App() {
   const [manifest, setManifest] = useState<AvatarManifest | null>(null)
   const [tab, setTab] = useState<TabId>('story')
@@ -83,7 +74,7 @@ function App() {
           {tab === 'story' && <StoryHome manifest={manifest} />}
           {tab === 'style' && <StyleScreen manifest={manifest} />}
           {tab === 'room' && <RoomScreen manifest={manifest} />}
-          {tab === 'play' && <Placeholder titleKey="nav.play" />}
+          {tab === 'play' && <PlayScreen manifest={manifest} />}
           {tab === 'shop' && <ShopScreen manifest={manifest} />}
           <NavBar tab={tab} onChange={setTab} />
         </div>
@@ -92,6 +83,19 @@ function App() {
   )
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode><App /></StrictMode>,
-)
+/*
+  الجذر بيتخزّن على `window` بدل ما يتعمل من جديد كل مرة.
+
+  التحديث الساخن بيعيد تنفيذ الموديول ده، و`createRoot` على نفس العنصر
+  مرتين بيسيب جذرين بيتنازعوا على نفس الشجرة — النتيجة أعطال
+  `removeChild` متكررة وواجهة بتتجمّد أثناء التطوير. البناء الإنتاجي
+  بينفّذ الموديول مرة واحدة فالحارس ده بلا أثر عليه.
+*/
+declare global {
+  interface Window { __liviRoot?: ReturnType<typeof createRoot> }
+}
+
+const container = document.getElementById('root')!
+const root = window.__liviRoot ?? createRoot(container)
+window.__liviRoot = root
+root.render(<StrictMode><App /></StrictMode>)
