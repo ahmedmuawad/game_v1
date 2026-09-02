@@ -1,0 +1,126 @@
+@import '@/components/ui/tile.css';
+
+.rm__stage {
+  padding: var(--s-3) var(--s-4) 0;
+}
+
+/* ===== الإضاءة ===== */
+
+.rm__moods {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4) 0;
+}
+
+.rm__moodsLabel { color: var(--c-text-subtle); flex: none; }
+
+.rm__moodRow {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  padding: 4px;
+  border-radius: var(--r-pill);
+  background: rgba(0, 0, 0, .28);
+}
+
+.rm__mood {
+  flex: 1;
+  padding-block: 8px;
+  border-radius: var(--r-pill);
+  color: var(--c-text-subtle);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--fw-med);
+  transition: background var(--d-fast) var(--ease-out),
+              color var(--d-fast) var(--ease-out);
+}
+.rm__mood--on {
+  background: var(--g-primary);
+  color: #fff;
+  font-weight: var(--fw-bold);
+}
+
+/* ===== المحرّر ===== */
+
+.rm__cta { padding: var(--s-4); }
+
+.rm__editor {
+  padding: var(--s-3) var(--s-4) 0;
+}
+
+.rm__editorHead {
+  display: flex;
+  justify-content: flex-end;
+  margin-block-end: var(--s-1);
+}
+
+.rm__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: var(--s-2);
+  padding-block: var(--s-3) var(--s-5);
+  align-content: start;
+}
+
+/* ===== بلاطة قطعة الغرفة ===== */
+
+.ritem {
+  position: relative;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  border: 1px solid rgba(255, 255, 255, .07);
+  overflow: hidden;
+  transition: border-color var(--d-fast) var(--ease-out),
+              box-shadow var(--d-fast) var(--ease-out);
+}
+.ritem--on {
+  border-color: rgba(255, 92, 138, .6);
+  box-shadow: 0 0 0 1px rgba(255, 92, 138, .35), var(--e-glow-primary);
+}
+.ritem--locked { opacity: .5; }
+
+/* عيّنة الحائط/الأرضية بتملا البلاطة — اللون هو المنتج نفسه */
+.ritem__paint {
+  position: absolute;
+  inset: 0;
+}
+
+.ritem__svg {
+  inline-size: 84%;
+  block-size: 84%;
+  /*
+    الأشكال مرسومة بمقاسات محلية مختلفة، فبنسيب `preserveAspectRatio`
+    الافتراضي (meet) يقيّسها لنفس المربع بدل جدول مقاسات لكل قطعة.
+  */
+}
+
+/* ===== الأفاتار داخل المشهد ===== */
+
+.rm__scene { position: relative; }
+
+/*
+  الأفاتار واقف على السجادة في منتصف الغرفة.
+
+  **استثناء من قاعدة الخصائص المنطقية (قاعدة #2):** المشهد SVG
+  بإحداثيات ثابتة (السرير شمال، المكتب يمين) ومابينعكسش مع اتجاه
+  اللغة. فلو استخدمنا `inset-inline-*` كان الأفاتار هيقف على السرير في
+  العربية وعلى المكتب في الإنجليزية. الموضع هنا فيزيائي لأن اللي
+  بيتموضع جوّاه فيزيائي.
+
+  الارتفاع 150px مش اعتباطي: إطار المشهد 390×320 وخط الأرضية عند 208،
+  يعني الحائط 65% من الارتفاع. أفاتار بـ186px كان بيطلع أعلى من
+  الحائط نفسه فالغرفة كانت بتتقري كدمية في علبة.
+*/
+.rm__scene { position: relative; }
+
+.rm__avatar {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .45));
+}

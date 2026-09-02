@@ -1,4 +1,5 @@
 import { getConfig } from '@/systems/config'
+import { STARTER_ROOM_IDS } from '@/content/room'
 import type { PlayerState } from './types'
 
 /** 3: أُضيفت `settings.locale` — اللغة بقت محفوظة بدل ما ترجع للعربي كل تشغيل. */
@@ -10,6 +11,12 @@ export const SCHEMA_VERSION = 3
  * بشكل متزامن قبل تحميل الأصول. تطابق `starter=True` في `tools/avatar/wardrobe.py`.
  */
 export const STARTER_ITEM_IDS = ['top_tee_cream', 'bot_jeans_classic', 'sh_sneak_white']
+
+/*
+  أغراض الغرفة المجانية. لازم تكون مملوكة من البداية وإلا `setRoomSlot`
+  بيرفض وضعها (بيتأكد من الملكية)، فالغرفة الابتدائية كانت هتفضل فاضية.
+*/
+export { STARTER_ROOM_IDS } from '@/content/room'
 
 export function todayKey(d: Date = new Date()): string {
   const y = d.getFullYear()
@@ -49,7 +56,7 @@ export function createInitialState(): PlayerState {
     relationships: {},
     flags: {},
 
-    owned: [...STARTER_ITEM_IDS],
+    owned: [...STARTER_ITEM_IDS, ...STARTER_ROOM_IDS],
     avatar: {
       skin: 'honey',
       eyes: 'brown',
@@ -65,7 +72,7 @@ export function createInitialState(): PlayerState {
       wall: 'wall_blush',
       floor: 'floor_oak',
       mood: 'day',
-      slots: { bed: 'bed_cozy_cream', desk: 'desk_study' },
+      slots: { bed: 'bed_cream', desk: 'desk_plain', rug: 'rug_round' },
     },
 
     story: {
@@ -97,7 +104,7 @@ export function createInitialState(): PlayerState {
       sessions: 0,
       chaptersCompleted: 0,
       minigamesPlayed: 0,
-      itemsOwned: STARTER_ITEM_IDS.length,
+      itemsOwned: STARTER_ITEM_IDS.length + STARTER_ROOM_IDS.length,
       outfitChanges: 0,
       roomEdits: 0,
       coinsEarnedTotal: 0,

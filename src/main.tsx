@@ -10,6 +10,7 @@ import { loadManifest, type AvatarManifest } from '@/content/manifest'
 import { StoryHome } from '@/features/story/StoryHome'
 import { StyleScreen } from '@/features/StyleScreen'
 import { ShopScreen } from '@/features/shop/ShopScreen'
+import { RoomScreen } from '@/features/room/RoomScreen'
 import { IconStory, IconRoom, IconStyle, IconPlay, IconShop } from '@/app/icons'
 import '@/design/global.css'
 import '@/app/nav.css'
@@ -81,7 +82,7 @@ function App() {
         <div className="app">
           {tab === 'story' && <StoryHome manifest={manifest} />}
           {tab === 'style' && <StyleScreen manifest={manifest} />}
-          {tab === 'room' && <Placeholder titleKey="nav.room" />}
+          {tab === 'room' && <RoomScreen manifest={manifest} />}
           {tab === 'play' && <Placeholder titleKey="nav.play" />}
           {tab === 'shop' && <ShopScreen manifest={manifest} />}
           <NavBar tab={tab} onChange={setTab} />

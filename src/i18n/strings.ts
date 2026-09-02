@@ -104,6 +104,9 @@ export const strings = {
   'room.cat.plant':    { ar: 'نباتات', en: 'Plants' },
   'room.cat.rug':      { ar: 'سجاد', en: 'Rug' },
   'room.cat.poster':   { ar: 'ملصقات', en: 'Posters' },
+  'room.cat.shelf':    { ar: 'أرفف', en: 'Shelves' },
+  'room.cat.lamp':     { ar: 'إضاءة', en: 'Lamps' },
+  'room.cat.pet':      { ar: 'أليف', en: 'Pet' },
 
   // ===== الستايل / الخزانة =====
   'style.title':       { ar: 'الستايل', en: 'Style' },

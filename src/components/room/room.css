@@ -1,0 +1,23 @@
+.room {
+  position: relative;
+  inline-size: 100%;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.room__svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/*
+  إبراز الفتحة أثناء التعديل. `paint-order` مش متاح للمجموعات، فبنستخدم
+  ظلًا لونيًا بدل حدّ — الحدّ حوالين مجموعة SVG بيتبع شكل كل مسار جوّاها
+  فبيطلع مشوّش على قطعة معقدة زي السرير.
+*/
+.room__slot { transition: filter var(--d-med) var(--ease-out); }
+.room__slot--on {
+  filter: drop-shadow(0 0 0 rgba(255, 92, 138, .9))
+          drop-shadow(0 0 7px rgba(255, 92, 138, .85));
+}
