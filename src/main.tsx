@@ -9,6 +9,7 @@ import { initNative } from '@/app/native'
 import { loadManifest, type AvatarManifest } from '@/content/manifest'
 import { StoryHome } from '@/features/story/StoryHome'
 import { StyleScreen } from '@/features/StyleScreen'
+import { ShopScreen } from '@/features/shop/ShopScreen'
 import { IconStory, IconRoom, IconStyle, IconPlay, IconShop } from '@/app/icons'
 import '@/design/global.css'
 import '@/app/nav.css'
@@ -82,7 +83,7 @@ function App() {
           {tab === 'style' && <StyleScreen manifest={manifest} />}
           {tab === 'room' && <Placeholder titleKey="nav.room" />}
           {tab === 'play' && <Placeholder titleKey="nav.play" />}
-          {tab === 'shop' && <Placeholder titleKey="nav.shop" />}
+          {tab === 'shop' && <ShopScreen manifest={manifest} />}
           <NavBar tab={tab} onChange={setTab} />
         </div>
       </ToastProvider>

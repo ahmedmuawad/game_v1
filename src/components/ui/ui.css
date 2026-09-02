@@ -144,7 +144,19 @@
   flex: none;
 }
 .sheet__head { padding: var(--s-2) var(--s-5) var(--s-3); flex: none; }
-.sheet__body { overflow-y: auto; padding-inline: var(--s-5); -webkit-overflow-scrolling: touch; }
+/*
+  `min-height: 0` مش تزيّد: عنصر flex قيمته الافتراضية `auto`، يعني
+  بيرفض ينكمش تحت ارتفاع محتواه — فـ`overflow-y: auto` مابيشتغلش
+  والورقة بتتخطى `max-height` وتطلع بره الشاشة. اتقاس فعليًا: ورقة
+  تفاصيل المتجر طلّعت زرار الشرا عند 1183px في شاشة 736px.
+*/
+.sheet__body {
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+  padding-inline: var(--s-5);
+  -webkit-overflow-scrolling: touch;
+}
 
 /* ============ التبويبات ============ */
 .tabs {

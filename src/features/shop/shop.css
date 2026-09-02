@@ -1,0 +1,124 @@
+@import '@/components/ui/tile.css';
+
+/* ===== اختيار اليوم ===== */
+
+.shop__daily {
+  padding: var(--s-3) var(--s-4) 0;
+}
+
+.shop__dailyHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--c-accent);
+  margin-block-end: var(--s-2);
+}
+
+/*
+  صف أفقي قابل للتمرير بدل شبكة: ثلاث بطاقات عريضة على شاشة 360px
+  بتخنق بعضها، والصف بيدّي كل بطاقة مساحة تتنفس فيها ويشاور بصريًا
+  إن فيه كمان جنبها.
+*/
+.shop__dailyRow {
+  display: flex;
+  gap: var(--s-2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-block-end: var(--s-2);
+  scrollbar-width: none;
+}
+.shop__dailyRow::-webkit-scrollbar { display: none; }
+
+.shop__feat {
+  position: relative;
+  flex: 0 0 108px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--s-2);
+  border-radius: var(--r-md);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-accent-tint);
+  overflow: hidden;
+}
+
+.shop__featImg {
+  width: 100%;
+  height: 78px;
+  object-fit: contain;
+  object-position: center top;
+  pointer-events: none;
+}
+/* القطع مصيَّرة للجسم الكامل — كل فئة محتاجة نافذة قصّ مختلفة */
+.shop__featImg--bottom { object-position: center 62%; }
+.shop__featImg--dress  { object-position: center 30%; }
+.shop__featImg--shoes  { object-position: center 96%; }
+
+.shop__featName {
+  color: var(--c-text);
+  text-align: center;
+  /* اسم القطعة ممكن يبقى سطرين — بنقصّه لسطر واحد عشان البطاقات تفضل متساوية */
+  inline-size: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shop__featPrice {
+  color: var(--c-accent);
+  font-weight: var(--fw-bold);
+  font-size: 11.5px;
+}
+
+/* ===== الشبكة ===== */
+
+.shop__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  grid-auto-rows: min-content;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4) var(--s-5);
+  align-content: start;
+}
+
+/* السعر اللي مش مقدور عليه بيتعتّم بدل ما يتشال — اللاعبة تعرف الهدف */
+.tile__price--poor { color: var(--c-text-subtle); }
+
+/* ===== ورقة التفاصيل ===== */
+
+.shop__detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.shop__preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 100%;
+  padding-block: var(--s-2);
+  border-radius: var(--r-lg);
+  background: radial-gradient(60% 70% at 50% 30%, var(--c-accent-tint), transparent 70%);
+}
+
+.shop__previewTag {
+  position: absolute;
+  inset-block-end: var(--s-2);
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: rgba(10, 7, 14, .72);
+  backdrop-filter: blur(6px);
+  color: var(--c-text-subtle);
+}
+
+.shop__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.shop__lvl { color: var(--c-text-subtle); }

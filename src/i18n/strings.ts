@@ -175,6 +175,14 @@ export const strings = {
   'shop.new':          { ar: 'جديد', en: 'New' },
   'shop.buy':          { ar: 'اشتري', en: 'Buy' },
   'shop.limited':      { ar: 'لفترة محدودة', en: 'Limited time' },
+  'shop.sub':          { ar: 'قطع جديدة كل يوم', en: 'New pieces every day' },
+  'shop.all':          { ar: 'الكل', en: 'All' },
+  'shop.tryOn':        { ar: 'جرّبيها عليكِ', en: 'Try it on' },
+  'shop.tryingOn':     { ar: 'بتجرّبيها دلوقتي', en: 'Trying it on' },
+  'shop.needLevel':    { ar: 'تفتح في المستوى {n}', en: 'Unlocks at level {n}' },
+  'shop.ownedAll':     { ar: 'عندك كل حاجة في الفئة دي', en: 'You own everything here' },
+  'shop.wearNow':      { ar: 'البسيها دلوقتي', en: 'Wear it now' },
+  'shop.dailyPick':    { ar: 'اختيار اليوم', en: "Today's pick" },
 
   // ===== الندرة =====
   'rarity.common':    { ar: 'عادي', en: 'Common' },
