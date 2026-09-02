@@ -72,3 +72,24 @@
   overflow: hidden;
 }
 .chapter-row__state { flex: none; color: var(--c-success); width: 18px; }
+
+/*
+  زرار الإعدادات في الشريط العلوي. حجم اللمس 40px مش أقل: إرشادات
+  اللمس بتحط 44px كحد أدنى مريح، والترس أيقونة صغيرة فمحتاج مساحة
+  حواليه عشان ما يبقاش صيد صعب على صوابع صغيرة.
+*/
+.topbar__gear {
+  display: grid;
+  place-items: center;
+  inline-size: 40px;
+  block-size: 40px;
+  margin-inline-start: 2px;
+  border-radius: 50%;
+  color: var(--c-text-subtle);
+  transition: color var(--d-fast) var(--ease-out),
+              background var(--d-fast) var(--ease-out);
+}
+.topbar__gear:active {
+  color: var(--c-text);
+  background: rgba(255, 255, 255, .08);
+}

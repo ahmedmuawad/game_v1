@@ -8,9 +8,10 @@ import { AvatarView } from '@/components/avatar/AvatarView'
 import type { AvatarManifest } from '@/content/manifest'
 import { loadChapter, loadSeason, prefetchChapter, type Chapter, type SeasonMeta } from '@/systems/story'
 import { Button, CurrencyPill, ProgressBar, EmptyState } from '@/components/ui'
-import { IconLock, IconCheck, IconSpark } from '@/app/icons'
+import { IconLock, IconCheck, IconSpark, IconSettings } from '@/app/icons'
 import { levelProgress } from '@/systems/progression'
 import { DailyCard } from '@/features/daily/DailyCard'
+import { SettingsSheet } from '@/features/settings/SettingsSheet'
 import { StoryReader } from './StoryReader'
 import './story-home.css'
 
@@ -18,6 +19,7 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
   const { t, tx, n } = useI18n()
   const { show: toast } = useToast()
   const [season, setSeason] = useState<SeasonMeta | null>(null)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   const [active, setActive] = useState<Chapter | null>(null)
   const [busy, setBusy] = useState(false)
 
@@ -93,7 +95,21 @@ export function StoryHome({ manifest }: { manifest: AvatarManifest | null }) {
         <CurrencyPill kind="gems" value={n(store.gems)} />
         <span className="topbar__spacer" />
         <CurrencyPill kind="energy" value={`${store.energy}/${energyMax}`} />
+        {/*
+          الترس هنا لا في تبويب سادس: شريط التنقل خمس تبويبات وهي حدّ
+          الراحة على شاشة 360px، والإعدادات مش وجهة يومية.
+        */}
+        <button
+          type="button"
+          className="topbar__gear"
+          aria-label={t('settings.title')}
+          onClick={() => { setSettingsOpen(true); haptic('select') }}
+        >
+          <IconSettings />
+        </button>
       </div>
+
+      <SettingsSheet open={settingsOpen} onClose={() => setSettingsOpen(false)} />
 
       <div className="screen__scroll">
         <header className="home__hero">
